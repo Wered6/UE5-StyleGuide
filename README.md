@@ -1,20 +1,8 @@
-# Wered UE5 Style Guide()
+# Wered UE5 Style Guide forked from [Allar's](https://github.com/Allar/ue5-style-guide)
 
-## Linking To This Document
+## Linter and Style Guide Documentation
 
-Every section of this style guide is numbered for both easy reference and easy linking. You can link to any section directly by simply append a hash tag and the section number to the end of http://ue4.style
-For example, if you want to send someone to the first principle of this style guide you would append `#0.1`, resulting in http://ue4.style#0.1.
-
-## Forks And Translations
-
-If you have made a notable fork or translation that is not suitable for a pull request into this repo, please submit a pull request to add the fork or translation here.
-
-* [Korean Translation](https://github.com/ymkim50/ue4-style-guide/blob/master/README_Kor.md) by ymkim50
-* [Russian Translation](https://github.com/CosmoMyzrailGorynych/ue4-style-guide-rus/blob/master/README.md) by CosmoMyzrailGorynych
-* [Japanese Translation](https://github.com/akenatsu/ue4-style-guide/blob/master/README.jp.md) by akenatsu
-* [Chinese Translation](https://github.com/skylens-inc/ue4-style-guide/blob/master/README.md) by Beijing Skylens Tech.
-* [Brazilian Portuguese Translation](https://github.com/danlvr/ue5-style-guide/blob/main/README_PTBR.md) by danlvr.
-* [French Translation](https://github.com/Arnaud58/ue5-style-guide/blob/main/README.md) by Arnaud58
+More technical documentation regarding Linter and the Style Guide can be found at our [ReadTheDocs](https://ue4-style-guide.readthedocs.io/en/latest/) page.
 
 ## Table of contents
 - [Important Terminology](#important-terminology)
@@ -29,7 +17,6 @@ If you have made a notable fork or translation that is not suitable for a pull r
   - [0.2 All structure, assets, and code in any Unreal Engine 4 project should look like a single person created it, no matter how many people contributed](#0.2)
   - [0.3 Friends do not let friends have bad style](#0.3)
   - [0.4 A team without a style guide is no team of mine](#0.4)
-  - [0.5 Don't Break The Law](#0.5)
 - [00. Globally Enforced Opinions](#00)
   - [00.1 Forbidden Characters](#00.1)
     - [Identifiers](#identifiers)
@@ -188,9 +175,9 @@ When in the context of a class, it is often used to convey discussion about its 
 These principles have been adapted from [idomatic.js style guide](https://github.com/rwaldron/idiomatic.js/).
 
 <a name="0.1"></a>
-### 0.1 If your UE4 project already has a style guide, you should follow it
+### 0.1 If your UE5 project already has a style guide, you should follow it
 
-If you are working on a project or with a team that has a pre-existing style guide, it should be respected.  Any inconsistency between an existing style guide and this guide should defer to the existing.
+If you are working on a project or with a team that has a pre-existing style guide, it should be respected.
 
 Style guides should be living documents. You should propose style guide changes to an existing style guide as well as this guide if you feel the change benefits all usages.
 
@@ -198,7 +185,7 @@ Style guides should be living documents. You should propose style guide changes 
 > [_Rebecca Murphey_](https://rmurphey.com)
 
 <a name="0.2"></a>
-### 0.2 All structure, assets, and code in any Unreal Engine 4 project should look like a single person created it, no matter how many people contributed
+### 0.2 All structure, assets, and code in any Unreal Engine 5 project should look like a single person created it, no matter how many people contributed
 
 Moving from one project to another should not cause a re-learning of style and structure. Conforming to a style guide removes unneeded guesswork and ambiguities.
 
@@ -209,24 +196,14 @@ It also allows for more productive creation and maintenance as one does not need
 
 If you see someone working either against a style guide or no style guide, try to correct them.
 
-When working within a team or discussing within a community such as [Unreal Slackers](http://join.unrealslackers.org/), it is far easier to help and to ask for help when people are consistent. Nobody likes to help untangle someone's Blueprint spaghetti or deal with assets that have names they can't understand.
+When working within a team or discussing within a community such as [Unreal Source]([http://join.unrealslackers.org/](https://discord.gg/unrealsource)), it is far easier to help and to ask for help when people are consistent. Nobody likes to help untangle someone's Blueprint spaghetti or deal with assets that have names they can't understand.
 
-If you are helping someone whose work conforms to a different but consistent and sane style guide, you should be able to adapt to it. If they do not conform to any style guide, please direct them here.
+If you are helping someone whose work conforms to a different but consistent and sane style guide, you should be able to adapt to it.
 
 <a name="0.4"></a>
 ### 0.4 A team without a style guide is no team of mine
 
-When joining an Unreal Engine 4 team, one of your first questions should be "Do you have a style guide?". If the answer is no, you should be skeptical about their ability to work as a team.
-
-<a name="0.5"></a>
-### 0.5 Don't Break The Law
-
-Gamemakin LLC is not a lawyer, but please don't introduce illegal actions and behavior to a project, including but not limited to:
-
-* Don't distribute content you don't have the rights to distribute
-* Don't infringe on someone else's copyrighted or trademark material
-* Don't steal content
-* Follow licensing restrictions on content, e.g. attribute when attributions are needed
+When joining an Unreal Engine 5 team, one of your first questions should be "Do you have a style guide?". If the answer is no, you should be skeptical about their ability to work as a team.
 
 <a name="00"></a>
 ## 00. Globally Enforced Opinions
@@ -286,23 +263,23 @@ Depending on how your asset variants are made, you can chain together variant na
 
 ##### 1.1e1 Bob
 
-| Asset Type              | Asset Name                                                 |
-| ----------------------- | ---------------------------------------------------------- |
-| Skeletal Mesh           | SK_Bob                                                     |
-| Material                | M_Bob                                                      |
-| Texture (Diffuse/Albedo)| T_Bob_D                                                    |
-| Texture (Normal)        | T_Bob_N                                                    |
-| Texture (Evil Diffuse)  | T_Bob_Evil_D                                               |
+| Asset Type                 | Asset Name                                                 |
+| -------------------------- | ---------------------------------------------------------- |
+| Skeletal Mesh              | SK_Bob                                                     |
+| Material                   | M_Bob                                                      |
+| Texture (Diffuse/Albedo)   | T_Bob_D                                                    |
+| Texture (Normal)           | T_Bob_N                                                    |
+| Texture (Evil Diffuse)     | T_Bob_Evil_D                                               |
 
 ##### 1.1e2 Rocks
 
-| Asset Type              | Asset Name                                                 |
-| ----------------------- | ---------------------------------------------------------- |
-| Static Mesh (01)        | S_Rock_01                                                  |
-| Static Mesh (02)        | S_Rock_02                                                  |
-| Static Mesh (03)        | S_Rock_03                                                  |
-| Material                | M_Rock                                                     |
-| Material Instance (Snow)| MI_Rock_Snow                                               |
+| Asset Type                 | Asset Name                                                 |
+| -------------------------- | ---------------------------------------------------------- |
+| Static Mesh (01)           | S_Rock_01                                                  |
+| Static Mesh (02)           | S_Rock_02                                                  |
+| Static Mesh (03)           | S_Rock_03                                                  |
+| Material                   | M_Rock                                                     |
+| Material Instance (Snow)   | MI_Rock_Snow                                               |
 
 <a name="asset-name-modifiers"></a>
 <a name="1.2"></a>
@@ -314,73 +291,75 @@ When naming an asset, use these tables to determine the prefix and suffix to use
 <a name="1.2.1"></a>
 #### 1.2.1 Most Common
 
-| Asset Type              | Prefix     | Suffix     | Notes                            |
-| ----------------------- | ---------- | ---------- | -------------------------------- |
-| Level / Map             |            |            | [Should be in a folder called Maps.](#2.4) |
-| Level (Persistent)      |            | _P         |                                  |
-| Level (Audio)           |            | _Audio     |                                  |
-| Level (Lighting)        |            | _Lighting  |                                  |
-| Level (Geometry)        |            | _Geo       |                                  |
-| Level (Gameplay)        |            | _Gameplay  |                                  |
-| Blueprint               | BP_        |            |                                  |
-| Material                | M_         |            |                                  |
-| Static Mesh             | S_         |            | Many use SM_. We use S_.         |
-| Skeletal Mesh           | SK_        |            |                                  |
-| Texture                 | T_         | _?         | See [Textures](#anc-textures)    |
-| Particle System         | PS_        |            |                                  |
-| Widget Blueprint        | WBP_       |            |                                  |
+| Asset Type                 | Prefix     | Suffix     | Notes                            |
+| -------------------------- | ---------- | ---------- | -------------------------------- |
+| Level / Map                |            |            | [Should be in a folder called Maps.](#2.4) |
+| Level (Persistent)         |            | _P         |                                  |
+| Level (Audio)              |            | _Audio     |                                  |
+| Level (Lighting)           |            | _Lighting  |                                  |
+| Level (Geometry)           |            | _Geo       |                                  |
+| Level (Gameplay)           |            | _Gameplay  |                                  |
+| Blueprint                  | BP_        |            |                                  |
+| Blueprint Component        | BP_        | Component  | I.e. BP_InventoryComponent       |
+| Material                   | M_         |            |                                  |
+| Static Mesh                | S_         |            | Many use SM_. We use S_.         |
+| Skeletal Mesh              | SK_        |            |                                  |
+| Texture                    | T_         | _?         | See [Textures](#anc-textures)    |
+| Particle System            | PS_        |            |                                  |
+| Widget Blueprint           | WBP_       |            |                                  |
+| Animation Blueprint        | ABP_       |            |                                  |
 
 <a name="anc-animations"></a>
 <a name="1.2.2"></a>
 #### 1.2.2 Animations
 
-| Asset Type              | Prefix     | Suffix     | Notes                            |
-| ----------------------- | ---------- | ---------- | -------------------------------- |
-| Aim Offset              | AO_        |            |                                  |
-| Aim Offset 1D           | AO_        |            |                                  |
-| Animation Blueprint     | ABP_       |            |                                  |
-| Animation Composite     | AC_        |            |                                  |
-| Animation Montage       | AM_        |            |                                  |
-| Animation Sequence      | A_         |            |                                  |
-| Blend Space             | BS_        |            |                                  |
-| Blend Space 1D          | BS_        |            |                                  |
-| Level Sequence          | LS_        |            |                                  |
-| Morph Target            | MT_        |            |                                  |
-| Paper Flipbook          | PFB_       |            |                                  |
-| Rig                     | Rig_       |            |                                  |
-| Skeletal Mesh           | SK_        |            |                                  |
-| Skeleton                | SKEL_      |            |                                  |
+| Asset Type                 | Prefix     | Suffix     | Notes                            |
+| -------------------------- | ---------- | ---------- | -------------------------------- |
+| Aim Offset                 | AO_        |            |                                  |
+| Aim Offset 1D              | AO_        |            |                                  |
+| Animation Blueprint        | ABP_       |            |                                  |
+| Animation Composite        | AC_        |            |                                  |
+| Animation Montage          | AM_        |            |                                  |
+| Camera Animation Sequence  | CAS_       |            |                                  |
+| Blend Space                | BS_        |            |                                  |
+| Blend Space 1D             | BS_        |            |                                  |
+| Level Sequence             | LS_        |            |                                  |
+| Morph Target               | MT_        |            |                                  |
+| Paper Flipbook             | PFB_       |            |                                  |
+| Rig                        | Rig_       |            |                                  |
+| Control Rig                | CR_        |            |                                  |
+| Skeletal Mesh              | SK_        |            |                                  |
+| Skeleton                   | SKEL_      |            |                                  |
 
 <a name="anc-ai"></a>
 <a name="1.2.3"></a>
 ### 1.2.3 Artificial Intelligence
 
-| Asset Type              | Prefix     | Suffix     | Notes                            |
-| ----------------------- | ---------- | ---------- | -------------------------------- |
-| AI Controller           | AIC_       |            |                                  |
-| Behavior Tree           | BT_        |            |                                  |
-| Blackboard              | BB_        |            |                                  |
-| Decorator               | BTDecorator_ |          |                                  |
-| Service                 | BTService_ |            |                                  |
-| Task                    | BTTask_    |            |                                  |
-| Environment Query       | EQS_       |            |                                  |
-| EnvQueryContext         | EQS_       | Context    |                                  |
+| Asset Type                 | Prefix     | Suffix     | Notes                            |
+| -------------------------- | ---------- | ---------- | -------------------------------- |
+| AI Controller              | AIC_       |            |                                  |
+| Behavior Tree              | BT_        |            |                                  |
+| Blackboard                 | BB_        |            |                                  |
+| Decorator                  | BTDecorator_ |          |                                  |
+| Service                    | BTService_ |            |                                  |
+| Task                       | BTTask_    |            |                                  |
+| Environment Query          | EQS_       |            |                                  |
+| EnvQueryContext            | EQS_       | Context    |                                  |
 
 <a name="anc-bp"></a>
 <a name="1.2.4"></a>
 ### 1.2.4 Blueprints
 
-| Asset Type              | Prefix     | Suffix     | Notes                            |
-| ----------------------- | ---------- | ---------- | -------------------------------- |
-| Blueprint               | BP_        |            |                                  |
-| Blueprint Component     | BP_        | Component  | I.e. BP_InventoryComponent       |
+| Asset Type                 | Prefix     | Suffix     | Notes                            |
+| -------------------------- | ---------- | ---------- | -------------------------------- |
+| Blueprint                  | BP_        |            |                                  |
+| Blueprint Component        | BP_        | Component  | I.e. BP_InventoryComponent       |
 | Blueprint Function Library | BPFL_   |            |                                  |
-| Blueprint Interface     | BPI_       |            |                                  |
-| Blueprint Macro Library | BPML_      |            | Do not use macro libraries if possible. |
-| Enumeration             | E          |            | No underscore.                   |
-| Structure               | F or S     |            | No underscore.                   |
-| Tutorial Blueprint      | TBP_       |            |                                  |
-| Widget Blueprint        | WBP_       |            |                                  |
+| Blueprint Interface        | BPI_       |            |                                  |
+| Blueprint Macro Library    | BPML_      |            | Do not use macro libraries if possible. |
+| Enumeration                | E          |            | No underscore.                   |
+| Structure                  | F or S     |            | No underscore.                   |
+| Widget Blueprint           | WBP_       |            |                                  |
 
 <a name="anc-materials"></a>
 <a name="1.2.5"></a>
