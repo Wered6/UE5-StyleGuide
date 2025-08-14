@@ -87,7 +87,7 @@ our [ReadTheDocs](https://ue4-style-guide.readthedocs.io/en/latest/) page.
         - [3.2.8 Config Variables](#bp-vars-config)
     - [3.3 Functions, Events, and Event Dispatchers](#bp-functions)
         - [3.3.1 Function Naming](#bp-funcs-naming)
-        - [3.3.1.1 All Functions Should Be Verbs](#bp-funcs-verb-rule)
+        - [3.3.1.1 Verb Rule](#bp-funcs-verb-rule)
         - [3.3.1.2 Property RepNotify Functions Always `OnRep_Variable`](#bp-funcs-naming-onrep)
         - [3.3.1.3 Info Functions Returning Bool Should Ask Questions](#bp-funcs-naming-bool)
         - [3.3.1.4 Event Handlers and Dispatchers Should Start With `On`](#bp-funcs-naming-eventhandlers)
@@ -926,9 +926,9 @@ Remember: Blueprinting badly bears blunders, beware! (Phrase by [KorkuVeren](htt
 ### 3.1 Compiling
 
 All blueprints should compile with zero warnings and zero errors. You should fix blueprint warnings and errors immediately as they can
-quickly cascade into very scary unexpected behavior.
+quickly cascade into terrifying unexpected behavior.
 
-Do *not* submit broken blueprints to source control. If you must store them on source control, shelve them instead.
+Do **not** submit broken blueprints to source control.
 
 Broken blueprints can cause problems that manifest in other ways, such as broken references, unexpected behavior, cooking failures, and
 frequent unneeded recompilation. A broken blueprint has the power to break your entire game.
@@ -1243,6 +1243,7 @@ These questions and more can all be answered when functions are named appropriat
 <a name="bp-funcs-verb-rule"></a>
 
 #### 3.3.1.1 Verb rule
+
 All functions should be verbs.  
 All functions and events perform some form of action, whether it's getting info, calculating data, or causing something to explode.
 Therefore, all functions should all start with verbs. They should be worded in the present tense whenever possible. They should also have
@@ -1302,7 +1303,7 @@ Good examples:
   referring to 'previous frame' or 'previous state'.
 * `CanReload` - ["Can" is a verb.](http://grammar.yourdictionary.com/parts-of-speech/verbs/Helping-Verbs.html)
 
-$${/color{red}Bad examples:}$$
+Bad examples:
 
 * `Fire` - Is on fire? Will fire? Do fire?
 * `OnFire` - Can be confused with event dispatcher for firing.
@@ -1315,7 +1316,7 @@ $${/color{red}Bad examples:}$$
 #### 3.3.1.4 Event Handlers and Dispatchers Should Start With `On`
 
 Any function that handles an event or dispatches an event should start with `On` and continue to
-follow [the verb rule](#bp-funcs-verb-rule). The verb may move to the end however if past-tense reads better.
+follow [the verb rule](#bp-funcs-verb-rule). The verb may move to the end, however, if past-tense reads better.
 
 [Collocations](http://dictionary.cambridge.org/us/grammar/british-grammar/about-words-clauses-and-sentences/collocation) of the word `On`
 are exempt from following the verb rule.
@@ -1344,19 +1345,19 @@ Bad examples:
 
 #### 3.3.1.5 Remote Procedure Calls Should Be Prefixed With Target
 
-Any time an RPC is created, it should be prefixed with either `Server`, `Client`, or `Multicast`. No exceptions.
+Any time an RPC is created, it should be prefixed with either `Server_`, `Client_`, or `Multicast_`. **No exceptions**.
 
 After the prefix, follow all other rules regarding function naming.
 
 Good examples:
 
-* `ServerFireWeapon`
-* `ClientNotifyDeath`
-* `MulticastSpawnTracerEffect`
+* `Server_FireWeapon`
+* `Client_NotifyDeath`
+* `Multicast_SpawnTracerEffect`
 
 Bad examples:
 
-* `FireWeapon` - Does not indicate its an RPC of some kind.
+* `FireWeapon` - Does not indicate it's an RPC of some kind.
 * `ServerClientBroadcast` - Confusing.
 * `AllNotifyDeath` - Use `Multicast`, never `All`.
 * `ClientWeapon` - No verb, ambiguous.
@@ -1374,8 +1375,8 @@ Return nodes explicitly note that a function has finished its execution. In a wo
 The Blueprint compiler is able to follow the flow of execution and will warn you if there is a branch of your code with an unhandled return
 or bad flow if you use return nodes.
 
-In situations like where a programmer may add a pin to a Sequence node or add logic after a for loop completes but the loop iteration might
-return early, this can often result in an accidental error in code flow. The warnings the Blueprint compiler will alert everyone of these
+In situations like where a programmer may add a pin to a Sequence node or add logic after a for loop completes, but the loop iteration might
+return early, this can often result in an accidental error in code flow. The warnings the Blueprint compiler will alert every one of these
 issues immediately.
 
 <a name="3.3.3"></a>
@@ -1399,21 +1400,16 @@ The following nodes are not counted as they are deemed to not increase function 
 <a name="3.3.4"></a>
 <a name="bp-graphs-funcs-description"></a>
 
-#### 3.3.4 All Public Functions Should Have A Description
+#### 3.3.4 All Functions Should Have A Description
 
-This rule applies more to public facing or marketplace blueprints, so that others can more easily navigate and consume your blueprint API.
-
-Simply, any function that has an access specificer of Public should have its description filled out.
+Simply, any function should have its description filled out.
 
 <a name="3.3.5"></a>
 <a name="bp-graphs-funcs-plugin-category"></a>
 
-#### 3.3.5 All Custom Static Plugin `BlueprintCallable` Functions Must Be Categorized By Plugin Name
+#### 3.3.5 All Functions Must Be Categorized By Project Name Initials
 
-If your project includes a plugin that defines `static` `BlueprintCallable` functions, they should have their category set to the plugin's
-name or a subset category of the plugin's name.
-
-For example, `Zed Camera Interface` or `Zed Camera Interface | Image Capturing`.
+For example `Generic Shooter`, `GS` or `GS|Config`.
 
 <a name="3.4"></a>
 <a name="bp-graphs"></a>
@@ -1436,18 +1432,18 @@ following sections are dedicated to reducing spaghetti.
 #### 3.4.2 Align Wires Not Nodes
 
 Always align wires, not nodes. You can't always control the size and pin location on a node, but you can always control the location of a
-node and thus control the wires. Straight wires provide clear linear flow. Wiggly wires wear wits wickedly. You can straighten wires by
+node and thus control the wires. Straight wires provide a clear linear flow. *Wiggly wires wear wits wickedly*. You can straighten wires by
 using the Straighten Connections command with BP nodes selected. Hotkey: Q
 
 Good example: The tops of the nodes are staggered to keep a perfectly straight white exec line.
-![Aligned By Wires](https://github.com/Allar/ue5-style-guide/blob/main/images/bp-graphs-align-wires-good.png?raw=true "Aligned By Wires")
+![Aligned By Wires](https://github.com/Wered6/UE5-StyleGuide/blob/main/images/bp-graphs-align-wires-good.png?raw=true "Aligned By Wires")
 
 Bad Example: The tops of the nodes are aligned creating a wiggly white exec line.
-![Bad](https://github.com/Allar/ue5-style-guide/blob/main/images/bp-graphs-align-wires-bad.png?raw=true "Wiggly")
+![Bad](https://github.com/Wered6/UE5-StyleGuide/blob/main/images/bp-graphs-align-wires-bad.png?raw=true "Wiggly")
 
 Acceptable Example: Certain nodes might not cooperate no matter how you use the alignment tools. In this situation, try to minimize the
 wiggle by bringing the node in closer.
-![Acceptable](https://github.com/Allar/ue5-style-guide/blob/main/images/bp-graphs-align-wires-acceptable.png?raw=true "Acceptable")
+![Acceptable](https://github.com/Wered6/UE5-StyleGuide/blob/main/images/bp-graphs-align-wires-acceptable.png?raw=true "Acceptable")
 
 <a name="3.4.3"></a>
 <a name="bp-graphs-exec-first-class"></a>
@@ -1463,8 +1459,8 @@ white exec line.
 #### 3.4.4 Graphs Should Be Reasonably Commented
 
 Blocks of nodes should be wrapped in comments that describe their higher-level behavior. While every function should be well named so that
-each individual node is easily readable and understandable, groups of nodes contributing to a purpose should have their purpose described in
-a comment block. If a function does not have many blocks of nodes and its clear that the nodes are serving a direct purpose in the
+each node is easily readable and understandable, groups of nodes contributing to a purpose should have their purpose described in
+a comment block. If a function has few blocks of nodes, and it's clear that the nodes are serving a direct purpose in the
 function's goal, then they do not need to be commented as the function name and description should suffice.
 
 <a name="3.4.5"></a>
@@ -1473,8 +1469,8 @@ function's goal, then they do not need to be commented as the function name and 
 #### 3.4.5 Graphs Should Handle Casting Errors Where Appropriate
 
 If a function or event assumes that a cast always succeeds, it should appropriately report a failure in logic if the cast fails. This lets
-others know why something that is 'supposed to work' doesn't. A function should also attempt a graceful recover after a failed cast if it's
-known that the reference being casted could ever fail to be casted.
+others know why something 'supposed to work' doesn't. A function should also attempt a graceful recover after a failed cast if it's
+known that the reference being cast could ever fail to be cast.
 
 This does not mean every cast node should have its failure handled. In many cases, especially events regarding things like collisions, it is
 expected that execution flow terminates on a failed cast quietly.
