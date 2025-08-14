@@ -101,6 +101,7 @@ our [ReadTheDocs](https://ue4-style-guide.readthedocs.io/en/latest/) page.
         - [3.4.1 No Spaghetti](#bp-graphs-spaghetti)
         - [3.4.2 Align Wires Not Nodes](#bp-graphs-align-wires)
         - [3.4.3 White Exec Lines Are Top Priority](#bp-graphs-exec-first-class)
+        - [3.4.4 Getters Are Invoked In Every Use](#bp-graphs-getters-invoking)
         - [3.4.4 Graphs Should Be Reasonably Commented](#bp-graphs-block-comments)
         - [3.4.5 Graphs Should Handle Casting Errors Where Appropriate](#bp-graphs-cast-error-handling)
         - [3.4.6 Graphs Should Not Have Any Dangling / Loose / Dead Nodes](#bp-graphs-dangling-nodes)
@@ -900,13 +901,13 @@ There simply shouldn't be any empty folders. They clutter the content browser.
 If you find that the content browser has an empty folder you can't delete, you should perform the following:
 
 1. Be sure you're using source control.
-1. Immediately run Fix Up Redirectors on your project.
-1. Navigate to the folder on-disk and delete the assets inside.
-1. Close the editor.
-1. Make sure your source control state is in sync (i.e. if using Perforce, run a Reconcile Offline Work on your content directory)
-1. Open the editor. Confirm everything still works as expected. If it doesn't, revert, figure out what went wrong, and try again.
-1. Ensure the folder is now gone.
-1. Submit changes to source control.
+2. Immediately run Fix Up Redirectors on your project.
+3. Navigate to the folder on-disk and delete the assets inside.
+4. Close the editor.
+5. Make sure your source control state is in sync (i.e., if using Perforce, run a Reconcile Offline Work on your content directory)
+6. Open the editor. Confirm everything still works as expected. If it doesn't, revert, figure out what went wrong, and try again.
+7. Ensure the folder is now gone.
+8. Submit changes to source control.
 
 **[⬆ Back to Top](#table-of-contents)**
 
@@ -1454,19 +1455,27 @@ If you ever have to decide between straightening a linear white exec line or str
 white exec line.
 
 <a name="3.4.4"></a>
+<a name="bp-graphs-getters-invoking"></a>
+
+#### 3.4.4 Getters Are Invoked In Every Use
+
+Getters are invoked in every use regardless if you connect wires to one getter or many.
+This applies to simple getters and pure functions.
+
+<a name="3.4.5"></a>
 <a name="bp-graphs-block-comments"></a>
 
-#### 3.4.4 Graphs Should Be Reasonably Commented
+#### 3.4.5 Graphs Should Be Reasonably Commented
 
 Blocks of nodes should be wrapped in comments that describe their higher-level behavior. While every function should be well named so that
 each node is easily readable and understandable, groups of nodes contributing to a purpose should have their purpose described in
 a comment block. If a function has few blocks of nodes, and it's clear that the nodes are serving a direct purpose in the
 function's goal, then they do not need to be commented as the function name and description should suffice.
 
-<a name="3.4.5"></a>
+<a name="3.4.6"></a>
 <a name="bp-graphs-cast-error-handling"></a>
 
-#### 3.4.5 Graphs Should Handle Casting Errors Where Appropriate
+#### 3.4.6 Graphs Should Handle Casting Errors Where Appropriate
 
 If a function or event assumes that a cast always succeeds, it should appropriately report a failure in logic if the cast fails. This lets
 others know why something 'supposed to work' doesn't. A function should also attempt a graceful recover after a failed cast if it's
@@ -1475,10 +1484,10 @@ known that the reference being cast could ever fail to be cast.
 This does not mean every cast node should have its failure handled. In many cases, especially events regarding things like collisions, it is
 expected that execution flow terminates on a failed cast quietly.
 
-<a name="3.4.6"></a>
+<a name="3.4.7"></a>
 <a name="bp-graphs-dangling-nodes"></a>
 
-#### 3.4.6 Graphs Should Not Have Any Dangling / Loose / Dead Nodes
+#### 3.4.7 Graphs Should Not Have Any Dangling / Loose / Dead Nodes
 
 All nodes in all blueprint graphs must have a purpose. You should not leave dangling blueprint nodes around that have no purpose or are not
 executed.
