@@ -1456,7 +1456,7 @@ white exec line.
 <a name="3.4.4"></a>
 <a name="bp-graphs-block-comments"></a>
 
-#### 3.4.4  
+#### 3.4.4   
 
 #### 3.4.4 Graphs Should Be Reasonably Commented
 
