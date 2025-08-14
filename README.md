@@ -1302,8 +1302,7 @@ Good examples:
   referring to 'previous frame' or 'previous state'.
 * `CanReload` - ["Can" is a verb.](http://grammar.yourdictionary.com/parts-of-speech/verbs/Helping-Verbs.html)
 
-> [!NOTE] asd  
-> Useful information that users should know, even when skimming content.
+$${/color{red}Bad examples:}$$
 
 * `Fire` - Is on fire? Will fire? Do fire?
 * `OnFire` - Can be confused with event dispatcher for firing.
