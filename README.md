@@ -1456,6 +1456,8 @@ white exec line.
 <a name="3.4.4"></a>
 <a name="bp-graphs-block-comments"></a>
 
+#### 3.4.4  
+
 #### 3.4.4 Graphs Should Be Reasonably Commented
 
 Blocks of nodes should be wrapped in comments that describe their higher-level behavior. While every function should be well named so that
