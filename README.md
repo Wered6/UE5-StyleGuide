@@ -1302,7 +1302,8 @@ Good examples:
   referring to 'previous frame' or 'previous state'.
 * `CanReload` - ["Can" is a verb.](http://grammar.yourdictionary.com/parts-of-speech/verbs/Helping-Verbs.html)
 
-<span style="color:red">Bad examples:</span>
+> [!CAUTION] Bad examples:  
+> 'Fire' -
 
 * `Fire` - Is on fire? Will fire? Do fire?
 * `OnFire` - Can be confused with event dispatcher for firing.
