@@ -77,7 +77,7 @@ our [ReadTheDocs](https://ue4-style-guide.readthedocs.io/en/latest/) page.
             - [3.2.1.7 Do Include Non-Atomic Type Names](#bp-vars-naming-complex)
             - [3.2.1.8 Arrays](#bp-vars-naming-arrays)
         - [3.2.2 Editable Variables](#bp-vars-editable)
-            - [3.2.2.1 Tooltips](#bp-vars-editable-tooltips)
+            - [3.2.2.1 Descriptions](#bp-vars-editable-descriptions)
             - [3.2.2.2 Slider And Value Ranges](#bp-vars-editable-ranges)
         - [3.2.3 Categories](#bp-vars-categories)
         - [3.2.4 Variable Access Level](#bp-vars-access)
@@ -87,7 +87,7 @@ our [ReadTheDocs](https://ue4-style-guide.readthedocs.io/en/latest/) page.
         - [3.2.8 Config Variables](#bp-vars-config)
     - [3.3 Functions, Events, and Event Dispatchers](#bp-functions)
         - [3.3.1 Function Naming](#bp-funcs-naming)
-        - [3.3.1.1 All Functions Should Be Verbs](#bp-funcs-naming-verbs)
+        - [3.3.1.1 All Functions Should Be Verbs](#bp-funcs-verb-rule)
         - [3.3.1.2 Property RepNotify Functions Always `OnRep_Variable`](#bp-funcs-naming-onrep)
         - [3.3.1.3 Info Functions Returning Bool Should Ask Questions](#bp-funcs-naming-bool)
         - [3.3.1.4 Event Handlers and Dispatchers Should Start With `On`](#bp-funcs-naming-eventhandlers)
@@ -452,7 +452,7 @@ When naming an asset, use these tables to determine the prefix and suffix to use
 | Media Texture                       | MT_    |        |                                                         |
 | Render Target                       | RT_    |        |                                                         |
 | Cube Render Target                  | RTC_   |        |                                                         |
-| Texture Light Profile               | TLP    |        |                                                         |
+| Texture Light Profile               | TLP_   |        |                                                         |
 
 <a name="anc-textures-packing"></a>
 <a name="1.2.6.1"></a>
@@ -474,30 +474,30 @@ as a texture with an alpha channel incurs more overhead than one without.
 
 ### 1.2.7 Miscellaneous
 
-| Asset Type                 | Prefix   | Suffix  | Notes                            |
-|----------------------------|----------|---------|----------------------------------|
-| Animated Vector Field      | VFA_     |         |                                  |
-| Camera Anim                | CA_      |         |                                  |
-| Color Curve                | Curve_   | _Color  |                                  |
-| Curve Table                | Curve_   | _Table  |                                  |
-| Data Asset                 | *_       |         | Prefix should be based on class. |
-| Data Table                 | DT_      |         |                                  |
-| Float Curve                | Curve_   | _Float  |                                  |
-| Foliage Type               | FT_      |         |                                  |
-| Force Feedback Effect      | FFE_     |         |                                  |
-| Landscape Grass Type       | LG_      |         |                                  |
-| Landscape Layer            | LL_      |         |                                  |
-| Matinee Data               | Matinee_ |         |                                  |
-| Media Player               | MP_      |         |                                  |
-| File Media Source          | FMS_     |         |                                  |
-| Object Library             | OL_      |         |                                  |
-| Redirector                 |          |         | These should be fixed up ASAP.   |
-| Sprite Sheet               | SS_      |         |                                  |
-| Static Vector Field        | VF_      |         |                                  |
-| Substance Graph Instance   | SGI_     |         |                                  |
-| Substance Instance Factory | SIF_     |         |                                  |
-| Touch Interface Setup      | TI_      |         |                                  |
-| Vector Curve               | Curve_   | _Vector |                                  |
+| Asset Type                 | Prefix   | Suffix  | Notes                                                                                     |
+|----------------------------|----------|---------|-------------------------------------------------------------------------------------------|
+| Animated Vector Field      | VFA_     |         |                                                                                           |
+| Camera Anim                | CA_      |         |                                                                                           |
+| Color Curve                | Curve_   | _Color  |                                                                                           |
+| Curve Table                | Curve_   | _Table  |                                                                                           |
+| Data Asset                 | DA_      |         |                                                                                           |
+| Data Table                 | DT_      |         |                                                                                           |
+| Float Curve                | Curve_   | _Float  |                                                                                           |
+| Foliage Type               | FT_      |         |                                                                                           |
+| Force Feedback Effect      | FFE_     |         |                                                                                           |
+| Landscape Grass Type       | LG_      |         |                                                                                           |
+| Landscape Layer            | LL_      |         |                                                                                           |
+| Matinee Data               | Matinee_ |         |                                                                                           |
+| Media Player               | MP_      |         |                                                                                           |
+| File Media Source          | FMS_     |         |                                                                                           |
+| Object Library             | OL_      |         |                                                                                           |
+| Redirector                 |          |         | Fix them immediately or when you 100% sure no one is using object they are redirecting to |
+| Sprite Sheet               | SS_      |         |                                                                                           |
+| Static Vector Field        | VF_      |         |                                                                                           |
+| Substance Graph Instance   | SGI_     |         |                                                                                           |
+| Substance Instance Factory | SIF_     |         |                                                                                           |
+| Touch Interface Setup      | TI_      |         |                                                                                           |
+| Vector Curve               | Curve_   | _Vector |                                                                                           |
 
 <a name="anc-paper2d"></a>
 <a name="1.2.8"></a>
@@ -537,9 +537,9 @@ as a texture with an alpha channel incurs more overhead than one without.
 | Sound Attenuation | ATT_    |        |                                                                 |
 | Sound Class       |         |        | No prefix/suffix. Should be put in a folder called SoundClasses |
 | Sound Concurrency |         | _SC    | Should be named after a SoundClass                              |
-| Sound Cue         | A_      | _Cue   |                                                                 |
+| Sound Cue         | A_      | _Cue   | `A` from `A`udio                                                |
 | Sound Mix         | Mix_    |        |                                                                 |
-| Sound Wave        | A_      |        |                                                                 |
+| Sound Wave        | A_      |        | `A` form `A`udio                                                |
 
 <a name="anc-ui"></a>
 <a name="1.2.11"></a>
@@ -573,7 +573,7 @@ as a texture with an alpha channel incurs more overhead than one without.
 Equally important as asset names, the directory structure style of a project should be considered law. Asset naming conventions and content
 directory structure go hand in hand, and a violation of either causes unneeded chaos.
 
-There are multiple ways to lay out the content of a UE4 project. In this style, we will be using a structure that relies more on filtering
+There are multiple ways to lay out the content of a UE5 project. In this style, we will be using a structure that relies more on filtering
 and search abilities of the Content Browser for those working with assets to find assets of a specific type instead of another common
 structure that groups asset types with folders.
 
@@ -979,7 +979,7 @@ All booleans should be named in PascalCase but prefixed with a lowercase `b`.
 
 Example: Use `bDead` and `bEvil`, **not** `Dead` and `Evil`.
 
-UE4 Blueprint editors know not to include the `b` in user-friendly displays of the variable.
+UE5 Blueprint editors know not to include the `b` in user-friendly displays of the variable.
 
 <a name="3.2.1.4"></a>
 <a name="bp-var-bool-names"></a>
@@ -1001,7 +1001,7 @@ Try to not use verbs such as `bRunning`. Verbs tend to lead to complex states.
 
 ###### 3.2.1.4.2 Complex States
 
-Do not to use booleans to represent complex and/or dependent states. This makes state adding and removing complex and no longer easily
+Do not use booleans to represent complex and/or dependent states. This makes state adding and removing complex and no longer easily
 readable. Use an enumeration instead.
 
 Example: When defining a weapon, do **not** use `bReloading` and `bEquipping` if a weapon can't be both reloading and equipping. Define an
@@ -1114,12 +1114,12 @@ engineering reasons the variable must be marked as `Expose On Spawn`.
 Do not arbitrarily mark variables as `Editable`.
 
 <a name="3.2.2.1"></a>
-<a name="bp-vars-editable-tooltips"></a>
+<a name="bp-vars-editable-descriptions"></a>
 
-##### 3.2.2.1 Tooltips
+##### 3.2.2.1 Descriptions
 
-All `Editable` variables, including those marked editable just so they can be marked as `Expose On Spawn`, should have a description in
-their `Tooltip` fields that explains how changing this value affects the behavior of the blueprint.
+Every variable should have `Description` filled (especially if it's `Editable`) that explains what for this variable is and how changing
+this value affects the behavior of the blueprint.
 
 <a name="3.2.2.2"></a>
 <a name="bp-vars-editable-ranges"></a>
@@ -1142,40 +1142,40 @@ undefined Value Range allows a user to specify a value outside the Slider Range 
 
 #### 3.2.3 Categories
 
-If a class has only a small number of variables, categories are not required.
+All variables should be stored in the top category named as initials of the project i.e. `GenericShooter` - `GS`.
 
-If a class has a moderate amount of variables (5-10), all `Editable` variables should have a non-default category assigned. A common
-category is `Config`.
+All `Editable` variables should be in subcategory called `Config`.
 
-If a class has a large amount of variables, all `Editable` variables should be categorized into sub-categories using the category `Config`
+If a class has a large number of variables, all `Editable` variables should be categorized into subcategories using the category `Config`
 as the base category. Non-editable variables should be categorized into descriptive categories describing their usage.
 
-> You can define sub-categories by using the pipe character `|`, i.e. `Config | Animations`.
+> You can define subcategories by using the pipe character `|`, i.e. `GS | Config | Animations`.
 
 Example: A weapon class set of variables might be organized as:
 
-    |-- Config
-    |    |-- Animations
-    |    |-- Effects
-    |    |-- Audio
-    |    |-- Recoil
-    |    |-- Timings
-    |-- Animations
-    |-- State
-    |-- Visuals
+    |-- GS
+    |   |-- Config
+    |   |   |-- Animations
+    |   |   |-- Effects
+    |   |   |-- Audio
+    |   |   |-- Recoil
+    |   |   |-- Timings
+    |   |-- Animations
+    |   |-- State
+    |   |-- Visuals
 
 <a name="3.2.4"></a>
 <a name="bp-vars-access"></a>
 
 #### 3.2.4 Variable Access Level
 
-In C++, variables have a concept of access level. Public means any code outside the class can access the variable. Protected means only the
-class and any child classes can access this variable internally. Private means only this class and no child classes can access this
+In C++, variables have a concept of access level. `Public` means any code outside the class can access the variable. `Protected` means only
+the class and any child classes can access this variable internally. `Private` means only this class and no child classes can access this
 variable.
 
-Blueprints do not have a defined concept of protected access currently.
+Blueprints do not have a defined concept of `protected` access currently.
 
-Treat `Editable` variables as public variables. Treat non-editable variables as protected variables.
+Treat `Editable` variables as `public` variables. Treat non-editable variables as `protected` variables.
 
 <a name="3.2.4.1"></a>
 <a name="bp-vars-access-private"></a>
@@ -1183,8 +1183,8 @@ Treat `Editable` variables as public variables. Treat non-editable variables as 
 ##### 3.2.4.1 Private Variables
 
 Unless it is known that a variable should only be accessed within the class it is defined and never a child class, do not mark variables as
-private. Until variables are able to be marked `protected`, reserve private for when you absolutely know you want to restrict child class
-usage.
+`private`. Until variables are able to be marked `protected`, reserve `private` for when you absolutely know you want to restrict child
+class usage.
 
 <a name="3.2.5"></a>
 <a name="bp-vars-advanced"></a>
@@ -1201,9 +1201,9 @@ To find the `Advanced Display` option, it is listed as an advanced displayed var
 
 #### 3.2.6 Transient Variables
 
-Transient variables are variables that do not need to have their value saved and loaded and have an initial value of zero or null. This is
-useful for references to other objects and actors who's value isn't known until run-time. This prevents the editor from ever saving a
-reference to it, and speeds up saving and loading of the blueprint class.
+`Transient` variables are variables that do not need to have their value saved and loaded and have an initial value of zero or null. This is
+useful for references to other objects and actors whose value isn't known until run-time. This prevents the editor from ever saving a
+reference to it and speeds up saving and loading of the blueprint class.
 
 Because of this, all transient variables should always be initialized as zero or null. To do otherwise would result in hard to debug errors.
 
@@ -1240,11 +1240,11 @@ about functions. For example:
 These questions and more can all be answered when functions are named appropriately.
 
 <a name="3.3.1.1"></a>
-<a name="bp-funcs-naming-verbs"></a>
+<a name="bp-funcs-verb-rule"></a>
 
-#### 3.3.1.1 All Functions Should Be Verbs
-
-All functions and events perform some form of action, whether its getting info, calculating data, or causing something to explode.
+#### 3.3.1.1 Verb rule
+All functions should be verbs.  
+All functions and events perform some form of action, whether it's getting info, calculating data, or causing something to explode.
 Therefore, all functions should all start with verbs. They should be worded in the present tense whenever possible. They should also have
 some context as to what they are doing.
 
@@ -1276,8 +1276,7 @@ Bad examples:
 
 #### 3.3.1.2 Property RepNotify Functions Always `OnRep_Variable`
 
-All functions for replicated with notification variables should have the form `OnRep_Variable`. This is forced by the Blueprint editor. If
-you are writing a C++ `OnRep` function however, it should also follow this convention when exposing it to Blueprints.
+All functions for replicated with notification variables should have the form `OnRep_Variable`. This is forced by the Blueprint editor.
 
 <a name="3.3.1.3"></a>
 <a name="bp-funcs-naming-bool"></a>
@@ -1285,7 +1284,7 @@ you are writing a C++ `OnRep` function however, it should also follow this conve
 #### 3.3.1.3 Info Functions Returning Bool Should Ask Questions
 
 When writing a function that does not change the state of or modify any object and is purely for getting information, state, or computing a
-yes/no value, it should ask a question. This should also follow [the verb rule](#bp-funcs-naming-verbs).
+yes/no value, it should ask a question. This should also follow [the verb rule](#bp-funcs-verb-rule).
 
 This is extremely important as if a question is not asked, it may be assumed that the function performs an action and is returning whether
 that action succeeded.
@@ -1303,7 +1302,7 @@ Good examples:
   referring to 'previous frame' or 'previous state'.
 * `CanReload` - ["Can" is a verb.](http://grammar.yourdictionary.com/parts-of-speech/verbs/Helping-Verbs.html)
 
-Bad examples:
+<span style="color:red">Bad examples:</span>
 
 * `Fire` - Is on fire? Will fire? Do fire?
 * `OnFire` - Can be confused with event dispatcher for firing.
@@ -1316,7 +1315,7 @@ Bad examples:
 #### 3.3.1.4 Event Handlers and Dispatchers Should Start With `On`
 
 Any function that handles an event or dispatches an event should start with `On` and continue to
-follow [the verb rule](#bp-funcs-naming-verbs). The verb may move to the end however if past-tense reads better.
+follow [the verb rule](#bp-funcs-verb-rule). The verb may move to the end however if past-tense reads better.
 
 [Collocations](http://dictionary.cambridge.org/us/grammar/british-grammar/about-words-clauses-and-sentences/collocation) of the word `On`
 are exempt from following the verb rule.
