@@ -102,9 +102,9 @@ our [ReadTheDocs](https://ue4-style-guide.readthedocs.io/en/latest/) page.
         - [3.4.2 Align Wires Not Nodes](#bp-graphs-align-wires)
         - [3.4.3 White Exec Lines Are Top Priority](#bp-graphs-exec-first-class)
         - [3.4.4 Getters Are Invoked In Every Use](#bp-graphs-getters-invoking)
-        - [3.4.4 Graphs Should Be Reasonably Commented](#bp-graphs-block-comments)
-        - [3.4.5 Graphs Should Handle Casting Errors Where Appropriate](#bp-graphs-cast-error-handling)
-        - [3.4.6 Graphs Should Not Have Any Dangling / Loose / Dead Nodes](#bp-graphs-dangling-nodes)
+        - [3.4.5 Graphs Should Be Reasonably Commented](#bp-graphs-block-comments)
+        - [3.4.6 Graphs Should Handle Casting Errors Where Appropriate](#bp-graphs-cast-error-handling)
+        - [3.4.7 Graphs Should Not Have Any Dangling / Loose / Dead Nodes](#bp-graphs-dangling-nodes)
 - [4. Static Meshes](#4)
     - [4.1 Static Mesh UVs](#s-uvs)
         - [4.1.1 All Meshes Must Have UVs](#s-uvs-no-missing)
@@ -1459,8 +1459,13 @@ white exec line.
 
 #### 3.4.4 Getters Are Invoked In Every Use
 
-Getters are invoked in every use regardless if you connect wires to one getter or many.
-This applies to simple getters and pure functions.
+When you call getters or pure functions, keep in mind they run every time they're used - even if connected to multiple wires. This means a
+pure function will recalculate everything inside it each time it's called.
+
+So instead of connecting one getter node to multiple places and creating wire spaghetti, it's better to just use a new getter node each time
+you need that value.
+
+Good example: 
 
 <a name="3.4.5"></a>
 <a name="bp-graphs-block-comments"></a>
