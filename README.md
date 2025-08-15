@@ -14,26 +14,24 @@
     - [0.2 All structure, assets, and code in any Unreal Engine 4 project should look like a single person created it, no matter how many people contributed](#0.2)
     - [0.3 Friends do not let friends have bad style](#0.3)
     - [0.4 A team without a style guide is no team of mine](#0.4)
-- [00. Globally Enforced Opinions](#00)
-    - [00.1 Forbidden Characters](#00.1)
-        - [Identifiers](#identifiers)
 - [1. Asset Naming Conventions](#anc)
-    - [1.1 Base Asset Name - `Prefix_BaseAssetName_Variant_Suffix`](#base-asset-name)
-        - [1.1 Examples](#1.1-examples)
-    - [1.2 Asset Name Modifiers](#asset-name-modifiers)
-        - [1.2.1 Most Common](#anc-common)
-        - [1.2.2 Animations](#anc-animations)
-    - [1.2.3 Artificial Intelligence](#anc-ai)
-    - [1.2.4 Blueprints](#anc-bp)
-    - [1.2.5 Materials](#anc-materials)
-    - [1.2.6 Textures](#anc-textures)
-        - [1.2.6.1 Texture Packing](#anc-textures-packing)
-    - [1.2.7 Miscellaneous](#anc-misc)
-    - [1.2.8 Paper 2D](#anc-paper2d)
-    - [1.2.9 Physics](#anc-physics)
-    - [1.2.10 Sounds](#anc-sounds)
-    - [1.2.11 User Interface](#anc-ui)
-    - [1.2.12 Effects](#anc-effects)
+    - [1.1 Forbidden Character](#forbidden-characters)
+    - [1.2 Base Asset Name - `Prefix_BaseAssetName_Variant_Suffix`](#base-asset-name)
+        - [1.2e Examples](#1.2-examples)
+    - [1.3 Asset Name Modifiers](#asset-name-modifiers)
+        - [1.3.1 Most Common](#anc-common)
+        - [1.3.2 Animations](#anc-animations)
+        - [1.3.3 Artificial Intelligence](#anc-ai)
+        - [1.3.4 Blueprints](#anc-bp)
+        - [1.3.5 Materials](#anc-materials)
+        - [1.3.6 Textures](#anc-textures)
+            - [1.3.6.1 Texture Packing](#anc-textures-packing)
+        - [1.3.7 Miscellaneous](#anc-misc)
+        - [1.3.8 Paper 2D](#anc-paper2d)
+        - [1.3.9 Physics](#anc-physics)
+        - [1.3.10 Sounds](#anc-sounds)
+        - [1.3.11 User Interface](#anc-ui)
+        - [1.3.12 Effects](#anc-effects)
 - [2. Content Directory Structure](#structure)
     - [2e1 Example Project Content Structure](#2e1)
     - [2.1 Folder Names](#structure-folder-names)
@@ -82,11 +80,11 @@
         - [3.2.8 Config Variables](#bp-vars-config)
     - [3.3 Functions, Events, and Event Dispatchers](#bp-functions)
         - [3.3.1 Function Naming](#bp-funcs-naming)
-        - [3.3.1.1 Verb Rule](#bp-funcs-verb-rule)
-        - [3.3.1.2 Property RepNotify Functions Always `OnRep_Variable`](#bp-funcs-naming-onrep)
-        - [3.3.1.3 Info Functions Returning Bool Should Ask Questions](#bp-funcs-naming-bool)
-        - [3.3.1.4 Event Handlers and Dispatchers Should Start With `On`](#bp-funcs-naming-eventhandlers)
-        - [3.3.1.5 Remote Procedure Calls Should Be Prefixed With Target](#bp-funcs-naming-rpcs)
+            - [3.3.1.1 Verb Rule](#bp-funcs-verb-rule)
+            - [3.3.1.2 Property RepNotify Functions Always `OnRep_Variable`](#bp-funcs-naming-onrep)
+            - [3.3.1.3 Info Functions Returning Bool Should Ask Questions](#bp-funcs-naming-bool)
+            - [3.3.1.4 Event Handlers and Dispatchers Should Start With `On`](#bp-funcs-naming-eventhandlers)
+            - [3.3.1.5 Remote Procedure Calls Should Be Prefixed With Target](#bp-funcs-naming-rpcs)
         - [3.3.2 All Functions Must Have Return Nodes](#bp-funcs-return)
         - [3.3.3 No Function Should Have More Than 50 Nodes](#bp-graphs-funcs-node-limit)
         - [3.3.4 All Public Functions Should Have A Description](#bp-graphs-funcs-description)
@@ -226,19 +224,20 @@ If you are helping someone whose work conforms to a different but consistent and
 When joining an Unreal Engine 5 team, one of your first questions should be "Do you have a style guide?". If the answer is no, you should be
 skeptical about their ability to work as a team.
 
-<a name="00"></a>
+<a name="anc"></a>
+<a name="1"></a>
 
-## 00. Globally Enforced Opinions
+## 1. Asset Naming Conventions
 
-@TODO: Make this section 1 and update this document accordingly. Or maybe we don't?
+Naming conventions should be treated as law. A project that conforms to a naming convention is able to have its assets managed, searched,
+parsed and maintained with incredible ease.
 
-<a name="00.1"></a>
+Most things are prefixed with prefixes being generally an acronym of the asset type followed by an underscore.
 
-### 00.1 Forbidden Characters
+<a name="forbidden-characters"></a>
+<a name="1.1"></a>
 
-<a name="identifiers-1"></a>
-
-#### Identifiers
+### 1.1 Forbidden Characters
 
 In any `Identifier` of any kind, **never** use the following unless absolutely forced to:
 
@@ -257,20 +256,10 @@ Any `Identifier` should strive to only have the following characters when possib
 The reasoning for this is this will ensure the greatest compatibility of all data across all platforms across all tools, and help prevent
 downtime due to potentially bad character handling for identifiers in code you don't control.
 
-<a name="anc"></a>
-<a name="1"></a>
-
-## 1. Asset Naming Conventions
-
-Naming conventions should be treated as law. A project that conforms to a naming convention is able to have its assets managed, searched,
-parsed and maintained with incredible ease.
-
-Most things are prefixed with prefixes being generally an acronym of the asset type followed by an underscore.
-
 <a name="base-asset-name"></a>
-<a name="1.1"></a>
+<a name="1.2"></a>
 
-### 1.1 Base Asset Name - `Prefix_BaseAssetName_Variant_Suffix`
+### 1.2 Base Asset Name - `Prefix_BaseAssetName_Variant_Suffix`
 
 All assets should have a _Base Asset Name_. A Base Asset Name represents a logical grouping of related assets. Any asset that is part of
 this logical group should follow the standard of  `Prefix_BaseAssetName_Variant_Suffix`.
@@ -297,11 +286,11 @@ Depending on how your asset variants are made, you can chain together variant na
 Arch Viz project, you should use the base name `Flooring` with chained variants such as `Flooring_Marble_01`, `Flooring_Maple_01`,
 `Flooring_Tile_Squares_01`.
 
-<a name="1.1-examples"></a>
+<a name="1.2e-examples"></a>
 
-#### 1.1 Examples
+#### 1.2e Examples
 
-##### 1.1e1 Bob
+##### 1.2e1 Bob
 
 | Asset Type               | Asset Name   |
 |--------------------------|--------------|
@@ -311,7 +300,7 @@ Arch Viz project, you should use the base name `Flooring` with chained variants 
 | Texture (Normal)         | T_Bob_N      |
 | Texture (Evil Diffuse)   | T_Bob_Evil_D |
 
-##### 1.1e2 Rocks
+##### 1.2e2 Rocks
 
 | Asset Type               | Asset Name   |
 |--------------------------|--------------|
@@ -322,16 +311,16 @@ Arch Viz project, you should use the base name `Flooring` with chained variants 
 | Material Instance (Snow) | MI_Rock_Snow |
 
 <a name="asset-name-modifiers"></a>
-<a name="1.2"></a>
+<a name="1.3"></a>
 
-### 1.2 Asset Name Modifiers
+### 1.3 Asset Name Modifiers
 
 When naming an asset, use these tables to determine the prefix and suffix to use with an asset's [Base Asset Name](#base-asset-name).
 
 <a name="anc-common"></a>
-<a name="1.2.1"></a>
+<a name="1.3.1"></a>
 
-#### 1.2.1 Most Common
+#### 1.3.1 Most Common
 
 | Asset Type          | Prefix | Suffix    | Notes                                      |
 |---------------------|--------|-----------|--------------------------------------------|
@@ -352,9 +341,9 @@ When naming an asset, use these tables to determine the prefix and suffix to use
 | Animation Blueprint | ABP_   |           |                                            |
 
 <a name="anc-animations"></a>
-<a name="1.2.2"></a>
+<a name="1.3.2"></a>
 
-#### 1.2.2 Animations
+#### 1.3.2 Animations
 
 | Asset Type                | Prefix | Suffix | Notes |
 |---------------------------|--------|--------|-------|
@@ -375,9 +364,9 @@ When naming an asset, use these tables to determine the prefix and suffix to use
 | Skeleton                  | SKEL_  |        |       |
 
 <a name="anc-ai"></a>
-<a name="1.2.3"></a>
+<a name="1.3.3"></a>
 
-### 1.2.3 Artificial Intelligence
+### 1.3.3 Artificial Intelligence
 
 | Asset Type        | Prefix       | Suffix  | Notes |
 |-------------------|--------------|---------|-------|
@@ -391,9 +380,9 @@ When naming an asset, use these tables to determine the prefix and suffix to use
 | EnvQueryContext   | EQS_         | Context |       |
 
 <a name="anc-bp"></a>
-<a name="1.2.4"></a>
+<a name="1.3.4"></a>
 
-### 1.2.4 Blueprints
+### 1.3.4 Blueprints
 
 | Asset Type                 | Prefix | Suffix    | Notes                                   |
 |----------------------------|--------|-----------|-----------------------------------------|
@@ -407,9 +396,9 @@ When naming an asset, use these tables to determine the prefix and suffix to use
 | Widget Blueprint           | WBP_   |           |                                         |
 
 <a name="anc-materials"></a>
-<a name="1.2.5"></a>
+<a name="1.3.5"></a>
 
-### 1.2.5 Materials
+### 1.3.5 Materials
 
 | Asset Type                    | Prefix  | Suffix | Notes |
 |-------------------------------|---------|--------|-------|
@@ -423,9 +412,9 @@ When naming an asset, use these tables to determine the prefix and suffix to use
 | Decal                         | M_, MI_ | _Decal |       |
 
 <a name="anc-textures"></a>
-<a name="1.2.6"></a>
+<a name="1.3.6"></a>
 
-### 1.2.6 Textures
+### 1.3.6 Textures
 
 | Asset Type                          | Prefix | Suffix | Notes                                                   |
 |-------------------------------------|--------|--------|---------------------------------------------------------|
@@ -448,9 +437,9 @@ When naming an asset, use these tables to determine the prefix and suffix to use
 | Texture Light Profile               | TLP_   |        |                                                         |
 
 <a name="anc-textures-packing"></a>
-<a name="1.2.6.1"></a>
+<a name="1.3.6.1"></a>
 
-#### 1.2.6.1 Texture Packing
+#### 1.3.6.1 Texture Packing
 
 It is common practice to pack multiple layers of texture data into one texture. An example of this is packing Emissive, Roughness, Ambient
 Occlusion together as the Red, Green and Blue channels of a texture respectively. To determine the suffix, simply stack the given suffix
@@ -463,9 +452,9 @@ Packing 4 channels of data into a texture (RGBA) is not recommended except for a
 as a texture with an alpha channel incurs more overhead than one without.
 
 <a name="anc-misc"></a>
-<a name="1.2.7"></a>
+<a name="1.3.7"></a>
 
-### 1.2.7 Miscellaneous
+### 1.3.7 Miscellaneous
 
 | Asset Type                 | Prefix   | Suffix  | Notes                                                                                     |
 |----------------------------|----------|---------|-------------------------------------------------------------------------------------------|
@@ -493,9 +482,9 @@ as a texture with an alpha channel incurs more overhead than one without.
 | Vector Curve               | Curve_   | _Vector |                                                                                           |
 
 <a name="anc-paper2d"></a>
-<a name="1.2.8"></a>
+<a name="1.3.8"></a>
 
-### 1.2.8 Paper 2D
+### 1.3.8 Paper 2D
 
 | Asset Type         | Prefix | Suffix | Notes |
 |--------------------|--------|--------|-------|
@@ -506,9 +495,9 @@ as a texture with an alpha channel incurs more overhead than one without.
 | Tile Set           | TS_    |        |       |
 
 <a name="anc-physics"></a>
-<a name="1.2.9"></a>
+<a name="1.3.9"></a>
 
-### 1.2.9 Physics
+### 1.3.9 Physics
 
 | Asset Type        | Prefix | Suffix | Notes |
 |-------------------|--------|--------|-------|
@@ -517,9 +506,9 @@ as a texture with an alpha channel incurs more overhead than one without.
 | Destructible Mesh | DM_    |        |       |
 
 <a name="anc-sounds"></a>
-<a name="1.2.10"></a>
+<a name="1.3.10"></a>
 
-### 1.2.10 Sounds
+### 1.3.10 Sounds
 
 | Asset Type        | Prefix  | Suffix | Notes                                                           |
 |-------------------|---------|--------|-----------------------------------------------------------------|
@@ -535,9 +524,9 @@ as a texture with an alpha channel incurs more overhead than one without.
 | Sound Wave        | A_      |        | `A` form `A`udio                                                |
 
 <a name="anc-ui"></a>
-<a name="1.2.11"></a>
+<a name="1.3.11"></a>
 
-### 1.2.11 User Interface
+### 1.3.11 User Interface
 
 | Asset Type         | Prefix | Suffix | Notes |
 |--------------------|--------|--------|-------|
@@ -547,9 +536,9 @@ as a texture with an alpha channel incurs more overhead than one without.
 | Widget Blueprint   | WBP_   |        |       |
 
 <a name="anc-effects"></a>
-<a name="1.2.12"></a>
+<a name="1.3.12"></a>
 
-### 1.2.12 Effects
+### 1.3.12 Effects
 
 | Asset Type              | Prefix | Suffix | Notes |
 |-------------------------|--------|--------|-------|
