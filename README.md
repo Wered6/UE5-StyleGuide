@@ -1465,7 +1465,11 @@ pure function will recalculate everything inside it each time it's called.
 So instead of connecting one getter node to multiple places and creating wire spaghetti, it's better to just use a new getter node each time
 you need that value.
 
-Good example: 
+Good example:  
+![Good](https://github.com/Wered6/UE5-StyleGuide/blob/main/images/bp-graphs-getters-invoking-good.png?raw=true "Good")
+
+Bad example:  
+![Bad](https://github.com/Wered6/UE5-StyleGuide/blob/main/images/bp-graphs-getters-invoking-bad.png?raw=true "Bad")
 
 <a name="3.4.5"></a>
 <a name="bp-graphs-block-comments"></a>
