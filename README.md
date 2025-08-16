@@ -3,14 +3,13 @@
 ## Table of contents
 
 - [0. Important Terminology](#terms)
-
-<details>
-<summary>More</summary>
+    <details>
+    <summary>More</summary>
     - [0.1 Levels/Maps](#terms-levels-maps)
     - [0.2 Identifiers](#terms-identifiers)
     - [0.3 Cases](#terms-cases)
     - [0.4 Variables / Properties](#terms-variables-properties)
-</details>
+    </details>
 - [1. Principles](#principles)
     - [1.1 If your UE5 project already has a style guide, you should follow it](#principles-follow-style-guide)
     - [1.2 All structure, assets, and code in any Unreal Engine 5 project should look like a single person created it, no matter how many people contributed](#-principles-single-person)
