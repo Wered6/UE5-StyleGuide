@@ -44,7 +44,7 @@
     - [2.3.5 Materials](#anc-materials)
 
         <details>
-        <summary><a href="#anc-textures">2.3.6 Textures></a></summary>
+        <summary><a href="#anc-textures">2.3.6 Textures</a></summary>
 
         - [2.3.6.1 Texture Packing](#anc-textures-packing)
 
