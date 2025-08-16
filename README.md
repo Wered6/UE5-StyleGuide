@@ -26,7 +26,7 @@
 - [2.1 Forbidden Character](#naming-forbidden-characters)
 
     <details>
-        <summary><a href="#naming-base-asset-name">2.2 Base Asset Name - 'Prefix_BaseAssetName_Variant_Suffix'</a></summary>
+    <summary><a href="#naming-base-asset-name">2.2 Base Asset Name - 'Prefix_BaseAssetName_Variant_Suffix'</a></summary>
 
     - [2.2e Examples](#1.2-examples)
 
