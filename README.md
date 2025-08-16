@@ -9,7 +9,6 @@
 - [0.2 Identifiers](#terms-identifiers)
 - [0.3 Cases](#terms-cases)
 - [0.4 Variables / Properties](#terms-variables-properties)
-
 </details>
 <details>
 <summary><a href="#principles">1. Principles</a></summary>
