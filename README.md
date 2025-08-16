@@ -4,6 +4,7 @@
 
 <details>
 <summary><a href="#terms">0. Important Terminology</a></summary>
+
 - [0.1 Levels/Maps](#terms-levels-maps)
 - [0.2 Identifiers](#terms-identifiers)
 - [0.3 Cases](#terms-cases)
@@ -25,7 +26,7 @@
 - [2.1 Forbidden Character](#naming-forbidden-characters)
 
     <details>
-    <summary><a href="#naming-base-asset-name">2.2 Base Asset Name - 'Prefix_BaseAssetName_Variant_Suffix'</a></summary>
+        <summary><a href="#naming-base-asset-name">2.2 Base Asset Name - 'Prefix_BaseAssetName_Variant_Suffix'</a></summary>
 
     - [2.2e Examples](#1.2-examples)
 
