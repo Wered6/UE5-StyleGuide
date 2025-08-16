@@ -58,7 +58,7 @@
     - [3.2.2 Reduce Migration Conflicts](#structure-top-level-migration-conflicts)
         - [3.2.2e1 Master Material Example](#structure-top-level-migration-conflicts-e1)
     - [3.2.3 Samples, Templates, and Marketplace Content Are Risk-Free](#structure-top-level-risk-free)
-    - [3.2.4 DLC, Sub-Projects, and Patches Are Easily Maintained](#structure-top-level-easy-maintain)
+    - [3.2.4 DLC, Sub-Projects, and Patches Are Easily Maintained](#structure-top-level-dlc)
 - [3.3 Use Developer Folder For Local Testing](#structure-developer-folder)
 - [3.4 All Map<sup>*</sup> Files Belong In A Folder Called Maps](#structure-maps-folder)
 - [3.5 Use A `Core` Folder For Critical Blueprints And Other Assets](#structure-core-folder)
@@ -106,7 +106,9 @@
         - [4.3.1.2 Property RepNotify Functions Always `OnRep_Variable`](#bp-funcs-naming-onrep)
         - [4.3.1.3 Info Functions Returning Bool Should Ask Questions](#bp-funcs-naming-bool)
         - [4.3.1.4 Event Handlers and Dispatchers Should Start With `On`](#bp-funcs-naming-event-handlers)
+            - [4.3.1.4e1 Examples](#bp-funcs-naming-event-handlers-e1)
         - [4.3.1.5 Remote Procedure Calls Should Be Prefixed With Target](#bp-funcs-naming-rpcs)
+            - [4.3.1.5e1 Examples](#bp-funcs-naming-rpcs-e1)
     - [4.3.2 All Functions Must Have Return Nodes](#bp-funcs-return)
     - [4.3.3 No Function Should Have More Than 50 Nodes](#bp-funcs-node-limit)
     - [4.3.4 All Public Functions Should Have A Description](#bp-funcs-description)
@@ -114,7 +116,7 @@
 - [4.4 Blueprint Graphs](#bp-graphs)
     - [4.4.1 No Spaghetti](#bp-graphs-spaghetti)
     - [4.4.2 Align Wires Not Nodes](#bp-graphs-align-wires)
-    - [4.4.3 White Exec Lines Are Top Priority](#bp-graphs-exec-first-class)
+    - [4.4.3 White Exec Lines Are Top Priority](#bp-graphs-exec-first)
     - [4.4.4 Getters Are Invoked In Every Use](#bp-graphs-getters-invoking)
     - [4.4.5 Graphs Should Be Reasonably Commented](#bp-graphs-comments)
     - [4.4.6 Graphs Should Handle Casting Errors Where Appropriate](#bp-graphs-cast-error-handling)
@@ -198,7 +200,7 @@ There are a few different ways you can `CaseWordsWhenNaming`. Here are some comm
 > Words can arbitrarily start upper or lowercase, but words are separated by an underscore, e.g. `desert_Eagle`, `Style_Guide`,
 `a_Series_of_Words`.
 
-<a name="terms-variables-properties"></a>
+<a name="terms-vars-props"></a>
 <a name="0.4"></a>
 
 ##### 0.4 Variables / Properties
@@ -276,6 +278,8 @@ skeptical about their ability to work as a team.
 <a name="naming"></a>
 <a name="2"></a>
 
+**[⬆ Back to Top](#table-of-contents)**
+
 ## 2. Naming Conventions
 
 Naming conventions should be treated as law. A project that conforms to a naming convention is able to have its assets managed, searched,
@@ -286,7 +290,7 @@ Most things are prefixed with prefixes being generally an acronym of the asset t
 <a name="naming-forbidden-characters"></a>
 <a name="2.1"></a>
 
-### 1.1 Forbidden Characters
+### 2.1 Forbidden Characters
 
 In any `Identifier` of any kind, **never** use the following unless absolutely forced to:
 
@@ -304,8 +308,6 @@ Any `Identifier` should strive to only have the following characters when possib
 
 The reasoning for this is this will ensure the greatest compatibility of all data across all platforms across all tools, and help prevent
 downtime due to potentially bad character handling for identifiers in code you don't control.
-
-**[⬆ Back to Top](#table-of-contents)**
 
 <a name="naming-base-asset-name"></a>
 <a name="2.2"></a>
@@ -599,8 +601,8 @@ as a texture with an alpha channel incurs more overhead than one without.
 
 **[⬆ Back to Top](#table-of-contents)**
 
-<a name="3"></a>
 <a name="structure"></a>
+<a name="3"></a>
 
 ## 3. Content Directory Structure
 
@@ -622,7 +624,7 @@ navigate through nested folder structures.
 
 <pre>
 |-- Content
-    |-- <a href="#2.2">GenericShooter</a>
+    |-- <a href="#3.2">GenericShooter</a>
         |-- Art
         |   |-- Industrial
         |   |   |-- Ambient
@@ -637,15 +639,15 @@ navigate through nested folder structures.
         |-- Characters
         |   |-- Bob
         |   |-- Common
-        |   |   |-- <a href="#2.7">Animations</a>
+        |   |   |-- <a href="#3.7">Animations</a>
         |   |   |-- Audio
         |   |-- Jack
         |   |-- Steve
-        |   |-- <a href="#2.1.3">Zoe</a>
-        |-- <a href="#2.5">Core</a>
+        |   |-- <a href="#3.1.3">Zoe</a>
+        |-- <a href="#3.5">Core</a>
         |   |-- Characters
         |   |-- Engine
-        |   |-- <a href="#2.1.2">GameModes</a>
+        |   |-- <a href="#3.1.2">GameModes</a>
         |   |-- Interactables
         |   |-- Pickups
         |   |-- Weapons
@@ -653,10 +655,10 @@ navigate through nested folder structures.
         |   |-- Electrical
         |   |-- Fire
         |   |-- Weather
-        |-- <a href="#2.4">Maps</a>
+        |-- <a href="#3.4">Maps</a>
         |   |-- Campaign1
         |   |-- Campaign2
-        |-- <a href="#2.8">MaterialLibrary</a>
+        |-- <a href="#3.8">MaterialLibrary</a>
         |   |-- Debug
         |   |-- Metal
         |   |-- Paint
@@ -674,13 +676,14 @@ navigate through nested folder structures.
 
 The reasons for this structure are listed in the following subsections.
 
+<a name="structure-folder-names"></a>
 <a name="3.1"></a>
-<a name="structure-folder-names"><a>
 
 ### 3.1 Folder Names
 
 These are common rules for naming any folder in the content structure.
 
+<a name="structure-folder-names-case"></a>
 <a name="3.1.1"></a>
 
 #### 3.1.1 Always Use PascalCase[<sup>*</sup>](#terms-cases)
@@ -691,6 +694,7 @@ letter. For example, `DesertEagle`, `RocketPistol`, and `ASeriesOfWords`.
 
 See [Cases](#terms-cases).
 
+<a name="structure-folder-names-no-spaces"></a>
 <a name="3.1.2"></a>
 
 #### 3.1.2 Never Use Spaces
@@ -699,6 +703,7 @@ Re-enforcing [3.1.1](#3.1.1), never use spaces. Spaces can cause various enginee
 project's root also contains no spaces and is located somewhere such as `D:\Project` instead of
 `C:\Users\My Name\My Documents\Unreal Projects`.
 
+<a name="structure-folder-names-no-unicode"></a>
 <a name="3.1.3"></a>
 
 #### 3.1.3 Never Use Unicode Characters And Other Symbols
@@ -713,19 +718,20 @@ this issue. Often simply moving your project to something like `D:\Project` will
 Using other characters outside `a-z`, `A-Z`, and `0-9` such as `@`, `-`, `_`, `,`, `*`, and `#` can also lead to unexpected and hard to
 track issues on other platforms, source control and weaker engineering tools.
 
+<a name="structure-top-level"></a>
 <a name="3.2"></a>
-<a name="structure-top-level"><a>
 
 ### 3.2 Use A Top Level Folder For Project Specific Assets
 
 All of a project's assets should exist in a folder named after the project. For example, if your project is named 'Generic Shooter', *all*
 of it's content should exist in `Content/GenericShooter`.
 
-> The `Developers` folder is not for assets that your project relies on and therefore is not project-specific. See [Developer Folders](#3.3)
-> for details about this.
+> The `Developers` folder is not for assets that your project relies on and therefore is not project-specific.
+> See [Developer Folders](#structure-developer-folder) for details about this.
 
 There are multiple reasons for this approach.
 
+<a name="structure-top-level-no-global-assets"></a>
 <a name="3.2.1"></a>
 
 #### 3.2.1 No Global Assets
@@ -735,8 +741,9 @@ are allowed to exist outside a project folder, it often becomes much harder to e
 folder encourages the bad behavior of not having to organize assets.
 
 Every asset should have a purpose, otherwise it does not belong in a project. If an asset is an experimental test and shouldn't be used by
-the project, it should be put in a [Developer](#3.3) folder.
+the project, it should be put in a [Developer](#structure-developer-folder) folder.
 
+<a name="structure-top-level-migration-conflicts></a>
 <a name="3.2.2"></a>
 
 #### 3.2.2 Reduce Migration Conflicts
@@ -752,20 +759,19 @@ This is also the primary reason why Epic's Marketplace staff enforces the same p
 
 After a migration, safe merging of assets can be done using the 'Replace References' tool in the content browser with the added clarity of
 assets not belonging to a project's top level folder are clearly pending a merge. Once assets are merged and fully migrated, there shouldn't
-be another top-level folder in your Content tree. This method is _100%_ guaranteed to make any migrations that occur completely safe.
+be another top-level folder in your Content tree. This method is *100%* guaranteed to make any migrations that occur completely safe.
 
+<a name="structure-top-level-migration-conflicts-e1"></a>
 <a name="3.2.2e1"></a>
 
 ##### 3.2.2e1 Master Material Example
 
-For example, say you created a master material in one project that you would like to use in another project, so you migrated that asset
-over.
+For example, say you created a master material in one project that you would like to use in another project, so you migrated that asset over.
 If this asset is not in a top level folder, it may have a name like `Content/MaterialLibrary/M_Master`. If the target project doesn't have a
 master material already, this should work without issue.
 
 As work on one or both projects progresses, their respective master materials may change to be tailored for their specific projects due to
-the
-course of normal development.
+the course of normal development.
 
 The issue comes when, for example, an artist for one project created a nice generic modular set of static meshes and someone wants to
 include that set of static meshes in the second project. If the artist who created the assets used material instances based on
@@ -775,29 +781,30 @@ previously migrated `Content/MaterialLibrary/M_Master` asset.
 This issue can be hard to predict and hard to account for. The person migrating the static meshes may not be the same person who is familiar
 with the development of both projects' master material. They may not be even aware that the static meshes in question rely on material
 instances which then rely on the master material. The Migrate tool requires the entire chain of dependencies to work however, and so it will
-be forced to grab `Content/MaterialLibrary/M_Master` when it copies these assets to the other project, and it will overwrite the existing
-asset.
+be forced to grab `Content/MaterialLibrary/M_Master` when it copies these assets to the other project, and it will overwrite the existing asset.
 
 It is at this point where if the master materials for both projects are incompatible in *any way*, you risk breaking possibly the entire
 material library for a project and any other dependencies that may have already been migrated, simply because assets were not stored
 in a top level folder. The simple migration of static meshes now becomes a very ugly task.
 
+<a name="structure-top-level-risk-free></a>
 <a name="3.2.3"></a>
 
 #### 3.2.3 Samples, Templates and Marketplace Content Are Risk-Free
 
-An extension to [Reduce Migration Conflicts](#3.2.2), if a team member decides to add sample content, template files, or assets they bought from
-the marketplace,
-it is guaranteed, as long as your project's top-level folder is uniquely named,that these new assets will not interfere with your project.
+An extension to [Reduce Migration Conflicts](#structure-top-level-migration-conflicts), if a team member decides to add sample content, template
+files, or assets they bought from the marketplace, it is guaranteed, as long as your project's top-level folder is uniquely named,that these new
+assets will not interfere with your project.
 
-You cannot trust marketplace content to fully conform to the [top level folder rule](#3.2). There exists many assets that have the majority
-of their content in a top level folder but also have possibly modified Epic sample content as well as level files polluting the global
-`Content` folder.
+You cannot trust marketplace content to fully conform to the [top level folder rule](#structure-top-level). There exists many assets that have
+the majority of their content in a top level folder but also have possibly modified Epic sample content as well as level files polluting the
+global `Content` folder.
 
-When adhering to [top level folder rule](#3.2), the worst fab conflict you can have is if two fab assets both have the same Epic sample content.
-If all your
-assets are in a project-specific folder, including sample content you may have moved into your folder, your project will never break.
+When adhering to [top level folder rule](#structure-top-level), the worst fab conflict you can have is if two fab assets both have the same Epic
+sample content. If all your assets are in a project-specific folder, including sample content you may have moved into your folder, your project
+will never break.
 
+<a name="structure-top-level-dlc"></a>
 <a name="3.2.4"></a>
 
 #### 3.2.4 DLC, Sub-Projects and Patches Are Easily Maintained
@@ -807,8 +814,8 @@ content folders for these assets. This organization makes it easier to cook DLC 
 subprojects to be migrated in and out with minimal effort. When you need to modify an asset's material or add specific override behavior in
 a patch, you can safely make these changes in a patch folder without risking damage to the core project.
 
+<a name="structure-developer-folder"></a>
 <a name="3.3"></a>
-<a name="structure-developers"></a>
 
 ### 3.3 Use Developers Folder For Local Testing
 
@@ -829,10 +836,10 @@ impossible to accidentally use Developer assets under normal use.
 Once the assets are ready for use, an artist simply has to move the assets into the project-specific folder and fix up redirectors. This is
 essentially 'promoting' the assets from experimental to production.
 
+<a name="structure-maps-folder"></a>
 <a name="3.4"></a>
-<a name="structure-maps"></a>
 
-### 3.4 All Map[<sup>*</sup>](#terms-level-map) Files Belong In A Folder Called Maps
+### 3.4 All Map[<sup>*</sup>](#terms-levels-maps) Files Belong In A Folder Called Maps
 
 Map files are incredibly special, and it is common for every project to have its own map naming system, especially if they work with
 sublevels or streaming levels. No matter what system of map organization is in place for the specific project, all levels should belong in
@@ -846,8 +853,8 @@ This also simplifies the job of cooking for engineers. Wrangling levels for a bu
 through arbitrary folders for them. If a team's maps are all in one place, it is much harder to accidentally not cook a map in a build. It
 also simplifies lighting build scripts as well as QA processes.
 
+<a name="structure-core-folder"></a>
 <a name="3.5"></a>
-<a name="structure-core"></a>
 
 ### 3.5 Use A `Core` Folder For Critical Blueprints And Other Assets
 
@@ -863,17 +870,19 @@ defines base behavior for a pickup. Specific pickups such as a Health or Ammo sh
 `/Content/Project/Placeables/Pickups/`. Game designers can define and tweak pickups in this folder however they please, but they should not
 touch `Core/Pickups` as they may unintentionally break pickups project-wide.
 
+<a name="structure-redundant-folders"></a>
 <a name="3.6"></a>
-<a name="structure-assettypes"></a>
 
 ### 3.6 Redundant Folders
 
+<a name="structure-redundant-folders-assets"></a>
 <a name="3.6.1"></a>
 
 #### 3.6.1 Creating a folder named `Assets` is redundant
 
 All assets are assets.
 
+<a name="structure-redundant-folders-meshes-textures-materials></a>
 <a name="3.6.2"></a>
 
 #### 3.6.2 Creating a folder named `Meshes`, `Textures`, or `Materials` is redundant
@@ -885,17 +894,17 @@ Want to view only static mesh in `Environment/Rocks/`? Simply turn on the Static
 also be sorted in alphabetical order regardless of prefixes. Want to view both static meshes and skeletal meshes? Simply turn on both
 filters. This eliminates the need to potentially have to `Control-Click` select two folders in the Content Browser's tree view.
 
-> This also extends the full path name of an asset for very little benefit. The `S_` prefix for a static mesh is only two characters,
-> whereas `Meshes/` is seven characters.
+> This also extends the full path name of an asset for very little benefit. The `S_` prefix for a static mesh is only two characters, whereas
+`Meshes/` is seven characters.
 
 Not doing this also prevents the inevitability of someone putting a static mesh or a texture in a `Materials` folder.
 
-<a name="3.7"></a>
 <a name="structure-huge-sets"></a>
+<a name="3.7"></a>
 
 ### 3.7 Huge Asset Sets Get Their Own Folder Layout
 
-This can be seen as a pseudo-exception to [Redundant Folders](#3.6).
+This can be seen as a pseudo-exception to [Redundant Folders](#structure-redundant-folders).
 
 There are certain asset types that have a huge volume of related files where each asset has a unique purpose. The two most common are
 Animation and Audio assets. If you find yourself having 15+ of these assets that belong together, they should be together.
@@ -905,12 +914,12 @@ such as `Locomotion` or `Cinematic`.
 
 > This does not apply to assets like textures and materials. It is common for a `Rocks` folder to have a large number of textures if there
 > are a large number of rocks, however, these textures are generally only related to a few specific rocks and should be named appropriately.
-> Even if these textures are part of a [Material Library](#3.8).
+> Even if these textures are part of a [Material Library](#structure-material-library).
 
-<a name="3.8"></a>
 <a name="structure-material-library"></a>
+<a name="3.8"></a>
 
-### 3.8 `MaterialLibrary`
+### 3.8 MaterialLibrary
 
 If your project makes use of master materials, layered materials or any form of reusable materials or textures that do not belong to any
 subset of assets, these assets should be located in `Content/Project/MaterialLibrary`.
@@ -928,8 +937,8 @@ located in `MaterialLibrary/Utility`.
 Any testing or debug materials should be within `MaterialLibrary/Debug`. This allows debug materials to be easily stripped from a project
 before shipping and makes it incredibly clear if production assets are using them if reference errors are shown.
 
-<a name="3.9"></a>
 <a name="structure-no-empty-folders"></a>
+<a name="3.9"></a>
 
 ### 3.9 No Empty Folders
 
@@ -948,8 +957,8 @@ If you find that the content browser has an empty folder you can't delete, you s
 
 **[⬆ Back to Top](#table-of-contents)**
 
-<a name="4"></a>
 <a name="bp"></a>
+<a name="4"></a>
 
 ## 4. Blueprints
 
@@ -958,8 +967,8 @@ to [Epic's Coding Standard](https://docs.unrealengine.com/latest/INT/Programming
 
 Remember: Blueprinting badly bears blunders, beware! (Phrase by [KorkuVeren](http://github.com/KorkuVeren))
 
-<a name="4.1"></a>
 <a name="bp-compiling"></a>
+<a name="4.1"></a>
 
 ### 4.1 Compiling
 
@@ -971,32 +980,33 @@ Do **not** submit broken blueprints to source control.
 Broken blueprints can cause problems that manifest in other ways, such as broken references, unexpected behavior, cooking failures and
 frequent unneeded recompilation. A broken blueprint has the power to break your entire game.
 
-<a name="4.2"></a>
 <a name="bp-vars"></a>
+<a name="4.2"></a>
 
 ### 4.2 Variables
 
 The words `variable` and `property` may be used interchangeably.
 
+<a name="bp-vars-naming"></a>
 <a name="4.2.1"></a>
-<a name="bp-var-naming"></a>
 
 #### 4.2.1 Naming
 
+<a name="bp-vars-naming-nouns"></a>
 <a name="4.2.1.1"></a>
-<a name="bp-var-naming-nouns"></a>
 
 ##### 4.2.1.1 Nouns
 
 All non-boolean variable names must be clear, unambiguous and descriptive nouns.
 
+<a name="bp-vars-naming-case"></a>
 <a name="4.2.1.2"></a>
-<a name="bp-var-naming-case"></a>
 
 ##### 4.2.1.2 PascalCase
 
 All non-boolean variables should be in the form of [PascalCase](#terms-cases).
 
+<a name="bp-vars-naming-case-e1></a>
 <a name="4.2.1.2e"></a>
 
 ###### 4.2.1.2e Examples
@@ -1008,8 +1018,8 @@ All non-boolean variables should be in the form of [PascalCase](#terms-cases).
 * `CrosshairColor`
 * `AbilityID`
 
+<a name="bp-vars-naming-bool-prefix"></a>
 <a name="4.2.1.3"></a>
-<a name="bp-var-bool-prefix"></a>
 
 ##### 4.2.1.3 Boolean `b` Prefix
 
@@ -1019,25 +1029,32 @@ Example: Use `bDead` and `bEvil`, **not** `Dead` and `Evil`.
 
 UE5 Blueprint editors know not to include the `b` in user-friendly displays of the variable.
 
+<a name="bp-vars-naming-bool-names"></a>
 <a name="4.2.1.4"></a>
-<a name="bp-var-bool-names"></a>
 
 ##### 4.2.1.4 Boolean Names
 
+<a name="bp-vars-naming-bool-names-no-questions
 <a name="4.2.1.4.1"></a>
 
-###### 4.2.1.4.1 General And Independent State Information
+###### 4.2.1.4.1 Booleans should not be phrased as questions
 
 All booleans should be named as descriptive adjectives when possible if representing general information. Do not include words that phrase
 the variable as a question, such as `Is`. This is reserved for functions.
 
 Example: Use `bDead` and `bHostile` **not** `bIsDead` and `bIsHostile`.
 
+<a name="bp-vars-naming-bool-names-no-continuous-tense></a>
+<a name="4.2.1.4.2></a>
+
+#### 4.2.1.4.2 Booleans should not be phrased in continuous tense
+
 Try to not use verbs such as `bRunning`. Verbs tend to lead to complex states.
 
-<a name="4.2.1.4.2"></a>
+<a name="bp-vars-naming-bool-names-complex-states></a>
+<a name="4.2.1.4.3"></a>
 
-###### 4.2.1.4.2 Complex States
+###### 4.2.1.4.3 Complex States
 
 Do not use booleans to represent complex and/or dependent states. This makes state adding and removing complex and no longer easily
 readable. Use an enumeration instead.
@@ -1046,18 +1063,18 @@ Example: When defining a weapon, do **not** use `bReloading` and `bEquipping` if
 enumeration named `EWeaponState` and use a variable with this type named `WeaponState` instead. This makes it far easier to add new states
 to weapons.
 
-Example: Do **not** use `bRunning` if you also need `bWalking` or `bSprinting`. This should be defined as an enumeration with clearly
-defined state names.
+Example: Do **not** use `bRunning` if you also need `bWalking` or `bSprinting`. This should be defined as an enumeration with clearly defined
+state names.
 
-<a name="4.2.1.5"></a>
 <a name="bp-vars-naming-context"></a>
+<a name="4.2.1.5"></a>
 
 ##### 4.2.1.5 Considered Context
 
 All variable names must not be redundant with their context as all variable references in Blueprint will always have context.
 
-<a name="4.2.1.5e1"></a>
 <a name="bp-vars-naming-naming-context-e1></a>
+<a name="4.2.1.5e1"></a>
 
 ###### 4.2.1.5e1 Examples
 
@@ -1084,8 +1101,8 @@ because it is `BP_PlayerCharacter` that is defining these variables.
 * `Skills`
 * `Skin`
 
-<a name="4.2.1.6"></a>
 <a name="bp-vars-naming-atomic"></a>
+<a name="4.2.1.6"></a>
 
 ##### 4.2.1.6 Do *Not* Include Atomic Type Names
 
@@ -1096,21 +1113,21 @@ Strings and vectors are considered atomic in terms of style when working with Bl
 
 > While vectors consist of three floats, vectors are often able to be manipulated as a whole, same with rotators.
 
-> Do *not* consider Text variables as atomic, they are secretly hiding localization functionality. The atomic type of string of characters
-> is `String`, not `Text`.
+> Do *not* consider Text variables as atomic, they are secretly hiding localization functionality. The atomic type of string of characters is
+`String`, not `Text`.
 
 Atomic variables should not have their type name in their name.
 
 Example: Use `Score`, `Kills`, and `Description` **not** `ScoreFloat`, `FloatKills`, `DescriptionString`.
 
-The only exception to this rule is when a variable represents 'a number of' something to be counted *and* when using a name without a
-variable type is not easy to read.
+The only exception to this rule is when a variable represents 'a number of' something to be counted *and* when using a name without a variable
+type is not easy to read.
 
 Example: A fence generator needs to generate X number of posts. Store X in `NumPosts` or `PostsCount` instead of `Posts` as `Posts` may
 potentially read as an Array of a variable type named `Post`.
 
-<a name="4.2.1.7"></a>
 <a name="bp-vars-naming-complex"></a>
+<a name="4.2.1.7"></a>
 
 ##### 4.2.1.7 Do Include Non-Atomic Type Names
 
@@ -1131,8 +1148,8 @@ If a class does not own the value a complex variable represents, you should use 
 Example: If a `BP_Turret` has the ability to target a `BP_PlayerCharacter`, it should store its target as `TargetPlayer` as when in the
 context of `BP_Turret` it should be clear that it is a reference to another complex variable type that it does not own.
 
-<a name="4.2.1.8"></a>
 <a name="bp-vars-naming-arrays"></a>
+<a name="4.2.1.8"></a>
 
 ##### 4.2.1.8 Arrays
 
@@ -1140,8 +1157,8 @@ Arrays follow the same naming rules as above but should be named as a plural nou
 
 Example: Use `Targets`, `Hats`, and `EnemyPlayers`, **not** `TargetList`, `HatArray`, `EnemyPlayerArray`.
 
-<a name="4.2.2"></a>
 <a name="bp-vars-editable"></a>
+<a name="4.2.2"></a>
 
 #### 4.2.2 Editable Variables
 
@@ -1152,16 +1169,16 @@ engineering reasons the variable must be marked as `Expose On Spawn`.
 
 Do not arbitrarily mark variables as `Editable`.
 
-<a name="4.2.2.1"></a>
 <a name="bp-vars-editable-descriptions"></a>
+<a name="4.2.2.1"></a>
 
 ##### 4.2.2.1 Descriptions
 
 Every variable should have `Description` filled (especially if it's `Editable`) that explains what for this variable is and how changing
 this value affects the behavior of the blueprint.
 
-<a name="4.2.2.2"></a>
 <a name="bp-vars-editable-ranges"></a>
+<a name="4.2.2.2"></a>
 
 ##### 4.2.2.2 Slider And Value Ranges
 
@@ -1170,14 +1187,14 @@ All `Editable` variables should make use of slider and value ranges if there is 
 Example: A blueprint that generates fence posts might have an editable variable named `PostsCount` and a value of -1 would not make any
 sense. Use the range fields to mark 0 as a minimum.
 
-If an editable variable is used in a Construction Script, it should have a reasonable Slider Range defined so that someone cannot
-accidentally assign it a large value that could crash the editor.
+If an editable variable is used in a Construction Script, it should have a reasonable Slider Range defined so that someone cannot accidentally
+assign it a large value that could crash the editor.
 
 A Value Range only needs to be defined if the bounds of a value are known. While a Slider Range prevents accidental large number inputs, an
 undefined Value Range allows a user to specify a value outside the Slider Range that may be considered 'dangerous' but still valid.
 
-<a name="4.2.3"></a>
 <a name="bp-vars-categories"></a>
+<a name="4.2.3"></a>
 
 #### 4.2.3 Categories
 
@@ -1203,8 +1220,8 @@ Example: A weapon class set of variables might be organized as:
     |   |-- State
     |   |-- Visuals
 
-<a name="4.2.4"></a>
 <a name="bp-vars-access"></a>
+<a name="4.2.4"></a>
 
 #### 4.2.4 Variable Access Level
 
@@ -1216,8 +1233,8 @@ Blueprints do not have a defined concept of `protected` access currently.
 
 Treat `Editable` variables as `public` variables. Treat non-editable variables as `protected` variables.
 
-<a name="4.2.4.1"></a>
 <a name="bp-vars-access-private"></a>
+<a name="4.2.4.1"></a>
 
 ##### 4.2.4.1 Private Variables
 
@@ -1225,8 +1242,8 @@ Unless it is known that a variable should only be accessed within the class it i
 `private`. Until variables are able to be marked `protected`, reserve `private` for when you absolutely know you want to restrict child
 class usage.
 
-<a name="4.2.5"></a>
 <a name="bp-vars-advanced"></a>
+<a name="4.2.5"></a>
 
 #### 4.2.5 Advanced Display
 
@@ -1235,35 +1252,35 @@ display arrow is clicked.
 
 To find the `Advanced Display` option, it is listed as an advanced displayed variable in the variable details list.
 
-<a name="4.2.6"></a>
 <a name="bp-vars-transient"></a>
+<a name="4.2.6"></a>
 
 #### 4.2.6 Transient Variables
 
 `Transient` variables are variables that do not need to have their value saved and loaded and have an initial value of zero or null. This is
-useful for references to other objects and actors whose value isn't known until run-time. This prevents the editor from ever saving a
-reference to it and speeds up saving and loading of the blueprint class.
+useful for references to other objects and actors whose value isn't known until run-time. This prevents the editor from ever saving a reference
+to it and speeds up saving and loading of the blueprint class.
 
 Because of this, all transient variables should always be initialized as zero or null. To do otherwise would result in hard to debug errors.
 
-<a name="4.2.7"></a>
 <a name="bp-vars-config"></a>
+<a name="4.2.7"></a>
 
 #### 4.2.8 Config Variables
 
 Do not use the `Config Variable` flag. This makes it harder for designers to control blueprint behavior. Config variables should only be
 used in C++ for rarely changed variables. Think of them as `Advanced Advanced Display` variables.
 
+<a name="bp-func"></a>
 <a name="4.3"></a>
-<a name="bp-functions"></a>
 
 ### 4.3 Functions, Events and Event Dispatchers
 
 This section describes how you should author functions, events and event dispatchers. Everything that applies to functions also applies to
 events, unless otherwise noted.
 
-<a name="4.3.1"></a>
 <a name="bp-funcs-naming"></a>
+<a name="4.3.1"></a>
 
 #### 4.3.1 Function Naming
 
@@ -1278,8 +1295,8 @@ about functions. For example:
 
 These questions and more can all be answered when functions are named appropriately.
 
+<a name="bp-funcs-naming-verb-rule"></a>
 <a name="4.3.1.1"></a>
-<a name="bp-funcs-verb-rule"></a>
 
 #### 4.3.1.1 Verb rule
 
@@ -1290,8 +1307,8 @@ some context as to what they are doing.
 
 `OnRep` functions, event handlers and event dispatchers are an exception to this rule.
 
+<a name="bp-funcs-naming-verb-rule-e1></a>
 <a name="4.3.1.1e1"></a>
-<a name="bp-funcs-verb-rule-e1></a>
 
 ##### 4.3.1.1e1 Examples
 
@@ -1317,15 +1334,15 @@ some context as to what they are doing.
 * `EnableBigHeadMode`
 * `IsEnemy` - ["Is" is a verb.](http://writingexplained.org/is-is-a-verb)
 
-<a name="4.3.1.2"></a>
 <a name="bp-funcs-naming-onrep"></a>
+<a name="4.3.1.2"></a>
 
 #### 4.3.1.2 Property RepNotify Functions Always `OnRep_Variable`
 
 All functions for replicated with notification variables should have the form `OnRep_Variable`. This is forced by the Blueprint editor.
 
-<a name="4.3.1.3"></a>
 <a name="bp-funcs-naming-bool"></a>
+<a name="4.3.1.3"></a>
 
 #### 4.3.1.3 Info Functions Returning Bool Should Ask Questions
 
@@ -1355,8 +1372,8 @@ Bad examples:
 * `Dead` - Is dead? Will deaden?
 * `Visibility` - Is visible? Set visibility? A description of flying conditions?
 
+<a name="bp-funcs-naming-event-handlers"></a>
 <a name="4.3.1.4"></a>
-<a name="bp-funcs-naming-eventhandlers"></a>
 
 #### 4.3.1.4 Event Handlers and Dispatchers Should Start With `On`
 
@@ -1368,7 +1385,20 @@ are exempt from following the verb rule.
 
 `Handle` is not allowed. It is 'Unreal' to use `On` instead of `Handle`, while other frameworks may prefer to use `Handle` instead of `On`.
 
-Good examples:
+<a name="bp-funcs-naming-event-handlers-e1></a>
+<a name="4.3.1.4e1></a>
+
+##### 4.3.1.4e1 Examples
+
+**Bad**
+
+* `OnData`
+* `OnTarget`
+* `HandleMessage`
+* `HandleDeath`
+*
+
+**Good**
 
 * `OnDeath` - Common collocation in games
 * `OnPickup`
@@ -1378,15 +1408,8 @@ Good examples:
 * `OnClick`
 * `OnLeave`
 
-Bad examples:
-
-* `OnData`
-* `OnTarget`
-* `HandleMessage`
-* `HandleDeath`
-
-<a name="4.3.1.5"></a>
 <a name="bp-funcs-naming-rpcs"></a>
+<a name="4.3.1.5"></a>
 
 #### 4.3.1.5 Remote Procedure Calls Should Be Prefixed With Target
 
@@ -1394,21 +1417,26 @@ Any time an RPC is created, it should be prefixed with either `Server_`, `Client
 
 After the prefix, follow all other rules regarding function naming.
 
-Good examples:
+<a name="bp-funcs-naming-rpcs-e1></a>
+<a name="4.3.1.5e1></a>
 
-* `Server_FireWeapon`
-* `Client_NotifyDeath`
-* `Multicast_SpawnTracerEffect`
+##### 4.3.1.5e1 Examples
 
-Bad examples:
+**Bad**
 
 * `FireWeapon` - Does not indicate it's an RPC of some kind.
 * `ServerClientBroadcast` - Confusing.
 * `AllNotifyDeath` - Use `Multicast`, never `All`.
 * `ClientWeapon` - No verb, ambiguous.
 
-<a name="4.3.2"></a>
+**Good**
+
+* `Server_FireWeapon`
+* `Client_NotifyDeath`
+* `Multicast_SpawnTracerEffect`
+
 <a name="bp-funcs-return"></a>
+<a name="4.3.2"></a>
 
 #### 4.3.2 All Functions Must Have Return Nodes
 
@@ -1424,8 +1452,8 @@ In situations where a programmer adds a pin to a Sequence node or logic after a 
 the loop iteration, this can lead to accidental errors in code flow. The Blueprint compiler's warnings will immediately alert developers to
 these flow control issues.
 
+<a name="bp-funcs-node-limit"></a>
 <a name="4.3.3"></a>
-<a name="bp-graphs-funcs-node-limit"></a>
 
 #### 4.3.3 No Function Should Have More Than 50 Nodes
 
@@ -1442,64 +1470,65 @@ The following nodes are not counted as they are deemed to not increase function 
 * Function Entry
 * Self
 
+<a name="bp-funcs-description"></a>
 <a name="4.3.4"></a>
-<a name="bp-graphs-funcs-description"></a>
 
 #### 4.3.4 All Functions Should Have A Description
 
 Simply, any function should have its description filled out.
 
+<a name="bp-funcs-funcs-category"></a>
 <a name="4.3.5"></a>
-<a name="bp-graphs-funcs-plugin-category"></a>
 
 #### 4.3.5 All Functions Must Be Categorized By Project Name Initials
 
+All functions must be categorized by project name initials, so it would be easier to distinguish between our and engine functions.
 For example `Generic Shooter`, `GS` or `GS|Config`.
 
-<a name="4.4"></a>
 <a name="bp-graphs"></a>
+<a name="4.4"></a>
 
 ### 4.4 Blueprint Graphs
 
 This section covers things that apply to all Blueprint graphs.
 
-<a name="4.4.1"></a>
 <a name="bp-graphs-spaghetti"></a>
+<a name="4.4.1"></a>
 
 #### 4.4.1 No Spaghetti
 
 Wires should have clear beginnings and ends. You should never have to mentally untangle wires to make sense of a graph. Many of the
 following sections are dedicated to reducing spaghetti.
 
-<a name="4.4.2"></a>
 <a name="bp-graphs-align-wires"></a>
+<a name="4.4.2"></a>
 
 #### 4.4.2 Align Wires Not Nodes
 
 Always align wires, not nodes. You can't always control the size and pin location on a node, but you can always control the location of a
 node and thus control the wires. Straight wires provide a clear linear flow. *Wiggly wires wear wits wickedly*. You can straighten wires by
-using the Straighten Connections command with BP nodes selected. Hotkey: Q
+using the Straighten Connections command with BP nodes selected. `Hotkey: Q`
 
-Good example: The tops of the nodes are staggered to keep a perfectly straight white exec line.
+**Good example:** The tops of the nodes are staggered to keep a perfectly straight white exec line.
 ![Aligned By Wires](https://github.com/Wered6/UE5-StyleGuide/blob/main/images/bp-graphs-align-wires-good.png?raw=true "Aligned By Wires")
 
-Bad Example: The tops of the nodes are aligned, creating a wiggly white exec line.
+**Bad Example:** The tops of the nodes are aligned, creating a wiggly white exec line.
 ![Bad](https://github.com/Wered6/UE5-StyleGuide/blob/main/images/bp-graphs-align-wires-bad.png?raw=true "Wiggly")
 
-Acceptable Example: Certain nodes might not cooperate no matter how you use the alignment tools. In this situation, try to minimize the
+**Acceptable Example:** Certain nodes might not cooperate no matter how you use the alignment tools. In this situation, try to minimize the
 wiggle by bringing the node in closer.
 ![Acceptable](https://github.com/Wered6/UE5-StyleGuide/blob/main/images/bp-graphs-align-wires-acceptable.png?raw=true "Acceptable")
 
+<a name="bp-graphs-exec-first"></a>
 <a name="4.4.3"></a>
-<a name="bp-graphs-exec-first-class"></a>
 
 #### 4.4.3 White Exec Lines Are Top Priority
 
-If you ever have to decide between straightening a linear white exec line or straightening data lines of some kind, always straighten the
-white exec line.
+If you ever have to decide between straightening a linear white exec line or straightening data lines of some kind, always straighten the white
+exec line.
 
-<a name="4.4.4"></a>
 <a name="bp-graphs-getters-invoking"></a>
+<a name="4.4.4"></a>
 
 #### 4.4.4 Getters Are Invoked In Every Use
 
@@ -1509,14 +1538,14 @@ pure function will recalculate everything inside it each time it's called.
 So instead of connecting one getter node to multiple places and creating wire spaghetti, it's better to just use a new getter node each time
 you need that value.
 
-Good example:  
+**Good example:** Every wire has its own getter, and it's more readable.
 ![Good](https://github.com/Wered6/UE5-StyleGuide/blob/main/images/bp-graphs-getters-invoking-good.png?raw=true "Good")
 
-Bad example:  
+**Bad example:** Wires are connected to one getter, it might be less readable in longer connections.
 ![Bad](https://github.com/Wered6/UE5-StyleGuide/blob/main/images/bp-graphs-getters-invoking-bad.png?raw=true "Bad")
 
+<a name="bp-graphs-comments"></a>
 <a name="4.4.5"></a>
-<a name="bp-graphs-block-comments"></a>
 
 #### 4.4.5 Graphs Should Be Reasonably Commented
 
@@ -1525,20 +1554,20 @@ each node is easily readable and understandable, groups of nodes contributing to
 a comment block. If a function has few blocks of nodes, and it's clear that the nodes are serving a direct purpose in the
 function's goal, then they do not need to be commented as the function name and description should suffice.
 
-<a name="4.4.6"></a>
 <a name="bp-graphs-cast-error-handling"></a>
+<a name="4.4.6"></a>
 
 #### 4.4.6 Graphs Should Handle Casting Errors Where Appropriate
 
 If a function or event assumes that a cast always succeeds, it should appropriately report a failure in logic if the cast fails. This lets
-others know why something 'supposed to work' doesn't. A function should also attempt a graceful recover after a failed cast if it's
-known that the reference being cast could ever fail to be cast.
+others know why something 'supposed to work' doesn't. A function should also attempt a graceful recover after a failed cast if it's known that
+the reference being cast could ever fail to be cast.
 
 This does not mean every cast node should have its failure handled. In many cases, especially events regarding things like collisions, it is
 expected that execution flow terminates on a failed cast quietly.
 
-<a name="4.4.7"></a>
 <a name="bp-graphs-dangling-nodes"></a>
+<a name="4.4.7"></a>
 
 #### 4.4.7 Graphs Should Not Have Any Dangling / Loose / Dead Nodes
 
