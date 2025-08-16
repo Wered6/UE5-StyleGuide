@@ -4,7 +4,6 @@
 
 <details>
 <summary><a href="#terms">0. Important Terminology</a></summary>
-
 - [0.1 Levels/Maps](#terms-levels-maps)
 - [0.2 Identifiers](#terms-identifiers)
 - [0.3 Cases](#terms-cases)
