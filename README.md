@@ -42,8 +42,13 @@
     - [2.3.3 Artificial Intelligence](#anc-ai)
     - [2.3.4 Blueprints](#anc-bp)
     - [2.3.5 Materials](#anc-materials)
-    - [2.3.6 Textures](#anc-textures)
+
+        <details>
+        <summary><a href="#anc-textures">2.3.6 Textures></a></summary>
+
         - [2.3.6.1 Texture Packing](#anc-textures-packing)
+
+        </details>
     - [2.3.7 Miscellaneous](#anc-misc)
     - [2.3.8 Paper 2D](#anc-paper2d)
     - [2.3.9 Physics](#anc-physics)
