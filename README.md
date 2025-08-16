@@ -36,7 +36,7 @@
     - [2.3.5 Materials](#naming-modifiers-materials)
     - [2.3.6 Textures](#naming-modifiers-textures)
         - [2.3.6.1 Texture Packing](#naming-modifiers-textures-packing)
-    - [2.3.7 Miscellaneous](#naming-modifiers-miscellaneous)
+    - [2.3.7 Miscellaneous](#naming-modifiers-misc)
     - [2.3.8 Paper 2D](#naming-modifiers-paper2d)
     - [2.3.9 Physics](#naming-modifiers-physics)
     - [2.3.10 Sounds](#naming-modifiers-sounds)
@@ -178,7 +178,7 @@ An `Identifier` is anything that resembles or serves as a "name". For example, t
 blueprint property, a variable, or a folder name, or for a data table row name, etc...
 
 <a name="terms-cases"></a>
-<a name="0.3></a>
+<a name="0.3"></a>
 
 ##### 0.3 Cases
 
@@ -198,7 +198,7 @@ There are a few different ways you can `CaseWordsWhenNaming`. Here are some comm
 `a_Series_of_Words`.
 
 <a name="terms-variables-properties"></a>
-<a name="0.4></a>
+<a name="0.4"></a>
 
 ##### 0.4 Variables / Properties
 
@@ -217,6 +217,8 @@ Usually refers to a variable defined as a function argument or a local variable 
 
 When in the context of a class, it is often used to convey discussion about its definition and what it will hold.
 
+**[⬆ Back to Top](#table-of-contents)**
+
 <a name="principles"></a>
 <a name="1"></a>
 
@@ -225,7 +227,7 @@ When in the context of a class, it is often used to convey discussion about its 
 These principles have been adapted from [the idiomatic.js style guide](https://github.com/rwaldron/idiomatic.js/).
 
 <a name="principles-follow-style-guide"></a>
-<a name="1.1></a>
+<a name="1.1"></a>
 
 ### 1.1 If your UE5 project already has a style guide, you should follow it
 
@@ -270,18 +272,18 @@ If you are helping someone whose work conforms to a different but consistent and
 When joining an Unreal Engine 5 team, one of your first questions should be "Do you have a style guide?". If the answer is no, you should be
 skeptical about their ability to work as a team.
 
-<a name="anc"></a>
-<a name="1"></a>
+<a name="naming"></a>
+<a name="2"></a>
 
-## 1. Asset Naming Conventions
+## 2. Naming Conventions
 
 Naming conventions should be treated as law. A project that conforms to a naming convention is able to have its assets managed, searched,
 parsed and maintained with incredible ease.
 
 Most things are prefixed with prefixes being generally an acronym of the asset type followed by an underscore.
 
-<a name="anc-forbidden-characters"></a>
-<a name="1.1"></a>
+<a name="naming-forbidden-characters"></a>
+<a name="2.1"></a>
 
 ### 1.1 Forbidden Characters
 
@@ -302,12 +304,14 @@ Any `Identifier` should strive to only have the following characters when possib
 The reasoning for this is this will ensure the greatest compatibility of all data across all platforms across all tools, and help prevent
 downtime due to potentially bad character handling for identifiers in code you don't control.
 
-<a name="anc-base-asset-name"></a>
-<a name="1.2"></a>
+**[⬆ Back to Top](#table-of-contents)**
 
-### 1.2 Base Asset Name - `Prefix_BaseAssetName_Variant_Suffix`
+<a name="naming-base-asset-name"></a>
+<a name="2.2"></a>
 
-All assets should have a _Base Asset Name_. A Base Asset Name represents a logical grouping of related assets. Any asset that is part of
+### 2.2 Base Asset Name - `Prefix_BaseAssetName_Variant_Suffix`
+
+All assets should have a *Base Asset Name*. A Base Asset Name represents a logical grouping of related assets. Any asset that is part of
 this logical group should follow the standard of  `Prefix_BaseAssetName_Variant_Suffix`.
 
 Keeping the pattern `Prefix_BaseAssetName_Variant_Suffix` and in mind and using common sense is generally enough to warrant good asset
@@ -332,11 +336,12 @@ Depending on how your asset variants are made, you can chain together variant na
 Arch Viz project, you should use the base name `Flooring` with chained variants such as `Flooring_Marble_01`, `Flooring_Maple_01`,
 `Flooring_Tile_Squares_01`.
 
-<a name="1.2e-examples"></a>
+<a name="naming-base-asset-name-e1"></a>
+<a name="2.2e1"></a>
 
-#### 1.2e Examples
+#### 2.2e1 Examples
 
-##### 1.2e1 Bob
+##### Bob
 
 | Asset Type               | Asset Name   |
 |--------------------------|--------------|
@@ -346,7 +351,7 @@ Arch Viz project, you should use the base name `Flooring` with chained variants 
 | Texture (Normal)         | T_Bob_N      |
 | Texture (Evil Diffuse)   | T_Bob_Evil_D |
 
-##### 1.2e2 Rocks
+##### Rocks
 
 | Asset Type               | Asset Name   |
 |--------------------------|--------------|
@@ -356,21 +361,21 @@ Arch Viz project, you should use the base name `Flooring` with chained variants 
 | Material                 | M_Rock       |
 | Material Instance (Snow) | MI_Rock_Snow |
 
-<a name="asset-name-modifiers"></a>
-<a name="1.3"></a>
+<a name="naming-modifiers"></a>
+<a name="2.3"></a>
 
-### 1.3 Asset Name Modifiers
+### 2.3 Asset Name Modifiers
 
 When naming an asset, use these tables to determine the prefix and suffix to use with an asset's [Base Asset Name](#base-asset-name).
 
-<a name="anc-common"></a>
-<a name="1.3.1"></a>
+<a name="naming-modifiers-common"></a>
+<a name="2.3.1"></a>
 
-#### 1.3.1 Most Common
+#### 2.3.1 Most Common
 
 | Asset Type          | Prefix | Suffix    | Notes                                      |
 |---------------------|--------|-----------|--------------------------------------------|
-| Level / Map         |        |           | [Should be in a folder called Maps.](#2.4) |
+| Level / Map         |        |           |                                            |
 | Level (Persistent)  |        | _P        |                                            |
 | Level (Audio)       |        | _Audio    |                                            |
 | Level (Lighting)    |        | _Lighting |                                            |
@@ -381,15 +386,15 @@ When naming an asset, use these tables to determine the prefix and suffix to use
 | Material            | M_     |           |                                            |
 | Static Mesh         | S_     |           | Many use SM_. We use S_.                   |
 | Skeletal Mesh       | SK_    |           |                                            |
-| Texture             | T_     | _?        | See [Textures](#anc-textures)              |
+| Texture             | T_     | _?        | See [Textures](#naming-modifiers-textures) |
 | Particle System     | PS_    |           |                                            |
 | Widget Blueprint    | WBP_   |           |                                            |
 | Animation Blueprint | ABP_   |           |                                            |
 
-<a name="anc-animations"></a>
-<a name="1.3.2"></a>
+<a name="naming-modifiers-animations"></a>
+<a name="2.3.2"></a>
 
-#### 1.3.2 Animations
+#### 2.3.2 Animations
 
 | Asset Type                | Prefix | Suffix | Notes |
 |---------------------------|--------|--------|-------|
@@ -409,10 +414,10 @@ When naming an asset, use these tables to determine the prefix and suffix to use
 | Skeletal Mesh             | SK_    |        |       |
 | Skeleton                  | SKEL_  |        |       |
 
-<a name="anc-ai"></a>
-<a name="1.3.3"></a>
+<a name="naming-modifiers-ai"></a>
+<a name="2.3.3"></a>
 
-### 1.3.3 Artificial Intelligence
+### 2.3.3 Artificial Intelligence
 
 | Asset Type        | Prefix       | Suffix  | Notes |
 |-------------------|--------------|---------|-------|
@@ -425,10 +430,10 @@ When naming an asset, use these tables to determine the prefix and suffix to use
 | Environment Query | EQS_         |         |       |
 | EnvQueryContext   | EQS_         | Context |       |
 
-<a name="anc-bp"></a>
-<a name="1.3.4"></a>
+<a name="naming-modifiers-bps"></a>
+<a name="2.3.4"></a>
 
-### 1.3.4 Blueprints
+### 2.3.4 Blueprints
 
 | Asset Type                 | Prefix | Suffix    | Notes                                   |
 |----------------------------|--------|-----------|-----------------------------------------|
@@ -441,10 +446,10 @@ When naming an asset, use these tables to determine the prefix and suffix to use
 | Structure                  | F or S |           | No underscore.                          |
 | Widget Blueprint           | WBP_   |           |                                         |
 
-<a name="anc-materials"></a>
-<a name="1.3.5"></a>
+<a name="naming-modifiers-materials"></a>
+<a name="2.3.5"></a>
 
-### 1.3.5 Materials
+### 2.3.5 Materials
 
 | Asset Type                    | Prefix  | Suffix | Notes |
 |-------------------------------|---------|--------|-------|
@@ -457,10 +462,10 @@ When naming an asset, use these tables to determine the prefix and suffix to use
 | Physical Materials            | PM_     |        |       |
 | Decal                         | M_, MI_ | _Decal |       |
 
-<a name="anc-textures"></a>
-<a name="1.3.6"></a>
+<a name="naming-modifiers-textures"></a>
+<a name="2.3.6"></a>
 
-### 1.3.6 Textures
+### 2.3.6 Textures
 
 | Asset Type                          | Prefix | Suffix | Notes                                                   |
 |-------------------------------------|--------|--------|---------------------------------------------------------|
@@ -482,10 +487,10 @@ When naming an asset, use these tables to determine the prefix and suffix to use
 | Cube Render Target                  | RTC_   |        |                                                         |
 | Texture Light Profile               | TLP_   |        |                                                         |
 
-<a name="anc-textures-packing"></a>
-<a name="1.3.6.1"></a>
+<a name="naming-modifiers-textures-packing"></a>
+<a name="2.3.6.1"></a>
 
-#### 1.3.6.1 Texture Packing
+#### 2.3.6.1 Texture Packing
 
 It is common practice to pack multiple layers of texture data into one texture. An example of this is packing Emissive, Roughness, Ambient
 Occlusion together as the Red, Green and Blue channels of a texture respectively. To determine the suffix, simply stack the given suffix
@@ -497,10 +502,10 @@ letters from above together, e.g. `_ERO`.
 Packing 4 channels of data into a texture (RGBA) is not recommended except for an Alpha/Opacity mask in the Diffuse/Albedo's alpha channel
 as a texture with an alpha channel incurs more overhead than one without.
 
-<a name="anc-misc"></a>
-<a name="1.3.7"></a>
+<a name="naming-modifiers-misc"></a>
+<a name="2.3.7"></a>
 
-### 1.3.7 Miscellaneous
+### 2.3.7 Miscellaneous
 
 | Asset Type                 | Prefix   | Suffix  | Notes                                                                                     |
 |----------------------------|----------|---------|-------------------------------------------------------------------------------------------|
@@ -527,10 +532,10 @@ as a texture with an alpha channel incurs more overhead than one without.
 | Touch Interface Setup      | TI_      |         |                                                                                           |
 | Vector Curve               | Curve_   | _Vector |                                                                                           |
 
-<a name="anc-paper2d"></a>
-<a name="1.3.8"></a>
+<a name="naming-modifiers-paper2d"></a>
+<a name="2.3.8"></a>
 
-### 1.3.8 Paper 2D
+### 2.3.8 Paper 2D
 
 | Asset Type         | Prefix | Suffix | Notes |
 |--------------------|--------|--------|-------|
@@ -540,10 +545,10 @@ as a texture with an alpha channel incurs more overhead than one without.
 | Tile Map           | TM_    |        |       |
 | Tile Set           | TS_    |        |       |
 
-<a name="anc-physics"></a>
-<a name="1.3.9"></a>
+<a name="naming-modifiers-physics"></a>
+<a name="2.3.9"></a>
 
-### 1.3.9 Physics
+### 2.3.9 Physics
 
 | Asset Type        | Prefix | Suffix | Notes |
 |-------------------|--------|--------|-------|
@@ -551,10 +556,10 @@ as a texture with an alpha channel incurs more overhead than one without.
 | Physics Asset     | PHYS_  |        |       |
 | Destructible Mesh | DM_    |        |       |
 
-<a name="anc-sounds"></a>
-<a name="1.3.10"></a>
+<a name="naming-modifiers-sounds"></a>
+<a name="2.3.10"></a>
 
-### 1.3.10 Sounds
+### 2.3.10 Sounds
 
 | Asset Type        | Prefix  | Suffix | Notes                                                           |
 |-------------------|---------|--------|-----------------------------------------------------------------|
@@ -569,10 +574,10 @@ as a texture with an alpha channel incurs more overhead than one without.
 | Sound Mix         | Mix_    |        |                                                                 |
 | Sound Wave        | A_      |        | `A` form `A`udio                                                |
 
-<a name="anc-ui"></a>
-<a name="1.3.11"></a>
+<a name="naming-modifiers-ui"></a>
+<a name="2.3.11"></a>
 
-### 1.3.11 User Interface
+### 2.3.11 User Interface
 
 | Asset Type         | Prefix | Suffix | Notes |
 |--------------------|--------|--------|-------|
@@ -581,10 +586,10 @@ as a texture with an alpha channel incurs more overhead than one without.
 | Slate Widget Style | Style_ |        |       |
 | Widget Blueprint   | WBP_   |        |       |
 
-<a name="anc-effects"></a>
-<a name="1.3.12"></a>
+<a name="naming-modifiers-effects"></a>
+<a name="2.3.12"></a>
 
-### 1.3.12 Effects
+### 2.3.12 Effects
 
 | Asset Type              | Prefix | Suffix | Notes |
 |-------------------------|--------|--------|-------|
