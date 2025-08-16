@@ -12,11 +12,15 @@
 
 </details>
 
-- [1. Principles](#principles)
-    - [1.1 If your UE5 project already has a style guide, you should follow it](#principles-follow-style-guide)
-    - [1.2 All structure, assets, and code in any Unreal Engine 5 project should look like a single person created it, no matter how many people contributed](#-principles-single-person)
-    - [1.3 Friends do not let friends have bad style](#principles-friends)
-    - [1.4 A team without a style guide is no team of mine](#principles-team-without-style-guide)
+<details>
+<summary><a href="#principles">1. Principles</a></summary>
+
+- [1.1 If your UE5 project already has a style guide, you should follow it](#principles-follow-style-guide)
+- [1.2 All structure, assets, and code in any Unreal Engine 5 project should look like a single person created it, no matter how many people contributed](#-principles-single-person)
+- [1.3 Friends do not let friends have bad style](#principles-friends)
+- [1.4 A team without a style guide is no team of mine](#principles-team-without-style-guide)
+
+</details>
 
 <details>
 <summary><a href="#naming">2. Naming Convention</a></summary>
