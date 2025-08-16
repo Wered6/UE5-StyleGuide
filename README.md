@@ -11,7 +11,6 @@
 - [0.4 Variables / Properties](#terms-variables-properties)
 
 </details>
-
 <details>
 <summary><a href="#principles">1. Principles</a></summary>
 
