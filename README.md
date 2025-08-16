@@ -26,7 +26,6 @@
 <summary><a href="#naming">2. Naming Convention</a></summary>
 
 - [2.1 Forbidden Character](#naming-forbidden-characters)
-- [2.2 Base Asset Name - `Prefix_BaseAssetName_Variant_Suffix`](#naming-base-asset-name)
 
     <details>
     <summary><a href="#naming-base-asset-name">2.2 Base Asset Name - 'Prefix_BaseAssetName_Variant_Suffix'</a></summary>
@@ -35,7 +34,9 @@
 
     </details>
 
-- [2.3 Asset Name Modifiers](#asset-name-modifiers)
+    <details>
+    <summary><a href="#asset-name-modifiers">2.3 Asset Name Modifiers</a></summary>
+
     - [2.3.1 Most Common](#anc-common)
     - [2.3.2 Animations](#anc-animations)
     - [2.3.3 Artificial Intelligence](#anc-ai)
@@ -49,6 +50,8 @@
     - [2.3.10 Sounds](#anc-sounds)
     - [2.3.11 User Interface](#anc-ui)
     - [2.3.12 Effects](#anc-effects)
+
+    </details>
 
 </details>
 
