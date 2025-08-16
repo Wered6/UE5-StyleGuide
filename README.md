@@ -2,15 +2,13 @@
 
 ## Table of contents
 
-[0. Important Terminology](#terms)
-
 <details>
 <summary><a href="#terms">0. Important Terminology</a></summary>
 
-- [0.1 Levels/Maps](#terms-levels-maps)  
-- [0.2 Identifiers](#terms-identifiers)  
-- [0.3 Cases](#terms-cases)  
-- [0.4 Variables / Properties](#terms-variables-properties)  
+- [0.1 Levels/Maps](#terms-levels-maps)
+- [0.2 Identifiers](#terms-identifiers)
+- [0.3 Cases](#terms-cases)
+- [0.4 Variables / Properties](#terms-variables-properties)
 
 </details>
 
@@ -19,24 +17,37 @@
     - [1.2 All structure, assets, and code in any Unreal Engine 5 project should look like a single person created it, no matter how many people contributed](#-principles-single-person)
     - [1.3 Friends do not let friends have bad style](#principles-friends)
     - [1.4 A team without a style guide is no team of mine](#principles-team-without-style-guide)
-- [2. Asset Naming Conventions](#naming)
-    - [2.1 Forbidden Character](#naming-forbidden-characters)
-    - [2.2 Base Asset Name - `Prefix_BaseAssetName_Variant_Suffix`](#naming-base-asset-name)
-        - [2.2e Examples](#1.2-examples)
-    - [2.3 Asset Name Modifiers](#asset-name-modifiers)
-        - [2.3.1 Most Common](#anc-common)
-        - [2.3.2 Animations](#anc-animations)
-        - [2.3.3 Artificial Intelligence](#anc-ai)
-        - [2.3.4 Blueprints](#anc-bp)
-        - [2.3.5 Materials](#anc-materials)
-        - [2.3.6 Textures](#anc-textures)
-            - [2.3.6.1 Texture Packing](#anc-textures-packing)
-        - [2.3.7 Miscellaneous](#anc-misc)
-        - [2.3.8 Paper 2D](#anc-paper2d)
-        - [2.3.9 Physics](#anc-physics)
-        - [2.3.10 Sounds](#anc-sounds)
-        - [2.3.11 User Interface](#anc-ui)
-        - [2.3.12 Effects](#anc-effects)
+
+<details>
+<summary><a href="#naming">2. Naming Convention</a></summary>
+
+- [2.1 Forbidden Character](#naming-forbidden-characters)
+- [2.2 Base Asset Name - `Prefix_BaseAssetName_Variant_Suffix`](#naming-base-asset-name)
+
+    <details>
+    <summary><a href="#naming-base-asset-name">2.2 Base Asset Name - 'Prefix_BaseAssetName_Variant_Suffix'</a></summary>
+
+    - [2.2e Examples](#1.2-examples)
+
+    </details>
+
+- [2.3 Asset Name Modifiers](#asset-name-modifiers)
+    - [2.3.1 Most Common](#anc-common)
+    - [2.3.2 Animations](#anc-animations)
+    - [2.3.3 Artificial Intelligence](#anc-ai)
+    - [2.3.4 Blueprints](#anc-bp)
+    - [2.3.5 Materials](#anc-materials)
+    - [2.3.6 Textures](#anc-textures)
+        - [2.3.6.1 Texture Packing](#anc-textures-packing)
+    - [2.3.7 Miscellaneous](#anc-misc)
+    - [2.3.8 Paper 2D](#anc-paper2d)
+    - [2.3.9 Physics](#anc-physics)
+    - [2.3.10 Sounds](#anc-sounds)
+    - [2.3.11 User Interface](#anc-ui)
+    - [2.3.12 Effects](#anc-effects)
+
+</details>
+
 - [3. Content Directory Structure](#structure)
     - [3e1 Example Project Content Structure](#2e1)
     - [3.1 Folder Names](#structure-folder-names)
