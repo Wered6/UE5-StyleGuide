@@ -9,7 +9,9 @@
 - [0.2 Identifiers](#terms-identifiers)
 - [0.3 Cases](#terms-cases)
 - [0.4 Variables / Properties](#terms-variables-properties)
+
 </details>
+
 <details>
 <summary><a href="#principles">1. Principles</a></summary>
 
@@ -24,29 +26,16 @@
 <summary><a href="#naming">2. Naming Convention</a></summary>
 
 - [2.1 Forbidden Character](#naming-forbidden-characters)
-
-    <details>
-    <summary><a href="#naming-base-asset-name">2.2 Base Asset Name - 'Prefix_BaseAssetName_Variant_Suffix'</a></summary>
-
-    - [2.2e Examples](#1.2-examples)
-
-    </details>
-
-    <details>
-    <summary><a href="#asset-name-modifiers">2.3 Asset Name Modifiers</a></summary>
-
+- [2.2 Base Asset Name - 'Prefix_BaseAssetName_Variant_Suffix'](#naming-base-asset-name)
+    - [2.2e1 Examples](#1.2-examples)
+- [2.3 Asset Name Modifiers](#asset-name-modifiers)
     - [2.3.1 Most Common](#anc-common)
     - [2.3.2 Animations](#anc-animations)
     - [2.3.3 Artificial Intelligence](#anc-ai)
     - [2.3.4 Blueprints](#anc-bp)
     - [2.3.5 Materials](#anc-materials)
-
-        <details>
-        <summary><a href="#anc-textures">2.3.6 Textures</a></summary>
-
+    - [2.3.6 Textures](#anc-textures)
         - [2.3.6.1 Texture Packing](#anc-textures-packing)
-
-        </details>
     - [2.3.7 Miscellaneous](#anc-misc)
     - [2.3.8 Paper 2D](#anc-paper2d)
     - [2.3.9 Physics](#anc-physics)
@@ -54,95 +43,117 @@
     - [2.3.11 User Interface](#anc-ui)
     - [2.3.12 Effects](#anc-effects)
 
-    </details>
+</details>
+
+<details>
+<summary><a href="#structure">3. Content Directory Structure</a></summary>
+
+- [3e1 Example Project Content Structure](#2e1)
+- [3.1 Folder Names](#structure-folder-names)
+    - [3.1.1 Always Use PascalCase](#2.1.1)
+    - [3.1.2 Never Use Spaces](#2.1.2)
+    - [3.1.3 Never Use Unicode Characters And Other Symbols](#2.1.3)
+- [3.2 Use A Top Level Folder For Project Specific Assets](#structure-top-level)
+    - [3.2.1 No Global Assets](#2.2.1)
+    - [3.2.2 Reduce Migration Conflicts](#2.2.2)
+        - [3.2.2e1 Master Material Example](#2.2.2e1)
+    - [3.2.3 Samples, Templates, and Marketplace Content Are Risk-Free](#2.2.3)
+    - [3.2.4 DLC, Sub-Projects, and Patches Are Easily Maintained](#2.2.4)
+- [3.3 Use Developers Folder For Local Testing](#structure-developers)
+- [3.4 All Map<sup>*</sup> Files Belong In A Folder Called Maps](#structure-maps)
+- [3.5 Use A `Core` Folder For Critical Blueprints And Other Assets](#structure-core)
+- [3.6 Do Not Create Folders Called `Assets` or `AssetTypes`](#structure-assettypes)
+    - [3.6.1 Creating a folder named `Assets` is redundant](#2.6.1)
+    - [3.6.2 Creating a folder named `Meshes`, `Textures`, or `Materials` is redundant](#2.6.2)
+- [3.7 Huge Asset Sets Get Their Own Folder Layout](#structure-huge-sets)
+- [3.8 `MaterialLibrary`](#structure-material-library)
+- [3.9 No Empty Folders](#structure-no-empty-folders)
 
 </details>
 
-- [3. Content Directory Structure](#structure)
-    - [3e1 Example Project Content Structure](#2e1)
-    - [3.1 Folder Names](#structure-folder-names)
-        - [3.1.1 Always Use PascalCase](#2.1.1)
-        - [3.1.2 Never Use Spaces](#2.1.2)
-        - [3.1.3 Never Use Unicode Characters And Other Symbols](#2.1.3)
-    - [3.2 Use A Top Level Folder For Project Specific Assets](#structure-top-level)
-        - [3.2.1 No Global Assets](#2.2.1)
-        - [3.2.2 Reduce Migration Conflicts](#2.2.2)
-            - [3.2.2e1 Master Material Example](#2.2.2e1)
-        - [3.2.3 Samples, Templates, and Marketplace Content Are Risk-Free](#2.2.3)
-        - [3.2.4 DLC, Sub-Projects, and Patches Are Easily Maintained](#2.2.4)
-    - [3.3 Use Developers Folder For Local Testing](#structure-developers)
-    - [3.4 All Map<sup>*</sup> Files Belong In A Folder Called Maps](#structure-maps)
-    - [3.5 Use A `Core` Folder For Critical Blueprints And Other Assets](#structure-core)
-    - [3.6 Do Not Create Folders Called `Assets` or `AssetTypes`](#structure-assettypes)
-        - [3.6.1 Creating a folder named `Assets` is redundant](#2.6.1)
-        - [3.6.2 Creating a folder named `Meshes`, `Textures`, or `Materials` is redundant](#2.6.2)
-    - [3.7 Huge Asset Sets Get Their Own Folder Layout](#structure-huge-sets)
-    - [3.8 `MaterialLibrary`](#structure-material-library)
-    - [3.9 No Empty Folders](#structure-no-empty-folders)
-- [4. Blueprints](#bp)
-    - [4.1 Compiling](#bp-compiling)
-    - [4.2 Variables](#bp-vars)
-        - [4.2.1 Naming](#bp-var-naming)
-            - [4.2.1.1 Nouns](#bp-var-naming-nouns)
-            - [4.2.1.2 PascalCase](#bp-var-naming-case)
-                - [4.2.1.2e Examples](#3.2.1.2e)
-            - [4.2.1.3 Boolean `b` Prefix](#bp-var-bool-prefix)
-            - [4.2.1.4 Boolean Names](#bp-var-bool-names)
-                - [4.2.1.4.1 General And Independent State Information](#3.2.1.4.1)
-                - [4.2.1.4.2 Complex States](#3.2.1.4.2)
-            - [4.2.1.5 Considered Context](#bp-vars-naming-context)
-                - [4.2.1.5e Examples](#3.2.1.5e)
-            - [4.2.1.6 Do _Not_ Include Atomic Type Names](#bp-vars-naming-atomic)
-            - [4.2.1.7 Do Include Non-Atomic Type Names](#bp-vars-naming-complex)
-            - [4.2.1.8 Arrays](#bp-vars-naming-arrays)
-        - [4.2.2 Editable Variables](#bp-vars-editable)
-            - [4.2.2.1 Descriptions](#bp-vars-editable-descriptions)
-            - [4.2.2.2 Slider And Value Ranges](#bp-vars-editable-ranges)
-        - [4.2.3 Categories](#bp-vars-categories)
-        - [4.2.4 Variable Access Level](#bp-vars-access)
-            - [4.2.4.1 Private Variables](#bp-vars-access-private)
-        - [4.2.5 Advanced Display](#bp-vars-advanced)
-        - [4.2.6 Transient Variables](#bp-vars-transient)
-        - [4.2.8 Config Variables](#bp-vars-config)
-    - [4.3 Functions, Events, and Event Dispatchers](#bp-functions)
-        - [4.3.1 Function Naming](#bp-funcs-naming)
-            - [4.3.1.1 Verb Rule](#bp-funcs-verb-rule)
-            - [4.3.1.2 Property RepNotify Functions Always `OnRep_Variable`](#bp-funcs-naming-onrep)
-            - [4.3.1.3 Info Functions Returning Bool Should Ask Questions](#bp-funcs-naming-bool)
-            - [4.3.1.4 Event Handlers and Dispatchers Should Start With `On`](#bp-funcs-naming-eventhandlers)
-            - [4.3.1.5 Remote Procedure Calls Should Be Prefixed With Target](#bp-funcs-naming-rpcs)
-        - [4.3.2 All Functions Must Have Return Nodes](#bp-funcs-return)
-        - [4.3.3 No Function Should Have More Than 50 Nodes](#bp-graphs-funcs-node-limit)
-        - [4.3.4 All Public Functions Should Have A Description](#bp-graphs-funcs-description)
-        - [4.3.5 All Custom Static Plugin `BlueprintCallable` Functions Must Be Categorized By Plugin Name](#bp-graphs-funcs-plugin-category)
-    - [4.4 Blueprint Graphs](#bp-graphs)
-        - [4.4.1 No Spaghetti](#bp-graphs-spaghetti)
-        - [4.4.2 Align Wires Not Nodes](#bp-graphs-align-wires)
-        - [4.4.3 White Exec Lines Are Top Priority](#bp-graphs-exec-first-class)
-        - [4.4.4 Getters Are Invoked In Every Use](#bp-graphs-getters-invoking)
-        - [4.4.5 Graphs Should Be Reasonably Commented](#bp-graphs-block-comments)
-        - [4.4.6 Graphs Should Handle Casting Errors Where Appropriate](#bp-graphs-cast-error-handling)
-        - [4.4.7 Graphs Should Not Have Any Dangling / Loose / Dead Nodes](#bp-graphs-dangling-nodes)
-- [5. Static Meshes](#4)
-    - [5.1 Static Mesh UVs](#s-uvs)
-        - [5.1.1 All Meshes Must Have UVs](#s-uvs-no-missing)
-        - [5.1.2 All Meshes Must Not Have Overlapping UVs for Lightmaps](#s-uvs-no-overlapping)
-    - [5.2 LODs Should Be Set Up Correctly](#s-lods)
-    - [5.3 Modular Socketless Assets Should Snap To The Grid Cleanly](#s-modular-snapping)
-    - [5.4 All Meshes Must Have Collision](#s-collision)
-    - [5.5 All Meshes Should Be Scaled Correctly](#s-scaled)
-- [6. Levels / Maps](#levels)
-    - [6.1 No Errors Or Warnings](#levels-no-errors-or-warnings)
-    - [6.2 Lighting Should Be Built](#levels-lighting-should-be-built)
-    - [6.3 No Player Visible Z Fighting](#levels-no-visible-z-fighting)
-    - [6.4 Marketplace Specific Rules](#levels-mp-rules)
-        - [6.4.1 Overview Level](#levels-mp-rules-overview)
-        - [6.4.2 Demo Level](#levels-mp-rules-demo)
-- [7. Textures](#textures)
-    - [7.1 Dimensions Are Powers of 2](#textures-dimensions)
-    - [7.2 Texture Density Should Be Uniform](#textures-density)
-    - [7.3 Textures Should Be No Bigger than 8192](#textures-max-size)
-    - [7.4 Textures Should Be Grouped Correctly](#textures-group)
+<details>
+<summary><a href="#blueprints">4. Blueprints</a></summary>
+
+- [4.1 Compiling](#bp-compiling)
+- [4.2 Variables](#bp-vars)
+    - [4.2.1 Naming](#bp-var-naming)
+        - [4.2.1.1 Nouns](#bp-var-naming-nouns)
+        - [4.2.1.2 PascalCase](#bp-var-naming-case)
+            - [4.2.1.2e1 Examples](#3.2.1.2e)
+        - [4.2.1.3 Boolean `b` Prefix](#bp-var-bool-prefix)
+        - [4.2.1.4 Boolean Names](#bp-var-bool-names)
+            - [4.2.1.4.1 General And Independent State Information](#3.2.1.4.1)
+            - [4.2.1.4.2 Complex States](#3.2.1.4.2)
+        - [4.2.1.5 Considered Context](#bp-vars-naming-context)
+            - [4.2.1.5e1 Examples](#3.2.1.5e)
+        - [4.2.1.6 Do _Not_ Include Atomic Type Names](#bp-vars-naming-atomic)
+        - [4.2.1.7 Do Include Non-Atomic Type Names](#bp-vars-naming-complex)
+        - [4.2.1.8 Arrays](#bp-vars-naming-arrays)
+    - [4.2.2 Editable Variables](#bp-vars-editable)
+        - [4.2.2.1 Descriptions](#bp-vars-editable-descriptions)
+        - [4.2.2.2 Slider And Value Ranges](#bp-vars-editable-ranges)
+    - [4.2.3 Categories](#bp-vars-categories)
+    - [4.2.4 Variable Access Level](#bp-vars-access)
+        - [4.2.4.1 Private Variables](#bp-vars-access-private)
+    - [4.2.5 Advanced Display](#bp-vars-advanced)
+    - [4.2.6 Transient Variables](#bp-vars-transient)
+    - [4.2.7 Config Variables](#bp-vars-config)
+- [4.3 Functions, Events, and Event Dispatchers](#bp-functions)
+    - [4.3.1 Function Naming](#bp-funcs-naming)
+        - [4.3.1.1 Verb Rule](#bp-funcs-verb-rule)
+        - [4.3.1.2 Property RepNotify Functions Always `OnRep_Variable`](#bp-funcs-naming-onrep)
+        - [4.3.1.3 Info Functions Returning Bool Should Ask Questions](#bp-funcs-naming-bool)
+        - [4.3.1.4 Event Handlers and Dispatchers Should Start With `On`](#bp-funcs-naming-eventhandlers)
+        - [4.3.1.5 Remote Procedure Calls Should Be Prefixed With Target](#bp-funcs-naming-rpcs)
+    - [4.3.2 All Functions Must Have Return Nodes](#bp-funcs-return)
+    - [4.3.3 No Function Should Have More Than 50 Nodes](#bp-graphs-funcs-node-limit)
+    - [4.3.4 All Public Functions Should Have A Description](#bp-graphs-funcs-description)
+    - [4.3.5 All Custom Static Plugin `BlueprintCallable` Functions Must Be Categorized By Plugin Name](#bp-graphs-funcs-plugin-category)
+- [4.4 Blueprint Graphs](#bp-graphs)
+    - [4.4.1 No Spaghetti](#bp-graphs-spaghetti)
+    - [4.4.2 Align Wires Not Nodes](#bp-graphs-align-wires)
+    - [4.4.3 White Exec Lines Are Top Priority](#bp-graphs-exec-first-class)
+    - [4.4.4 Getters Are Invoked In Every Use](#bp-graphs-getters-invoking)
+    - [4.4.5 Graphs Should Be Reasonably Commented](#bp-graphs-block-comments)
+    - [4.4.6 Graphs Should Handle Casting Errors Where Appropriate](#bp-graphs-cast-error-handling)
+    - [4.4.7 Graphs Should Not Have Any Dangling / Loose / Dead Nodes](#bp-graphs-dangling-nodes)
+
+</details>
+
+<details>
+<summary><a href="#static-meshes">5. Static Meshes</a></summary>
+
+- [5.1 Static Mesh UVs](#s-uvs)
+    - [5.1.1 All Meshes Must Have UVs](#s-uvs-no-missing)
+    - [5.1.2 All Meshes Must Not Have Overlapping UVs for Lightmaps](#s-uvs-no-overlapping)
+- [5.2 LODs Should Be Set Up Correctly](#s-lods)
+- [5.3 Modular Socketless Assets Should Snap To The Grid Cleanly](#s-modular-snapping)
+- [5.4 All Meshes Must Have Collision](#s-collision)
+- [5.5 All Meshes Should Be Scaled Correctly](#s-scaled)
+
+</details>
+
+<details>
+<summary><a href="#levels">6. Levels</a></summary>
+
+- [6.1 No Errors Or Warnings](#levels-no-errors-or-warnings)
+- [6.2 Lighting Should Be Built](#levels-lighting-should-be-built)
+- [6.3 No Player Visible Z Fighting](#levels-no-visible-z-fighting)
+- [6.4 Marketplace Specific Rules](#levels-mp-rules)
+    - [6.4.1 Overview Level](#levels-mp-rules-overview)
+    - [6.4.2 Demo Level](#levels-mp-rules-demo)
+
+</details>
+
+<details>
+<summary><a href="#textures">7. Textures</a></summary>
+
+- [7.1 Dimensions Are Powers of 2](#textures-dimensions)
+- [7.2 Texture Density Should Be Uniform](#textures-density)
+- [7.3 Textures Should Be No Bigger than 8192](#textures-max-size)
+- [7.4 Textures Should Be Grouped Correctly](#textures-group)
+
+</details>
 
 <a name="terms"></a>
 <a name="0"></a>
