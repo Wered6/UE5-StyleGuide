@@ -2,21 +2,19 @@
 
 ## Table of contents
 
-- [Important Terminology](#important-terminology)
-    - [Levels/Maps](#terms-level-map)
+- [Important Terminology](#terms)
+    - [Levels/Maps](#terms-levels-maps)
     - [Identifiers](#terms-identifiers)
     - [Cases](#terms-cases)
     - [Variables / Properties](#terms-var-prop)
-        - [Property](#terms-property)
-        - [Variable](#terms-variable)
-- [0. Principles](#0)
-    - [0.1 If your UE4 project already has a style guide, you should follow it](#0.1)
-    - [0.2 All structure, assets, and code in any Unreal Engine 4 project should look like a single person created it, no matter how many people contributed](#0.2)
-    - [0.3 Friends do not let friends have bad style](#0.3)
-    - [0.4 A team without a style guide is no team of mine](#0.4)
-- [1. Asset Naming Conventions](#anc)
-    - [1.1 Forbidden Character](#forbidden-characters)
-    - [1.2 Base Asset Name - `Prefix_BaseAssetName_Variant_Suffix`](#base-asset-name)
+- [0. Principles](#principles)
+    - [0.1 If your UE5 project already has a style guide, you should follow it](#principles-follow-style-guide)
+    - [0.2 All structure, assets, and code in any Unreal Engine 5 project should look like a single person created it, no matter how many people contributed](#-principles-single-person)
+    - [0.3 Friends do not let friends have bad style](#principles-friends)
+    - [0.4 A team without a style guide is no team of mine](#principles-team-without-style-guide)
+- [1. Asset Naming Conventions](#asset-naming-conventions)
+    - [1.1 Forbidden Character](#anc-forbidden-characters)
+    - [1.2 Base Asset Name - `Prefix_BaseAssetName_Variant_Suffix`](#anc-base-asset-name)
         - [1.2e Examples](#1.2-examples)
     - [1.3 Asset Name Modifiers](#asset-name-modifiers)
         - [1.3.1 Most Common](#anc-common)
@@ -118,9 +116,11 @@
     - [6.3 Textures Should Be No Bigger than 8192](#textures-max-size)
     - [6.4 Textures Should Be Grouped Correctly](#textures-group)
 
+<a name="terms"></a>
+
 ## Important Terminology
 
-<a name="terms-level-map"></a>
+<a name="terms-levels-maps"></a>
 
 ##### Levels/Maps
 
@@ -159,8 +159,6 @@ There are a few different ways you can `CaseWordsWhenNaming`. Here are some comm
 
 The words 'variable' and 'property' in most contexts are interchangeable. If they are both used together in the same context, however:
 
-<a name="terms-property"></a>
-
 ###### Property
 
 Usually refers to a variable defined in a class. For example, if `BP_Barrel` had a variable `bExploded`, `bExploded` may be referred to as a
@@ -168,21 +166,21 @@ property of `BP_Barrel`.
 
 When in the context of a class, it is often used to imply accessing previously defined data.
 
-<a name="terms-variable"></a>
-
 ###### Variable
 
 Usually refers to a variable defined as a function argument or a local variable inside a function.
 
 When in the context of a class, it is often used to convey discussion about its definition and what it will hold.
 
+<a name="principles"></a>
 <a name="0"></a>
 
 ## 0. Principles
 
 These principles have been adapted from [the idiomatic.js style guide](https://github.com/rwaldron/idiomatic.js/).
 
-<a name="0.1"></a>
+<a name="principles-follow-style-guide"></a>
+<a name="0.1></a>
 
 ### 0.1 If your UE5 project already has a style guide, you should follow it
 
@@ -194,7 +192,7 @@ the change benefits all usages.
 > #### "Arguments over style are pointless. There should be a style guide, and you should follow it."
 > [*Rebecca Murphey*](https://rmurphey.com)
 
-<a name="0.2"></a>
+<a name="principles-single-person"></a>
 
 ### 0.2 All structure, assets and code in any Unreal Engine 5 project should look like a single person created it, no matter how many people contributed
 
@@ -204,7 +202,7 @@ guesswork and ambiguities.
 It also allows for more productive creation and maintenance as one does not need to think about style. Simply follow the instructions. This
 style guide is written with best practices in mind, meaning that by following this style guide you will also minimize hard to track issues.
 
-<a name="0.3"></a>
+<a name="principles-friends"></a>
 
 ### 0.3 Friends do not let friends have bad style
 
@@ -217,7 +215,7 @@ understand.
 
 If you are helping someone whose work conforms to a different but consistent and sane style guide, you should be able to adapt to it.
 
-<a name="0.4"></a>
+<a name="principles-team-without-style-guide"></a>
 
 ### 0.4 A team without a style guide is no team of mine
 
@@ -234,7 +232,7 @@ parsed and maintained with incredible ease.
 
 Most things are prefixed with prefixes being generally an acronym of the asset type followed by an underscore.
 
-<a name="forbidden-characters"></a>
+<a name="anc-forbidden-characters"></a>
 <a name="1.1"></a>
 
 ### 1.1 Forbidden Characters
@@ -256,7 +254,7 @@ Any `Identifier` should strive to only have the following characters when possib
 The reasoning for this is this will ensure the greatest compatibility of all data across all platforms across all tools, and help prevent
 downtime due to potentially bad character handling for identifiers in code you don't control.
 
-<a name="base-asset-name"></a>
+<a name="anc-base-asset-name"></a>
 <a name="1.2"></a>
 
 ### 1.2 Base Asset Name - `Prefix_BaseAssetName_Variant_Suffix`
