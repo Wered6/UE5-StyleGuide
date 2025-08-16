@@ -5,6 +5,7 @@
 - [0. Important Terminology](#terms)
     <details>
     <summary>More</summary>
+  
     - [0.1 Levels/Maps](#terms-levels-maps)
     - [0.2 Identifiers](#terms-identifiers)
     - [0.3 Cases](#terms-cases)
