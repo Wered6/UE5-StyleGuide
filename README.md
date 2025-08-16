@@ -5,12 +5,12 @@
 [0. Important Terminology](#terms)
 
 <details>
-<summary><a href="#terms">- 0. Important Terminology</a></summary>
+<summary><a href="#terms">0. Important Terminology</a></summary>
 
-[0.1 Levels/Maps](#terms-levels-maps)  
-[0.2 Identifiers](#terms-identifiers)  
-[0.3 Cases](#terms-cases)  
-[0.4 Variables / Properties](#terms-variables-properties)  
+- [0.1 Levels/Maps](#terms-levels-maps)  
+- [0.2 Identifiers](#terms-identifiers)  
+- [0.3 Cases](#terms-cases)  
+- [0.4 Variables / Properties](#terms-variables-properties)  
 
 </details>
 
