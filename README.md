@@ -1073,7 +1073,7 @@ state names.
 
 All variable names must not be redundant with their context as all variable references in Blueprint will always have context.
 
-<a name="bp-vars-naming-naming-context-e1"></a>
+<a name="bp-vars-naming-context-e1"></a>
 <a name="4.2.1.5e1"></a>
 
 ###### 4.2.1.5e1 Examples
