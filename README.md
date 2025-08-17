@@ -16,7 +16,7 @@
 <summary><a href="#principles">1. Principles</a></summary>
 
 - [1.1 If your UE5 project already has a style guide, you should follow it](#principles-follow-style-guide)
-- [1.2 All structure, assets, and code in any Unreal Engine 5 project should look like a single person created it, no matter how many people contributed](#-principles-single-person)
+- [1.2 All structure, assets, and code in any Unreal Engine 5 project should look like a single person created it, no matter how many people contributed](#principles-single-person)
 - [1.3 Friends do not let friends have bad style](#principles-friends)
 - [1.4 A team without a style guide is no team of mine](#principles-team-without-style-guide)
 
@@ -1009,7 +1009,7 @@ All non-boolean variables should be in the form of [PascalCase](#terms-cases).
 <a name="bp-vars-naming-case-e1></a>
 <a name="4.2.1.2e"></a>
 
-###### 4.2.1.2e Examples
+###### 4.2.1.2e1 Examples
 
 * `Score`
 * `Kills`
