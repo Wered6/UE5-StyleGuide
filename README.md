@@ -85,8 +85,8 @@
             - [4.2.1.4.1 No questions](#bp-vars-naming-bool-names-no-questions)
             - [4.2.1.4.2 No Continuous tense](#bp-vars-naming-bool-names-no-continuous-tense)
             - [4.2.1.4.3 Complex States](#bp-vars-naming-bool-names-complex-states)
-        - [4.2.1.5 Considered Context](#bp-vars-naming-naming-context)
-            - [4.2.1.5e1 Examples](#bp-vars-naming-naming-context-e1)
+        - [4.2.1.5 Considered Context](#bp-vars-naming-context)
+            - [4.2.1.5e1 Examples](#bp-vars-naming-context-e1)
         - [4.2.1.6 Do *Not* Include Atomic Type Names](#bp-vars-naming-atomic)
         - [4.2.1.7 Do Include Non-Atomic Type Names](#bp-vars-naming-complex)
         - [4.2.1.8 Arrays](#bp-vars-naming-arrays)
@@ -112,7 +112,7 @@
     - [4.3.2 All Functions Must Have Return Nodes](#bp-funcs-return)
     - [4.3.3 No Function Should Have More Than 50 Nodes](#bp-funcs-node-limit)
     - [4.3.4 All Public Functions Should Have A Description](#bp-funcs-description)
-    - [4.3.5 All Functions Must Be Categorized By Project Name Initials](#bp-graphs-funcs-category)
+    - [4.3.5 All Functions Must Be Categorized By Project Name Initials](#bp-funcs-category)
 - [4.4 Blueprint Graphs](#bp-graphs)
     - [4.4.1 No Spaghetti](#bp-graphs-spaghetti)
     - [4.4.2 Align Wires Not Nodes](#bp-graphs-align-wires)
@@ -617,7 +617,7 @@ navigate through nested folder structures.
 `Textures`, and `Materials` is a redundant practice as asset types are already both sorted by prefix and able to be filtered in the
 > content browser.
 
-<a name="structure-e1"</a>
+<a name="structure-e1"></a>
 <a name="3e1"></a>
 
 ### 3e1 Example Project Content Structure
@@ -743,7 +743,7 @@ folder encourages the bad behavior of not having to organize assets.
 Every asset should have a purpose, otherwise it does not belong in a project. If an asset is an experimental test and shouldn't be used by
 the project, it should be put in a [Developer](#structure-developer-folder) folder.
 
-<a name="structure-top-level-migration-conflicts></a>
+<a name="structure-top-level-migration-conflicts"></a>
 <a name="3.2.2"></a>
 
 #### 3.2.2 Reduce Migration Conflicts
@@ -787,7 +787,7 @@ It is at this point where if the master materials for both projects are incompat
 material library for a project and any other dependencies that may have already been migrated, simply because assets were not stored
 in a top level folder. The simple migration of static meshes now becomes a very ugly task.
 
-<a name="structure-top-level-risk-free></a>
+<a name="structure-top-level-risk-free"></a>
 <a name="3.2.3"></a>
 
 #### 3.2.3 Samples, Templates and Marketplace Content Are Risk-Free
@@ -882,7 +882,7 @@ touch `Core/Pickups` as they may unintentionally break pickups project-wide.
 
 All assets are assets.
 
-<a name="structure-redundant-folders-meshes-textures-materials></a>
+<a name="structure-redundant-folders-meshes-textures-materials"></a>
 <a name="3.6.2"></a>
 
 #### 3.6.2 Creating a folder named `Meshes`, `Textures`, or `Materials` is redundant
@@ -1006,7 +1006,7 @@ All non-boolean variable names must be clear, unambiguous and descriptive nouns.
 
 All non-boolean variables should be in the form of [PascalCase](#terms-cases).
 
-<a name="bp-vars-naming-case-e1></a>
+<a name="bp-vars-naming-case-e1"></a>
 <a name="4.2.1.2e"></a>
 
 ###### 4.2.1.2e1 Examples
@@ -1034,7 +1034,7 @@ UE5 Blueprint editors know not to include the `b` in user-friendly displays of t
 
 ##### 4.2.1.4 Boolean Names
 
-<a name="bp-vars-naming-bool-names-no-questions
+<a name="bp-vars-naming-bool-names-no-questions"></a>
 <a name="4.2.1.4.1"></a>
 
 ###### 4.2.1.4.1 Booleans should not be phrased as questions
@@ -1044,14 +1044,14 @@ the variable as a question, such as `Is`. This is reserved for functions.
 
 Example: Use `bDead` and `bHostile` **not** `bIsDead` and `bIsHostile`.
 
-<a name="bp-vars-naming-bool-names-no-continuous-tense></a>
+<a name="bp-vars-naming-bool-names-no-continuous-tense"></a>
 <a name="4.2.1.4.2></a>
 
 #### 4.2.1.4.2 Booleans should not be phrased in continuous tense
 
 Try to not use verbs such as `bRunning`. Verbs tend to lead to complex states.
 
-<a name="bp-vars-naming-bool-names-complex-states></a>
+<a name="bp-vars-naming-bool-names-complex-states"></a>
 <a name="4.2.1.4.3"></a>
 
 ###### 4.2.1.4.3 Complex States
@@ -1073,7 +1073,7 @@ state names.
 
 All variable names must not be redundant with their context as all variable references in Blueprint will always have context.
 
-<a name="bp-vars-naming-naming-context-e1></a>
+<a name="bp-vars-naming-naming-context-e1"></a>
 <a name="4.2.1.5e1"></a>
 
 ###### 4.2.1.5e1 Examples
@@ -1271,7 +1271,7 @@ Because of this, all transient variables should always be initialized as zero or
 Do not use the `Config Variable` flag. This makes it harder for designers to control blueprint behavior. Config variables should only be
 used in C++ for rarely changed variables. Think of them as `Advanced Advanced Display` variables.
 
-<a name="bp-func"></a>
+<a name="bp-funcs"></a>
 <a name="4.3"></a>
 
 ### 4.3 Functions, Events and Event Dispatchers
@@ -1307,7 +1307,7 @@ some context as to what they are doing.
 
 `OnRep` functions, event handlers and event dispatchers are an exception to this rule.
 
-<a name="bp-funcs-naming-verb-rule-e1></a>
+<a name="bp-funcs-naming-verb-rule-e1"></a>
 <a name="4.3.1.1e1"></a>
 
 ##### 4.3.1.1e1 Examples
@@ -1385,7 +1385,7 @@ are exempt from following the verb rule.
 
 `Handle` is not allowed. It is 'Unreal' to use `On` instead of `Handle`, while other frameworks may prefer to use `Handle` instead of `On`.
 
-<a name="bp-funcs-naming-event-handlers-e1></a>
+<a name="bp-funcs-naming-event-handlers-e1"></a>
 <a name="4.3.1.4e1></a>
 
 ##### 4.3.1.4e1 Examples
@@ -1417,7 +1417,7 @@ Any time an RPC is created, it should be prefixed with either `Server_`, `Client
 
 After the prefix, follow all other rules regarding function naming.
 
-<a name="bp-funcs-naming-rpcs-e1></a>
+<a name="bp-funcs-naming-rpcs-e1"></a>
 <a name="4.3.1.5e1></a>
 
 ##### 4.3.1.5e1 Examples
@@ -1477,7 +1477,7 @@ The following nodes are not counted as they are deemed to not increase function 
 
 Simply, any function should have its description filled out.
 
-<a name="bp-funcs-funcs-category"></a>
+<a name="bp-funcs-category"></a>
 <a name="4.3.5"></a>
 
 #### 4.3.5 All Functions Must Be Categorized By Project Name Initials
