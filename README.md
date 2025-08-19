@@ -28,21 +28,23 @@
 <summary><a href="#naming">2. Naming Convention</a></summary>
 
 - [2.1 Forbidden Characters](#naming-forbidden-characters)
-- [2.2 Base Asset Name - 'Prefix_BaseAssetName_Variant_Suffix'](#naming-base-asset-name)
-- [2.3 Asset Name Modifiers](#naming-modifiers)
-    - [2.3.1 Most Common](#naming-modifiers-common)
-    - [2.3.2 Animations](#naming-modifiers-animations)
-    - [2.3.3 Artificial Intelligence](#naming-modifiers-ai)
-    - [2.3.4 Blueprints](#naming-modifiers-bps)
-    - [2.3.5 Materials](#naming-modifiers-materials)
-    - [2.3.6 Textures](#naming-modifiers-textures)
-        - [2.3.6.1 Texture Packing](#naming-modifiers-textures-packing)
-    - [2.3.7 Miscellaneous](#naming-modifiers-misc)
-    - [2.3.8 Paper 2D](#naming-modifiers-paper2d)
-    - [2.3.9 Physics](#naming-modifiers-physics)
-    - [2.3.10 Sounds](#naming-modifiers-sounds)
-    - [2.3.11 User Interface](#naming-modifiers-ui)
-    - [2.3.12 Effects](#naming-modifiers-effects)
+- [2.2 Blueprints Naming](#naming-bp)
+    - [2.2.1 Base Asset Name - 'Prefix_BaseAssetName_Variant_Suffix'](#naming-base-asset-name)
+        - [2.2.1.1 Name Modifiers](#naming-modifiers)
+            - [2.2.1.1.1 Most Common](#naming-modifiers-common)
+            - [2.2.1.1.2 Animations](#naming-modifiers-animations)
+            - [2.2.1.1.3 Artificial Intelligence](#naming-modifiers-ai)
+            - [2.2.1.1.4 Blueprints](#naming-modifiers-bps)
+            - [2.2.1.1.5 Materials](#naming-modifiers-materials)
+            - [2.2.1.1.6 Textures](#naming-modifiers-textures)
+                - [2.2.1.1.6.1 Texture Packing](#naming-modifiers-textures-packing)
+            - [2.2.1.1.7 Miscellaneous](#naming-modifiers-misc)
+            - [2.2.1.1.8 Paper 2D](#naming-modifiers-paper2d)
+            - [2.2.1.1.9 Physics](#naming-modifiers-physics)
+            - [2.2.1.1.10 Sounds](#naming-modifiers-sounds)
+            - [2.2.1.1.11 User Interface](#naming-modifiers-ui)
+            - [2.2.1.1.12 Effects](#naming-modifiers-effects)
+- [2.3 CPP Naming](#naming-cpp)
 
 </details>
 
@@ -304,7 +306,7 @@ The reasoning for this is this will ensure the greatest compatibility of all dat
 downtime due to potentially bad character handling for identifiers in code you don't control.
 
 <a name="naming-bp"></a>
-<a name="2.2></a>
+<a name="2.2"></a>
 
 ### 2.2 Blueprints Naming
 
@@ -319,7 +321,7 @@ this logical group should follow the standard of  `Prefix_BaseAssetName_Variant_
 Keeping the pattern `Prefix_BaseAssetName_Variant_Suffix` and in mind and using common sense is generally enough to warrant good asset
 names. Here are some detailed rules regarding each element.
 
-`Prefix` and `Suffix` are to be determined by the asset type through the following [Asset Name Modifier](#naming-modifiers) tables.
+`Prefix` and `Suffix` are to be determined by the asset type through the following [Name Modifier](#naming-modifiers) tables.
 
 `BaseAssetName` should be determined by a short and easily recognizable name related to the context of this group of assets. For example, if
 you had a character named Bob, all of Bob's assets would have the `BaseAssetName` of `Bob`.
@@ -340,7 +342,7 @@ Arch Viz project, you should use the base name `Flooring` with chained variants 
 
 ***Examples***
 
-##### Bob
+**Bob**
 
 | Asset Type               | Asset Name   |
 |--------------------------|--------------|
@@ -350,7 +352,7 @@ Arch Viz project, you should use the base name `Flooring` with chained variants 
 | Texture (Normal)         | T_Bob_N      |
 | Texture (Evil Diffuse)   | T_Bob_Evil_D |
 
-##### Rocks
+**Rocks**
 
 | Asset Type               | Asset Name   |
 |--------------------------|--------------|
@@ -361,16 +363,16 @@ Arch Viz project, you should use the base name `Flooring` with chained variants 
 | Material Instance (Snow) | MI_Rock_Snow |
 
 <a name="naming-modifiers"></a>
-<a name="2.3"></a>
+<a name="2.2.2"></a>
 
-### 2.3 Asset Name Modifiers
+### 2.2.2 Name Modifiers
 
 When naming an asset, use these tables to determine the prefix and suffix to use with an asset's [Base Asset Name](#base-asset-name).
 
 <a name="naming-modifiers-common"></a>
-<a name="2.3.1"></a>
+<a name="2.2.2.1"></a>
 
-#### 2.3.1 Most Common
+### 2.2.2.1 Most Common
 
 | Asset Type          | Prefix | Suffix    | Notes                                      |
 |---------------------|--------|-----------|--------------------------------------------|
@@ -391,9 +393,9 @@ When naming an asset, use these tables to determine the prefix and suffix to use
 | Animation Blueprint | ABP_   |           |                                            |
 
 <a name="naming-modifiers-animations"></a>
-<a name="2.3.2"></a>
+<a name="2.2.2.2"></a>
 
-#### 2.3.2 Animations
+### 2.2.2.2 Animations
 
 | Asset Type                | Prefix | Suffix | Notes |
 |---------------------------|--------|--------|-------|
@@ -414,9 +416,9 @@ When naming an asset, use these tables to determine the prefix and suffix to use
 | Skeleton                  | SKEL_  |        |       |
 
 <a name="naming-modifiers-ai"></a>
-<a name="2.3.3"></a>
+<a name="2.2.2.3"></a>
 
-### 2.3.3 Artificial Intelligence
+### 2.2.2.3 Artificial Intelligence
 
 | Asset Type        | Prefix       | Suffix  | Notes |
 |-------------------|--------------|---------|-------|
@@ -430,9 +432,9 @@ When naming an asset, use these tables to determine the prefix and suffix to use
 | EnvQueryContext   | EQS_         | Context |       |
 
 <a name="naming-modifiers-bps"></a>
-<a name="2.3.4"></a>
+<a name="2.2.2.4"></a>
 
-### 2.3.4 Blueprints
+### 2.2.2.4 Blueprints
 
 | Asset Type                 | Prefix | Suffix    | Notes                                   |
 |----------------------------|--------|-----------|-----------------------------------------|
@@ -446,9 +448,9 @@ When naming an asset, use these tables to determine the prefix and suffix to use
 | Widget Blueprint           | WBP_   |           |                                         |
 
 <a name="naming-modifiers-materials"></a>
-<a name="2.3.5"></a>
+<a name="2.2.2.5"></a>
 
-### 2.3.5 Materials
+### 2.2.2.5 Materials
 
 | Asset Type                    | Prefix  | Suffix | Notes |
 |-------------------------------|---------|--------|-------|
@@ -462,9 +464,9 @@ When naming an asset, use these tables to determine the prefix and suffix to use
 | Decal                         | M_, MI_ | _Decal |       |
 
 <a name="naming-modifiers-textures"></a>
-<a name="2.3.6"></a>
+<a name="2.2.2.6"></a>
 
-### 2.3.6 Textures
+### 2.2.2.6 Textures
 
 | Asset Type                          | Prefix | Suffix | Notes                                                   |
 |-------------------------------------|--------|--------|---------------------------------------------------------|
@@ -487,9 +489,9 @@ When naming an asset, use these tables to determine the prefix and suffix to use
 | Texture Light Profile               | TLP_   |        |                                                         |
 
 <a name="naming-modifiers-textures-packing"></a>
-<a name="2.3.6.1"></a>
+<a name="2.2.2.6.1"></a>
 
-#### 2.3.6.1 Texture Packing
+#### 2.2.2.6.1 Texture Packing
 
 It is common practice to pack multiple layers of texture data into one texture. An example of this is packing Emissive, Roughness, Ambient
 Occlusion together as the Red, Green and Blue channels of a texture respectively. To determine the suffix, simply stack the given suffix
@@ -502,9 +504,9 @@ Packing 4 channels of data into a texture (RGBA) is not recommended except for a
 as a texture with an alpha channel incurs more overhead than one without.
 
 <a name="naming-modifiers-misc"></a>
-<a name="2.3.7"></a>
+<a name="2.2.2.7"></a>
 
-### 2.3.7 Miscellaneous
+### 2.2.2.7 Miscellaneous
 
 | Asset Type                 | Prefix   | Suffix  | Notes                                                                                     |
 |----------------------------|----------|---------|-------------------------------------------------------------------------------------------|
@@ -532,9 +534,9 @@ as a texture with an alpha channel incurs more overhead than one without.
 | Vector Curve               | Curve_   | _Vector |                                                                                           |
 
 <a name="naming-modifiers-paper2d"></a>
-<a name="2.3.8"></a>
+<a name="2.2.2.8"></a>
 
-### 2.3.8 Paper 2D
+### 2.2.2.8 Paper 2D
 
 | Asset Type         | Prefix | Suffix | Notes |
 |--------------------|--------|--------|-------|
@@ -545,9 +547,9 @@ as a texture with an alpha channel incurs more overhead than one without.
 | Tile Set           | TS_    |        |       |
 
 <a name="naming-modifiers-physics"></a>
-<a name="2.3.9"></a>
+<a name="2.2.2.9"></a>
 
-### 2.3.9 Physics
+### 2.2.2.9 Physics
 
 | Asset Type        | Prefix | Suffix | Notes |
 |-------------------|--------|--------|-------|
@@ -556,9 +558,9 @@ as a texture with an alpha channel incurs more overhead than one without.
 | Destructible Mesh | DM_    |        |       |
 
 <a name="naming-modifiers-sounds"></a>
-<a name="2.3.10"></a>
+<a name="2.2.2.10"></a>
 
-### 2.3.10 Sounds
+### 2.2.2.10 Sounds
 
 | Asset Type        | Prefix  | Suffix | Notes                                                           |
 |-------------------|---------|--------|-----------------------------------------------------------------|
@@ -574,9 +576,9 @@ as a texture with an alpha channel incurs more overhead than one without.
 | Sound Wave        | A_      |        | `A` form `A`udio                                                |
 
 <a name="naming-modifiers-ui"></a>
-<a name="2.3.11"></a>
+<a name="2.2.2.11"></a>
 
-### 2.3.11 User Interface
+### 2.2.2.11 User Interface
 
 | Asset Type         | Prefix | Suffix | Notes |
 |--------------------|--------|--------|-------|
@@ -586,9 +588,9 @@ as a texture with an alpha channel incurs more overhead than one without.
 | Widget Blueprint   | WBP_   |        |       |
 
 <a name="naming-modifiers-effects"></a>
-<a name="2.3.12"></a>
+<a name="2.2.2.12"></a>
 
-### 2.3.12 Effects
+### 2.2.2.12 Effects
 
 | Asset Type              | Prefix | Suffix | Notes |
 |-------------------------|--------|--------|-------|
