@@ -29,21 +29,21 @@
 
 - [2.1 Forbidden Characters](#naming-forbidden-characters)
 - [2.2 Blueprints Naming](#naming-bp)
-    - [2.2.1 Base Asset Name - 'Prefix_BaseAssetName_Variant_Suffix'](#naming-base-asset-name)
-        - [2.2.1.1 Name Modifiers](#naming-modifiers)
-            - [2.2.1.1.1 Most Common](#naming-modifiers-common)
-            - [2.2.1.1.2 Animations](#naming-modifiers-animations)
-            - [2.2.1.1.3 Artificial Intelligence](#naming-modifiers-ai)
-            - [2.2.1.1.4 Blueprints](#naming-modifiers-bps)
-            - [2.2.1.1.5 Materials](#naming-modifiers-materials)
-            - [2.2.1.1.6 Textures](#naming-modifiers-textures)
-                - [2.2.1.1.6.1 Texture Packing](#naming-modifiers-textures-packing)
-            - [2.2.1.1.7 Miscellaneous](#naming-modifiers-misc)
-            - [2.2.1.1.8 Paper 2D](#naming-modifiers-paper2d)
-            - [2.2.1.1.9 Physics](#naming-modifiers-physics)
-            - [2.2.1.1.10 Sounds](#naming-modifiers-sounds)
-            - [2.2.1.1.11 User Interface](#naming-modifiers-ui)
-            - [2.2.1.1.12 Effects](#naming-modifiers-effects)
+    - [2.2.1 Base Asset Name - 'Prefix_BaseAssetName_Variant_Suffix'](#naming-bp-base-asset-name)
+        - [2.2.1.1 Name Modifiers](#naming-bp-base-asset-name-modifiers)
+            - [2.2.1.1.1 Most Common](#naming-bp-base-asset-name-modifiers-common)
+            - [2.2.1.1.2 Animations](#naming-bp-base-asset-name-modifiers-animations)
+            - [2.2.1.1.3 Artificial Intelligence](#naming-bp-base-asset-name-modifiers-ai)
+            - [2.2.1.1.4 Blueprints](#naming-bp-base-asset-name-modifiers-bps)
+            - [2.2.1.1.5 Materials](#naming-bp-base-asset-name-modifiers-materials)
+            - [2.2.1.1.6 Textures](#naming-bp-base-asset-name-modifiers-textures)
+                - [2.2.1.1.6.1 Texture Packing](#naming-bp-base-asset-name-modifiers-textures-packing)
+            - [2.2.1.1.7 Miscellaneous](#-bp-base-asset-name-modifiers-misc)
+            - [2.2.1.1.8 Paper 2D](#naming-bp-base-asset-name-modifiers-paper2d)
+            - [2.2.1.1.9 Physics](#naming-bp-base-asset-name-modifiers-physics)
+            - [2.2.1.1.10 Sounds](#naming-bp-base-asset-name-modifiers-sounds)
+            - [2.2.1.1.11 User Interface](#naming-bp-base-asset-name-modifiers-ui)
+            - [2.2.1.1.12 Effects](#naming-bp-base-asset-name-modifiers-effects)
 - [2.3 CPP Naming](#naming-cpp)
 
 </details>
@@ -362,14 +362,14 @@ Arch Viz project, you should use the base name `Flooring` with chained variants 
 | Material                 | M_Rock       |
 | Material Instance (Snow) | MI_Rock_Snow |
 
-<a name="naming-modifiers"></a>
+<a name="naming-bp-base-asset-name-modifiers"></a>
 <a name="2.2.1.1"></a>
 
 ### 2.2.1.1 Name Modifiers
 
 When naming an asset, use these tables to determine the prefix and suffix to use with an asset's [Base Asset Name](#base-asset-name).
 
-<a name="naming-modifiers-common"></a>
+<a name="naming-bp-base-asset-name-modifiers-common"></a>
 <a name="2.2.1.1.1"></a>
 
 ### 2.2.1.1.1 Most Common
@@ -392,7 +392,7 @@ When naming an asset, use these tables to determine the prefix and suffix to use
 | Widget Blueprint    | WBP_   |           |                                            |
 | Animation Blueprint | ABP_   |           |                                            |
 
-<a name="naming-modifiers-animations"></a>
+<a name="naming-bp-base-asset-name-modifiers-animations"></a>
 <a name="2.2.1.1.2"></a>
 
 ### 2.2.1.1.2 Animations
@@ -415,7 +415,7 @@ When naming an asset, use these tables to determine the prefix and suffix to use
 | Skeletal Mesh             | SK_    |        |       |
 | Skeleton                  | SKEL_  |        |       |
 
-<a name="naming-modifiers-ai"></a>
+<a name="naming-bp-base-asset-name-modifiers-ai"></a>
 <a name="2.2.1.1.3"></a>
 
 ### 2.2.1.1.3 Artificial Intelligence
@@ -431,7 +431,7 @@ When naming an asset, use these tables to determine the prefix and suffix to use
 | Environment Query | EQS_         |         |       |
 | EnvQueryContext   | EQS_         | Context |       |
 
-<a name="naming-modifiers-bps"></a>
+<a name="naming-bp-base-asset-name-modifiers-bps"></a>
 <a name="2.2.1.1.4"></a>
 
 ### 2.2.1.1.4 Blueprints
@@ -447,7 +447,7 @@ When naming an asset, use these tables to determine the prefix and suffix to use
 | Structure                  | F or S |           | No underscore.                          |
 | Widget Blueprint           | WBP_   |           |                                         |
 
-<a name="naming-modifiers-materials"></a>
+<a name="naming-bp-base-asset-name-modifiers-materials"></a>
 <a name="2.2.1.1.5"></a>
 
 ### 2.2.1.1.5 Materials
@@ -463,7 +463,7 @@ When naming an asset, use these tables to determine the prefix and suffix to use
 | Physical Materials            | PM_     |        |       |
 | Decal                         | M_, MI_ | _Decal |       |
 
-<a name="naming-modifiers-textures"></a>
+<a name="naming-bp-base-asset-name-modifiers-textures"></a>
 <a name="2.2.1.1.6"></a>
 
 ### 2.2.1.1.6 Textures
@@ -488,7 +488,7 @@ When naming an asset, use these tables to determine the prefix and suffix to use
 | Cube Render Target                  | RTC_   |        |                                                         |
 | Texture Light Profile               | TLP_   |        |                                                         |
 
-<a name="naming-modifiers-textures-packing"></a>
+<a name="naming-bp-base-asset-name-modifiers-textures-packing"></a>
 <a name="2.2.1.1.6.1"></a>
 
 #### 2.2.1.1.6.1 Texture Packing
@@ -503,7 +503,7 @@ letters from above together, e.g. `_ERO`.
 Packing 4 channels of data into a texture (RGBA) is not recommended except for an Alpha/Opacity mask in the Diffuse/Albedo's alpha channel
 as a texture with an alpha channel incurs more overhead than one without.
 
-<a name="naming-modifiers-misc"></a>
+<a name="naming-bp-base-asset-name-modifiers-misc"></a>
 <a name="2.2.1.1.7"></a>
 
 ### 2.2.1.1.7 Miscellaneous
@@ -533,7 +533,7 @@ as a texture with an alpha channel incurs more overhead than one without.
 | Touch Interface Setup      | TI_      |         |                                                                                           |
 | Vector Curve               | Curve_   | _Vector |                                                                                           |
 
-<a name="naming-modifiers-paper2d"></a>
+<a name="naming-bp-base-asset-name-modifiers-paper2d"></a>
 <a name="2.2.1.1.8"></a>
 
 ### 2.2.1.1.8 Paper 2D
@@ -546,7 +546,7 @@ as a texture with an alpha channel incurs more overhead than one without.
 | Tile Map           | TM_    |        |       |
 | Tile Set           | TS_    |        |       |
 
-<a name="naming-modifiers-physics"></a>
+<a name="naming-bp-base-asset-name-modifiers-physics"></a>
 <a name="2.2.1.1.9"></a>
 
 ### 2.2.1.1.9 Physics
@@ -557,7 +557,7 @@ as a texture with an alpha channel incurs more overhead than one without.
 | Physics Asset     | PHYS_  |        |       |
 | Destructible Mesh | DM_    |        |       |
 
-<a name="naming-modifiers-sounds"></a>
+<a name="naming-bp-base-asset-name-modifiers-sounds"></a>
 <a name="2.2.1.1.10"></a>
 
 ### 2.2.1.1.10 Sounds
@@ -575,7 +575,7 @@ as a texture with an alpha channel incurs more overhead than one without.
 | Sound Mix         | Mix_    |        |                                                                 |
 | Sound Wave        | A_      |        | `A` form `A`udio                                                |
 
-<a name="naming-modifiers-ui"></a>
+<a name="naming-bp-base-asset-name-modifiers-ui"></a>
 <a name="2.2.1.1.11"></a>
 
 ### 2.2.1.1.11 User Interface
@@ -587,7 +587,7 @@ as a texture with an alpha channel incurs more overhead than one without.
 | Slate Widget Style | Style_ |        |       |
 | Widget Blueprint   | WBP_   |        |       |
 
-<a name="naming-modifiers-effects"></a>
+<a name="naming-bp-base-asset-name-modifiers-effects"></a>
 <a name="2.2.1.1.12"></a>
 
 ### 2.2.1.1.12 Effects
@@ -596,6 +596,11 @@ as a texture with an alpha channel incurs more overhead than one without.
 |-------------------------|--------|--------|-------|
 | Particle System         | PS_    |        |       |
 | Material (Post Process) | PP_    |        |       |
+
+<a name="naming-cpp"></a>
+<a name="2.2"></a>
+
+### CPP Naming
 
 **[⬆ Back to Top](#table-of-contents)**
 
@@ -611,11 +616,11 @@ This style guide promotes using the Content Browser's filtering and search capab
 folder-based organization. By leveraging these built-in tools, team members can efficiently find specific asset types without needing to
 navigate through nested folder structures.
 
-> If you are using the prefix [naming convention](#2.3) above, using folders to contain assets of similar types such as `Meshes`,
-`Textures`, and `Materials` is a redundant practice as asset types are already both sorted by prefix and able to be filtered in the
-> content browser.
+> If you are using the prefix [naming convention](#naming-bp-base-asset-name-modifiers) above, using folders to contain assets of similar types
+> such as `Meshes`,`Textures`, and
+`Materials` is a redundant practice as asset types are already both sorted by prefix and able to be filtered in the content browser.
 
-### Example Project Content Structure
+***Example Project Content Structure***
 
 <pre>
 |-- Content
