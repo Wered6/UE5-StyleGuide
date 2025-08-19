@@ -125,7 +125,7 @@
 </details>
 
 <details>
-<summary><a href="#static-meshes">5. Static Meshes</a></summary>
+<summary><a href="#sm">5. Static Meshes</a></summary>
 
 - [5.1 Static Mesh UVs](#sm-uvs)
     - [5.1.1 All Meshes Must Have UVs](#sm-uvs-no-missing)
@@ -1576,43 +1576,42 @@ executed.
 
 **[⬆ Back to Top](#table-of-contents)**
 
+<a name="sm"></a>
 <a name="5"></a>
-<a name="Static Meshes"></a>
-<a name="s"></a>
 
 ## 5. Static Meshes
 
 This section will focus on Static Mesh assets and their internals.
 
+<a name="sm-uvs"></a>
 <a name="5.1"></a>
-<a name="s-uvs"></a>
 
 ### 5.1 Static Mesh UVs
 
+<a name="sm-uvs-no-missing"></a>
 <a name="5.1.1"></a>
-<a name="s-uvs-no-missing"></a>
 
 #### 5.1.1 All Meshes Must Have UVs
 
 Pretty simple. All meshes, regardless of how they are to be used, should not be missing UVs.
 
+<a name="sm-uvs-no-overlapping"></a>
 <a name="5.1.2"></a>
-<a name="s-uvs-no-overlapping"></a>
 
 #### 5.1.2 All Meshes Must Not Have Overlapping UVs for Lightmaps
 
 Pretty simple. All meshes, regardless of how they are to be used, should have valid non-overlapping UVs.
 
+<a name="sm-lods"></a>
 <a name="5.2"></a>
-<a name="s-lods"></a>
 
 ### 5.2 LODs Should Be Set Up Correctly
 
 This is a subjective check on a per-project basis, but as a general rule, any mesh that can be seen at varying distances should have proper
 LODs.
 
+<a name="sm-modular-snapping"></a>
 <a name="5.3"></a>
-<a name="s-modular-snapping"></a>
 
 ### 5.3 Modular Socketless Assets Should Snap To The Grid Cleanly
 
@@ -1622,16 +1621,16 @@ grid settings.
 It is up to the project whether to snap based on a power of 2 grid or on a base 10 grid. However, if you are authoring modular socketless
 assets for the marketplace, Epic's requirement is that they snap cleanly when the grid is set to 10 units or bigger.
 
+<a name="sm-collision"></a>
 <a name="5.4"></a>
-<a name="s-collision"></a>
 
 ### 5.4 All Meshes Must Have Collision
 
 Regardless of whether an asset is going to be used for collision in a level, all meshes should have proper collision defined. This helps the
 engine with things such as bounds calculations, occlusion and lighting. Collision should also be well-formed to the asset.
 
+<a name="sm-scaled"></a>
 <a name="5.5"></a>
-<a name="s-scaled"></a>
 
 ### 5.5 All Meshes Should Be Scaled Correctly
 
@@ -1641,9 +1640,8 @@ treated as a scale override, not a scale correction.
 
 **[⬆ Back to Top](#table-of-contents)**
 
-<a name="6"></a>
-<a name="Levels"></a>
 <a name="levels"></a>
+<a name="6"></a>
 
 ## 6. Levels / Maps
 
@@ -1651,8 +1649,8 @@ treated as a scale override, not a scale correction.
 
 This section will focus on Level assets and their internals.
 
-<a name="6.1"></a>
 <a name="levels-no-errors-or-warnings"></a>
+<a name="6.1"></a>
 
 ### 6.1 No Errors Or Warnings
 
@@ -1661,30 +1659,30 @@ prevent cascading issues.
 
 You can run a map check on an open level in the editor by using the console command "map check".
 
-<a name="6.2"></a>
 <a name="levels-lighting-should-be-built"></a>
+<a name="6.2"></a>
 
 ### 6.2 Lighting Should Be Built
 
 It is normal during development for levels to occasionally not have lighting built. When doing a test/internal/shipping build or any build
 that is to be distributed, however, lighting should always be built.
 
-<a name="6.3"></a>
 <a name="levels-no-visible-z-fighting"></a>
+<a name="6.3"></a>
 
 ### 6.3 No Player Visible Z Fighting
 
 Levels should not have any [z-fighting](https://en.wikipedia.org/wiki/Z-fighting) in all areas visible to the player.
 
+<a name="levels-fab-rules"></a>
 <a name="6.4"></a>
-<a name="levels-mp-rules"></a>
 
 ### 6.4 Fab Specific Rules
 
 If a project is to be sold on the Fab, it must follow these rules.
 
+<a name="levels-fab-rules-overview"></a>
 <a name="6.4.1"></a>
-<a name="levels-mp-rules-overview"></a>
 
 #### 6.4.1 Overview Level
 
@@ -1696,8 +1694,8 @@ to [Epic's guidelines](https://dev.epicgames.com/documentation/en-us/fab/asset-f
 
 For example, `InteractionComponent_Overview`.
 
+<a name="levels-fab-rules-demo"></a>
 <a name="6.4.2"></a>
-<a name="levels-mp-rules-demo"></a>
 
 #### 6.4.2 Demo Level
 
@@ -1711,15 +1709,15 @@ For example, `InteractionComponent_Overview_Demo`, `ExplosionKit_Demo`.
 
 **[⬆ Back to Top](#table-of-contents)**
 
-<a name="7"></a>
 <a name="textures"></a>
+<a name="7"></a>
 
 ## 7. Textures
 
 This section will focus on Texture assets and their internals.
 
-<a name="7.1"></a>
 <a name="textures-dimensions"></a>
+<a name="7.1"></a>
 
 ### 7.1 Dimensions Are Powers of 2
 
@@ -1727,8 +1725,8 @@ All textures (except UI textures) must be dimensioned in powers of 2. Textures c
 
 For example, `128x512`, `1024x1024`, `2048x1024`, `1024x2048`, `1x512`.
 
-<a name="7.2"></a>
 <a name="textures-density"></a>
+<a name="7.2"></a>
 
 ### 7.2 Texture Density Should Be Uniform
 
@@ -1738,16 +1736,16 @@ all textures within that project should have a consistent density.
 For example, if a project's texture density is 8 pixels per 1 unit, a texture that is meant to be applied to a 100x100 unit cube should be
 1024x1024, as that is the closest power of 2 that matches the project's texture density.
 
-<a name="7.3"></a>
 <a name="textures-max-size"></a>
+<a name="7.3"></a>
 
 ### 7.3 Textures Should Be No Bigger than 8192
 
 No texture should have a dimension that exceeds 8192 in size, unless you have a very explicit reason to do so. Often, using a texture this
 big is simply just a waste of resources.
 
-<a name="7.4"></a>
 <a name="textures-group"></a>
+<a name="7.4"></a>
 
 ### 7.4 Textures Should Be Grouped Correctly
 
