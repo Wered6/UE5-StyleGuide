@@ -1,5 +1,7 @@
 # Wered UE5 Style Guide forked from [Allar's](https://github.com/Allar/ue5-style-guide)
 
+@TODO: Add C++ section, directory structure in C++, plugins, modules, add tldr with links 
+
 ## Table of contents
 
 <details>
@@ -1045,7 +1047,7 @@ the variable as a question, such as `Is`. This is reserved for functions.
 Example: Use `bDead` and `bHostile` **not** `bIsDead` and `bIsHostile`.
 
 <a name="bp-vars-naming-bool-names-no-continuous-tense"></a>
-<a name="4.2.1.4.2></a>
+<a name="4.2.1.4.2"></a>
 
 #### 4.2.1.4.2 Booleans should not be phrased in continuous tense
 
@@ -1645,7 +1647,7 @@ treated as a scale override, not a scale correction.
 
 ## 6. Levels / Maps
 
-[See Terminology Note](#terms-level-map) regarding "levels" vs. "maps".
+[See Terminology Note](#terms-levels-maps) regarding "levels" vs. "maps".
 
 This section will focus on Level assets and their internals.
 
@@ -1753,6 +1755,8 @@ Every texture has a Texture Group property used for LODing, and this should be s
 should belong in the UI texture group.
 
 **[⬆ Back to Top](#table-of-contents)**
+
+
 
 ## Major Contributors
 
