@@ -46,7 +46,7 @@
         - [2.3.1.12 Effects](#naming-bp-bas-effects)
     - [2.3.2 Variables](#naming-bp-vars)
         - [2.3.2.1 Nouns](#naming-bp-vars-nouns)
-        - [2.3.2.2 Booleans](#naming-bp-vars-bool)
+        - [2.3.2.2 Booleans](#naming-bp-vars-bools)
         - [2.3.2.3 Considered Context](#naming-bp-vars-context)
         - [2.3.2.4 Do *Not* Include Atomic Type Names](#naming-bp-vars-no-atomic)
         - [2.3.2.5 Do Include Non-Atomic Type Names](#naming-bp-vars-non-atomic)
@@ -84,27 +84,15 @@
 
 - [4.1 Compiling](#bp-compiling)
 - [4.2 Variables](#bp-vars)
-    - [4.2.1 Naming](#bp-vars-naming)
-        - [4.2.1.1 Nouns](#bp-vars-naming-nouns)
-        - [4.2.1.2 PascalCase](#bp-vars-naming-case)
-        - [4.2.1.3 Boolean `b` Prefix](#bp-vars-naming-bool-prefix)
-        - [4.2.1.4 Boolean Names](#bp-vars-naming-bool-names)
-            - [4.2.1.4.1 No questions](#bp-vars-naming-bool-names-no-questions)
-            - [4.2.1.4.2 No Continuous tense](#bp-vars-naming-bool-names-no-continuous-tense)
-            - [4.2.1.4.3 Complex States](#bp-vars-naming-bool-names-complex-states)
-        - [4.2.1.5 Considered Context](#bp-vars-naming-context)
-        - [4.2.1.6 Do *Not* Include Atomic Type Names](#bp-vars-naming-atomic)
-        - [4.2.1.7 Do Include Non-Atomic Type Names](#bp-vars-naming-complex)
-        - [4.2.1.8 Arrays](#bp-vars-naming-arrays)
-    - [4.2.2 Editable Variables](#bp-vars-editable)
-        - [4.2.2.1 Descriptions](#bp-vars-editable-descriptions)
-        - [4.2.2.2 Slider And Value Ranges](#bp-vars-editable-ranges)
-    - [4.2.3 Categories](#bp-vars-categories)
-    - [4.2.4 Variable Access Level](#bp-vars-access)
-        - [4.2.4.1 Private Variables](#bp-vars-access-private)
-    - [4.2.5 Advanced Display](#bp-vars-advanced)
-    - [4.2.6 Transient Variables](#bp-vars-transient)
-    - [4.2.7 Config Variables](#bp-vars-config)
+    - [4.2.1 Editable Variables](#bp-vars-editable)
+        - [4.2.1.1 Descriptions](#bp-vars-editable-descriptions)
+        - [4.2.1.2 Slider And Value Ranges](#bp-vars-editable-ranges)
+    - [4.2.2 Categories](#bp-vars-categories)
+    - [4.2.3 Variable Access Level](#bp-vars-access)
+        - [4.2.3.1 Private Variables](#bp-vars-access-private)
+    - [4.2.4 Advanced Display](#bp-vars-advanced)
+    - [4.2.5 Transient Variables](#bp-vars-transient)
+    - [4.2.6 Config Variables](#bp-vars-config)
 - [4.3 Functions, Events, and Event Dispatchers](#bp-funcs)
     - [4.3.1 Naming](#bp-funcs-naming)
         - [4.3.1.1 Verb Rule](#bp-funcs-naming-verb-rule)
@@ -599,6 +587,146 @@ as a texture with an alpha channel incurs more overhead than one without.
 | Particle System         | PS_    |        |       |
 | Material (Post Process) | PP_    |        |       |
 
+<a name="naming-bp-vars"></a>
+<a name="2.3.2"></a>
+
+### 2.3.2 Variables
+
+<a name="naming-bp-vars-nouns"></a>
+<a name="2.3.2.1"></a>
+
+### 2.3.2.1 Nouns
+
+All non-boolean variable names must be clear, unambiguous and descriptive **nouns**.
+
+<a name="naming-bp-vars-bools"></a>
+<a name="2.3.2.2"></a>
+
+### 2.3.2.2 Booleans
+
+All booleans should be named in [PascalCase](#terms-cases) but prefixed with a lowercase `b`. UE5 Blueprint editors know not to include the `b`
+in user-friendly displays of the variable.
+
+### Examples
+
+| **Bad** | **Good** |
+|---------|----------|
+| `Dead`  | `bDead`  |
+| `Evil`  | `bEvil`  |
+
+All booleans should be named as descriptive adjectives when possible if representing general information. Do not include words that phrase the
+variable as a question, such as `Is`. This is reserved for [functions](#naming-bp-funcs-bool).
+
+### Examples
+
+| **Bad**      | **Good**   |
+|--------------|------------|
+| `bIsDead`    | `bDead`    |
+| `bIsHostile` | `bHostile` |
+
+All booleans should not be phrased in continuous tense. Try to not use verbs such as `bRunning`. Verbs tend to lead to complex states.
+
+Do not use booleans to represent complex and/or dependent states. This makes state adding and removing complex and no longer easily readable. Use
+an enumeration instead.
+
+### Examples
+
+* When defining a weapon, do not use `bReloading` and `bEquipping` if a weapon can't be both reloading and equipping. Define an enumeration named
+  `EWeaponState` and use a variable with this type named `WeaponState` instead. This makes it far easier to add new states to weapons.
+* Do not use `bRunning` if you also need `bWalking` or `bSprinting`. This should be defined as an enumeration with clearly defined state names.
+
+<a name="naming-bp-vars-context"></a>
+<a name="2.3.2.3"></a>
+
+### 2.3.2.3 Considered Context
+
+Consider a Blueprint called `BP_PlayerCharacter`. All of these below variables are named redundantly. It is implied that the variable is
+representative of the `BP_PlayerCharacter` it belongs to because it is `BP_PlayerCharacter` that is defining these variables.
+
+| **Bad**               | **Good**       |
+|-----------------------|----------------|
+| `PlayerScore`         | `Score`        |
+| `PlayerKills`         | `Kills`        |
+| `MyTargetPlayer`      | `TargetPlayer` |
+| `MyCharacterName`     | `Name`         |
+| `CharacterSkills`     | `Skills`       |
+| `ChosenCharacterSkin` | `Skin`         |
+
+<a name="naming-bp-vars-no-atomic"></a>
+<a name="2.3.2.4"></a>
+
+### 2.3.2.4 Do *Not* Include Atomic Type Names
+
+Atomic or primitive variables are variables that represent data in their simplest form, such as booleans, integers, floats and enumerations.
+
+Strings and vectors are considered atomic in terms of style when working with Blueprints; however, they are technically not atomic.
+
+> While vectors consist of three floats, vectors are often able to be manipulated as a whole, same with rotators.
+>
+> Do not consider Text variables as atomic, they are secretly hiding localization functionality. The atomic type of string of characters is
+`String`, not `Text`.
+
+Atomic variables should not have their type name in their name.
+
+### Example
+
+| **Bad**             | **Good**      |
+|---------------------|---------------|
+| `ScoreFloat`        | `Score`       |
+| `FloatKills`        | `Kills`       |
+| `DescriptionString` | `Description` |
+
+The only exception to this rule is when a variable represents 'a number of' something to be counted, and when using a name without a variable
+type is not easy to read.
+
+### Example: A fence generator needs to generate X number of posts
+
+| **Bad**                                                                  | **Good**                   |
+|--------------------------------------------------------------------------|----------------------------|
+| `Posts` - may potentially read as an Array of a variable type named Post | `NumPosts` or `PostsCount` |
+
+<a name="naming-bp-vars-non-atomic"></a>
+<a name="2.3.2.5"></a>
+
+### 2.3.2.5 Do Include Non-Atomic Type Names
+
+Non-atomic or complex variables are variables that represent data as a collection of atomic variables. Structs, Classes, Interfaces and
+primitives with hidden behavior such as `Text` and `Name` all qualify under this rule.
+
+> While an Array of an atomic variable type is a list of variables, Arrays do not change the `atomicness` of a variable type.
+
+These variables should include their type name while still considering their context.
+
+If a class owns an instance of a complex variable, i.e., if a `BP_PlayerCharacter` owns a `BP_Hat`, it should be stored as the variable type as
+without any name modifications.
+
+### Examples
+
+| **Bad**         | **Good**  |
+|-----------------|-----------|
+| `MyHat`         | `Hat`     |
+| `MyFlag`        | `Flag`    |
+| `PlayerAbility` | `Ability` |
+
+If a class does not own the value a complex variable represents, you should use a noun along with the variable type, i.e., if a `BP_Turret` has
+the ability to target a `BP_PlayerCharacter`, it should store its target as `TargetPlayer` as when in the context of `BP_Turret` it should be
+clear that it is a reference to another complex variable type that it does not own.
+
+<a name="naming-bp-vars-arrays"></a>
+<a name="2.3.2.6"></a>
+
+### 2.3.2.6 Arrays
+
+Arrays follow the same naming rules as above but should be named as a plural noun.
+
+### Examples
+
+| **Bad**            | **Good**       |
+|--------------------|----------------|
+| `TargetList`       | `Targets`      |
+| `HatArray`         | `Hats`         |
+| `EnemyPlayerArray` | `EnemyPlayers` |
+
 <a name="naming-cpp"></a>
 <a name="2.4"></a>
 
@@ -986,173 +1114,10 @@ frequent unneeded recompilation. A broken blueprint has the power to break your 
 
 The words `variable` and `property` may be used interchangeably.
 
-<a name="bp-vars-naming"></a>
+<a name="bp-vars-editable"></a>
 <a name="4.2.1"></a>
 
-### 4.2.1 Naming
-
-<a name="bp-vars-naming-nouns"></a>
-<a name="4.2.1.1"></a>
-
-### 4.2.1.1 Nouns
-
-All non-boolean variable names must be clear, unambiguous and descriptive nouns.
-
-<a name="bp-vars-naming-case"></a>
-<a name="4.2.1.2"></a>
-
-### 4.2.1.2 PascalCase
-
-All non-boolean variables should be in the form of [PascalCase](#terms-cases).
-
-### Examples
-
-* `Score`
-* `Kills`
-* `TargetPlayer`
-* `Range`
-* `CrosshairColor`
-* `AbilityID`
-
-<a name="bp-vars-naming-bool-prefix"></a>
-<a name="4.2.1.3"></a>
-
-### 4.2.1.3 Boolean `b` Prefix
-
-All booleans should be named in PascalCase but prefixed with a lowercase `b`.
-UE5 Blueprint editors know not to include the `b` in user-friendly displays of the variable.
-
-### Examples
-
-| **Bad** | **Good** |
-|---------|----------|
-| `Dead`  | `bDead`  |
-| `Evil`  | `bEvil`  |
-
-<a name="bp-vars-naming-bool-names"></a>
-<a name="4.2.1.4"></a>
-
-### 4.2.1.4 Boolean Names
-
-<a name="bp-vars-naming-bool-names-no-questions"></a>
-<a name="4.2.1.4.1"></a>
-
-#### 4.2.1.4.1 Booleans should not be phrased as questions
-
-All booleans should be named as descriptive adjectives when possible if representing general information. Do not include words that phrase
-the variable as a question, such as `Is`. This is reserved for functions.
-
-### Examples
-
-| **Bad**      | **Good**   |
-|--------------|------------|
-| `bIsDead`    | `bDead`    |
-| `bIsHostile` | `bHostile` |
-
-<a name="bp-vars-naming-bool-names-no-continuous-tense"></a>
-<a name="4.2.1.4.2"></a>
-
-#### 4.2.1.4.2 Booleans should not be phrased in continuous tense
-
-Try to not use verbs such as `bRunning`. Verbs tend to lead to complex states.
-
-<a name="bp-vars-naming-bool-names-complex-states"></a>
-<a name="4.2.1.4.3"></a>
-
-#### 4.2.1.4.3 Complex States
-
-Do not use booleans to represent complex and/or dependent states. This makes state adding and removing complex and no longer easily
-readable. Use an enumeration instead.
-
-Example: When defining a weapon, do **not** use `bReloading` and `bEquipping` if a weapon can't be both reloading and equipping. Define an
-enumeration named `EWeaponState` and use a variable with this type named `WeaponState` instead. This makes it far easier to add new states
-to weapons.
-
-Example: Do **not** use `bRunning` if you also need `bWalking` or `bSprinting`. This should be defined as an enumeration with clearly defined
-state names.
-
-<a name="bp-vars-naming-context"></a>
-<a name="4.2.1.5"></a>
-
-### 4.2.1.5 Considered Context
-
-All variable names must not be redundant with their context as all variable references in Blueprint will always have context.
-
-### Examples
-
-Consider a Blueprint called `BP_PlayerCharacter`. All of these variables are named redundantly. It is implied that the variable is representative
-of the `BP_PlayerCharacter` it belongs to
-because it is `BP_PlayerCharacter` that is defining these variables.
-
-| **Bad**               | **Good**       |
-|-----------------------|----------------|
-| `PlayerScore`         | `Score`        |
-| `PlayerKills`         | `Kills`        |
-| `MyTargetPlayer`      | `TargetPlayer` |
-| `MyCharacterName`     | `Name`         |
-| `CharacterSkills`     | `Skills`       |
-| `ChosenCharacterSkin` | `Skin`         |
-
-<a name="bp-vars-naming-atomic"></a>
-<a name="4.2.1.6"></a>
-
-### 4.2.1.6 Do *Not* Include Atomic Type Names
-
-Atomic or primitive variables are variables that represent data in their simplest form, such as booleans, integers, floats and
-enumerations.
-
-Strings and vectors are considered atomic in terms of style when working with Blueprints; however, they are technically not atomic.
-
-> While vectors consist of three floats, vectors are often able to be manipulated as a whole, same with rotators.
-
-> Do *not* consider Text variables as atomic, they are secretly hiding localization functionality. The atomic type of string of characters is
-`String`, not `Text`.
-
-Atomic variables should not have their type name in their name.
-
-Example: Use `Score`, `Kills`, and `Description` **not** `ScoreFloat`, `FloatKills`, `DescriptionString`.
-
-The only exception to this rule is when a variable represents 'a number of' something to be counted *and* when using a name without a variable
-type is not easy to read.
-
-Example: A fence generator needs to generate X number of posts. Store X in `NumPosts` or `PostsCount` instead of `Posts` as `Posts` may
-potentially read as an Array of a variable type named `Post`.
-
-<a name="bp-vars-naming-complex"></a>
-<a name="4.2.1.7"></a>
-
-### 4.2.1.7 Do Include Non-Atomic Type Names
-
-Non-atomic or complex variables are variables that represent data as a collection of atomic variables. Structs, Classes, Interfaces and
-primitives with hidden behavior such as `Text` and `Name` all qualify under this rule.
-
-> While an Array of an atomic variable type is a list of variables, Arrays do not change the 'atomicness' of a variable type.
-
-These variables should include their type name while still considering their context.
-
-If a class owns an instance of a complex variable, i.e., if a `BP_PlayerCharacter` owns a `BP_Hat`, it should be stored as the variable type
-as without any name modifications.
-
-Example: Use `Hat`, `Flag`, and `Ability` **not** `MyHat`, `MyFlag`, and `PlayerAbility`.
-
-If a class does not own the value a complex variable represents, you should use a noun along with the variable type.
-
-Example: If a `BP_Turret` has the ability to target a `BP_PlayerCharacter`, it should store its target as `TargetPlayer` as when in the
-context of `BP_Turret` it should be clear that it is a reference to another complex variable type that it does not own.
-
-<a name="bp-vars-naming-arrays"></a>
-<a name="4.2.1.8"></a>
-
-### 4.2.1.8 Arrays
-
-Arrays follow the same naming rules as above but should be named as a plural noun.
-
-Example: Use `Targets`, `Hats`, and `EnemyPlayers`, **not** `TargetList`, `HatArray`, `EnemyPlayerArray`.
-
-<a name="bp-vars-editable"></a>
-<a name="4.2.2"></a>
-
-### 4.2.2 Editable Variables
+### 4.2.1 Editable Variables
 
 All variables that are safe to change the value of to configure behavior of a blueprint should be marked as `Editable`.
 
@@ -1162,17 +1127,17 @@ engineering reasons the variable must be marked as `Expose On Spawn`.
 Do not arbitrarily mark variables as `Editable`.
 
 <a name="bp-vars-editable-descriptions"></a>
-<a name="4.2.2.1"></a>
+<a name="4.2.1.1"></a>
 
-### 4.2.2.1 Descriptions
+### 4.2.1.1 Descriptions
 
 Every variable should have `Description` filled (especially if it's `Editable`) that explains what for this variable is and how changing
 this value affects the behavior of the blueprint.
 
 <a name="bp-vars-editable-ranges"></a>
-<a name="4.2.2.2"></a>
+<a name="4.2.1.2"></a>
 
-### 4.2.2.2 Slider And Value Ranges
+### 4.2.1.2 Slider And Value Ranges
 
 All `Editable` variables should make use of slider and value ranges if there is ever a value that a variable should *not* be set to.
 
@@ -1186,9 +1151,9 @@ A Value Range only needs to be defined if the bounds of a value are known. While
 undefined Value Range allows a user to specify a value outside the Slider Range that may be considered 'dangerous' but still valid.
 
 <a name="bp-vars-categories"></a>
-<a name="4.2.3"></a>
+<a name="4.2.2"></a>
 
-### 4.2.3 Categories
+### 4.2.2 Categories
 
 All variables should be stored in the top category named as initials of the project i.e. `GenericShooter` - `GS`.
 
@@ -1213,9 +1178,9 @@ Example: A weapon class set of variables might be organized as:
     |   |-- Visuals
 
 <a name="bp-vars-access"></a>
-<a name="4.2.4"></a>
+<a name="4.2.3"></a>
 
-### 4.2.4 Variable Access Level
+### 4.2.3 Variable Access Level
 
 In C++, variables have a concept of access level. `Public` means any code outside the class can access the variable. `Protected` means only
 the class and any child classes can access this variable internally. `Private` means only this class and no child classes can access this
@@ -1226,18 +1191,18 @@ Blueprints do not have a defined concept of `protected` access currently.
 Treat `Editable` variables as `public` variables. Treat non-editable variables as `protected` variables.
 
 <a name="bp-vars-access-private"></a>
-<a name="4.2.4.1"></a>
+<a name="4.2.3.1"></a>
 
-### 4.2.4.1 Private Variables
+### 4.2.3.1 Private Variables
 
 Unless it is known that a variable should only be accessed within the class it is defined and never a child class, do not mark variables as
 `private`. Until variables are able to be marked `protected`, reserve `private` for when you absolutely know you want to restrict child
 class usage.
 
 <a name="bp-vars-advanced"></a>
-<a name="4.2.5"></a>
+<a name="4.2.4"></a>
 
-### 4.2.5 Advanced Display
+### 4.2.4 Advanced Display
 
 If a variable should be editable but often untouched, mark it as `Advanced Display`. This makes the variable hidden unless the advanced
 display arrow is clicked.
@@ -1245,9 +1210,9 @@ display arrow is clicked.
 To find the `Advanced Display` option, it is listed as an advanced displayed variable in the variable details list.
 
 <a name="bp-vars-transient"></a>
-<a name="4.2.6"></a>
+<a name="4.2.5"></a>
 
-### 4.2.6 Transient Variables
+### 4.2.5 Transient Variables
 
 `Transient` variables are variables that do not need to have their value saved and loaded and have an initial value of zero or null. This is
 useful for references to other objects and actors whose value isn't known until run-time. This prevents the editor from ever saving a reference
@@ -1256,9 +1221,9 @@ to it and speeds up saving and loading of the blueprint class.
 Because of this, all transient variables should always be initialized as zero or null. To do otherwise would result in hard to debug errors.
 
 <a name="bp-vars-config"></a>
-<a name="4.2.7"></a>
+<a name="4.2.6"></a>
 
-### 4.2.8 Config Variables
+### 4.2.6 Config Variables
 
 Do not use the `Config Variable` flag. This makes it harder for designers to control blueprint behavior. Config variables should only be
 used in C++ for rarely changed variables. Think of them as `Advanced Advanced Display` variables.
