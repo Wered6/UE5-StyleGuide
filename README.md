@@ -1,6 +1,6 @@
 # Wered UE5 Style Guide forked from [Allar's](https://github.com/Allar/ue5-style-guide)
 
-@TODO: Add C++ section, directory structure in C++, plugins, modules, add tldr with links 
+@TODO: Add C++ section, directory structure in C++, plugins, modules, add tldr with links
 
 ## Table of contents
 
@@ -27,9 +27,8 @@
 <details>
 <summary><a href="#naming">2. Naming Convention</a></summary>
 
-- [2.1 Forbidden Character](#naming-forbidden-characters)
+- [2.1 Forbidden Characters](#naming-forbidden-characters)
 - [2.2 Base Asset Name - 'Prefix_BaseAssetName_Variant_Suffix'](#naming-base-asset-name)
-    - [2.2e1 Examples](#naming-base-asset-name-e1)
 - [2.3 Asset Name Modifiers](#naming-modifiers)
     - [2.3.1 Most Common](#naming-modifiers-common)
     - [2.3.2 Animations](#naming-modifiers-animations)
@@ -50,7 +49,6 @@
 <details>
 <summary><a href="#structure">3. Content Directory Structure</a></summary>
 
-- [3e1 Example Project Content Structure](#structure-e1)
 - [3.1 Folder Names](#structure-folder-names)
     - [3.1.1 Always Use PascalCase](#structure-folder-names-case)
     - [3.1.2 Never Use Spaces](#structure-folder-names-no-spaces)
@@ -58,7 +56,6 @@
 - [3.2 Use A Top Level Folder For Project Specific Assets](#structure-top-level)
     - [3.2.1 No Global Assets](#structure-top-level-no-global-assets)
     - [3.2.2 Reduce Migration Conflicts](#structure-top-level-migration-conflicts)
-        - [3.2.2e1 Master Material Example](#structure-top-level-migration-conflicts-e1)
     - [3.2.3 Samples, Templates, and Marketplace Content Are Risk-Free](#structure-top-level-risk-free)
     - [3.2.4 DLC, Sub-Projects, and Patches Are Easily Maintained](#structure-top-level-dlc)
 - [3.3 Use `Developer` Folder For Local Testing](#structure-developer-folder)
@@ -81,14 +78,12 @@
     - [4.2.1 Naming](#bp-vars-naming)
         - [4.2.1.1 Nouns](#bp-vars-naming-nouns)
         - [4.2.1.2 PascalCase](#bp-vars-naming-case)
-            - [4.2.1.2e1 Examples](#bp-vars-naming-case-e1)
         - [4.2.1.3 Boolean `b` Prefix](#bp-vars-naming-bool-prefix)
         - [4.2.1.4 Boolean Names](#bp-vars-naming-bool-names)
             - [4.2.1.4.1 No questions](#bp-vars-naming-bool-names-no-questions)
             - [4.2.1.4.2 No Continuous tense](#bp-vars-naming-bool-names-no-continuous-tense)
             - [4.2.1.4.3 Complex States](#bp-vars-naming-bool-names-complex-states)
         - [4.2.1.5 Considered Context](#bp-vars-naming-context)
-            - [4.2.1.5e1 Examples](#bp-vars-naming-context-e1)
         - [4.2.1.6 Do *Not* Include Atomic Type Names](#bp-vars-naming-atomic)
         - [4.2.1.7 Do Include Non-Atomic Type Names](#bp-vars-naming-complex)
         - [4.2.1.8 Arrays](#bp-vars-naming-arrays)
@@ -102,15 +97,12 @@
     - [4.2.6 Transient Variables](#bp-vars-transient)
     - [4.2.7 Config Variables](#bp-vars-config)
 - [4.3 Functions, Events, and Event Dispatchers](#bp-funcs)
-    - [4.3.1 Function Naming](#bp-funcs-naming)
+    - [4.3.1 Naming](#bp-funcs-naming)
         - [4.3.1.1 Verb Rule](#bp-funcs-naming-verb-rule)
-            - [4.3.1.1e1 Examples](#bp-funcs-naming-verb-rule-e1)
         - [4.3.1.2 Property RepNotify Functions Always `OnRep_Variable`](#bp-funcs-naming-onrep)
         - [4.3.1.3 Info Functions Returning Bool Should Ask Questions](#bp-funcs-naming-bool)
         - [4.3.1.4 Event Handlers and Dispatchers Should Start With `On`](#bp-funcs-naming-event-handlers)
-            - [4.3.1.4e1 Examples](#bp-funcs-naming-event-handlers-e1)
         - [4.3.1.5 Remote Procedure Calls Should Be Prefixed With Target](#bp-funcs-naming-rpcs)
-            - [4.3.1.5e1 Examples](#bp-funcs-naming-rpcs-e1)
     - [4.3.2 All Functions Must Have Return Nodes](#bp-funcs-return)
     - [4.3.3 No Function Should Have More Than 50 Nodes](#bp-funcs-node-limit)
     - [4.3.4 All Public Functions Should Have A Description](#bp-funcs-description)
@@ -311,10 +303,15 @@ Any `Identifier` should strive to only have the following characters when possib
 The reasoning for this is this will ensure the greatest compatibility of all data across all platforms across all tools, and help prevent
 downtime due to potentially bad character handling for identifiers in code you don't control.
 
-<a name="naming-base-asset-name"></a>
-<a name="2.2"></a>
+<a name="naming-bp"></a>
+<a name="2.2></a>
 
-### 2.2 Base Asset Name - `Prefix_BaseAssetName_Variant_Suffix`
+### 2.2 Blueprints Naming
+
+<a name="naming-bp-base-asset-name"></a>
+<a name="2.2.1"></a>
+
+### 2.2.1 Base Asset Name - `Prefix_BaseAssetName_Variant_Suffix`
 
 All assets should have a *Base Asset Name*. A Base Asset Name represents a logical grouping of related assets. Any asset that is part of
 this logical group should follow the standard of  `Prefix_BaseAssetName_Variant_Suffix`.
@@ -322,7 +319,7 @@ this logical group should follow the standard of  `Prefix_BaseAssetName_Variant_
 Keeping the pattern `Prefix_BaseAssetName_Variant_Suffix` and in mind and using common sense is generally enough to warrant good asset
 names. Here are some detailed rules regarding each element.
 
-`Prefix` and `Suffix` are to be determined by the asset type through the following [Asset Name Modifier](#asset-name-modifiers) tables.
+`Prefix` and `Suffix` are to be determined by the asset type through the following [Asset Name Modifier](#naming-modifiers) tables.
 
 `BaseAssetName` should be determined by a short and easily recognizable name related to the context of this group of assets. For example, if
 you had a character named Bob, all of Bob's assets would have the `BaseAssetName` of `Bob`.
@@ -341,10 +338,7 @@ Depending on how your asset variants are made, you can chain together variant na
 Arch Viz project, you should use the base name `Flooring` with chained variants such as `Flooring_Marble_01`, `Flooring_Maple_01`,
 `Flooring_Tile_Squares_01`.
 
-<a name="naming-base-asset-name-e1"></a>
-<a name="2.2e1"></a>
-
-#### 2.2e1 Examples
+***Examples***
 
 ##### Bob
 
@@ -619,10 +613,7 @@ navigate through nested folder structures.
 `Textures`, and `Materials` is a redundant practice as asset types are already both sorted by prefix and able to be filtered in the
 > content browser.
 
-<a name="structure-e1"></a>
-<a name="3e1"></a>
-
-### 3e1 Example Project Content Structure
+### Example Project Content Structure
 
 <pre>
 |-- Content
@@ -763,10 +754,7 @@ After a migration, safe merging of assets can be done using the 'Replace Referen
 assets not belonging to a project's top level folder are clearly pending a merge. Once assets are merged and fully migrated, there shouldn't
 be another top-level folder in your Content tree. This method is *100%* guaranteed to make any migrations that occur completely safe.
 
-<a name="structure-top-level-migration-conflicts-e1"></a>
-<a name="3.2.2e1"></a>
-
-##### 3.2.2e1 Master Material Example
+##### Master Material Example
 
 For example, say you created a master material in one project that you would like to use in another project, so you migrated that asset over.
 If this asset is not in a top level folder, it may have a name like `Content/MaterialLibrary/M_Master`. If the target project doesn't have a
@@ -1008,10 +996,7 @@ All non-boolean variable names must be clear, unambiguous and descriptive nouns.
 
 All non-boolean variables should be in the form of [PascalCase](#terms-cases).
 
-<a name="bp-vars-naming-case-e1"></a>
-<a name="4.2.1.2e"></a>
-
-###### 4.2.1.2e1 Examples
+***Examples***
 
 * `Score`
 * `Kills`
@@ -1026,10 +1011,14 @@ All non-boolean variables should be in the form of [PascalCase](#terms-cases).
 ##### 4.2.1.3 Boolean `b` Prefix
 
 All booleans should be named in PascalCase but prefixed with a lowercase `b`.
-
-Example: Use `bDead` and `bEvil`, **not** `Dead` and `Evil`.
-
 UE5 Blueprint editors know not to include the `b` in user-friendly displays of the variable.
+
+***Examples***
+
+| **Bad** | **Good** |
+|---------|----------|
+| `Dead`  | `bDead`  |
+| `Evil`  | `bEvil`  |
 
 <a name="bp-vars-naming-bool-names"></a>
 <a name="4.2.1.4"></a>
@@ -1044,7 +1033,12 @@ UE5 Blueprint editors know not to include the `b` in user-friendly displays of t
 All booleans should be named as descriptive adjectives when possible if representing general information. Do not include words that phrase
 the variable as a question, such as `Is`. This is reserved for functions.
 
-Example: Use `bDead` and `bHostile` **not** `bIsDead` and `bIsHostile`.
+***Examples***
+
+| **Bad**      | **Good**   |
+|--------------|------------|
+| `bIsDead`    | `bDead`    |
+| `bIsHostile` | `bHostile` |
 
 <a name="bp-vars-naming-bool-names-no-continuous-tense"></a>
 <a name="4.2.1.4.2"></a>
@@ -1075,33 +1069,20 @@ state names.
 
 All variable names must not be redundant with their context as all variable references in Blueprint will always have context.
 
-<a name="bp-vars-naming-context-e1"></a>
-<a name="4.2.1.5e1"></a>
+***Examples***
 
-###### 4.2.1.5e1 Examples
-
-Consider a Blueprint called `BP_PlayerCharacter`.
-
-**Bad**
-
-* `PlayerScore`
-* `PlayerKills`
-* `MyTargetPlayer`
-* `MyCharacterName`
-* `CharacterSkills`
-* `ChosenCharacterSkin`
-
-All of these variables are named redundantly. It is implied that the variable is representative of the `BP_PlayerCharacter` it belongs to
+Consider a Blueprint called `BP_PlayerCharacter`. All of these variables are named redundantly. It is implied that the variable is representative
+of the `BP_PlayerCharacter` it belongs to
 because it is `BP_PlayerCharacter` that is defining these variables.
 
-**Good**
-
-* `Score`
-* `Kills`
-* `TargetPlayer`
-* `Name`
-* `Skills`
-* `Skin`
+| **Bad**               | **Good**       |
+|-----------------------|----------------|
+| `PlayerScore`         | `Score`        |
+| `PlayerKills`         | `Kills`        |
+| `MyTargetPlayer`      | `TargetPlayer` |
+| `MyCharacterName`     | `Name`         |
+| `CharacterSkills`     | `Skills`       |
+| `ChosenCharacterSkin` | `Skin`         |
 
 <a name="bp-vars-naming-atomic"></a>
 <a name="4.2.1.6"></a>
@@ -1284,7 +1265,7 @@ events, unless otherwise noted.
 <a name="bp-funcs-naming"></a>
 <a name="4.3.1"></a>
 
-#### 4.3.1 Function Naming
+#### 4.3.1 Naming
 
 The naming of functions, events and event dispatchers is critically important. Based on the name alone, certain assumptions can be made
 about functions. For example:
@@ -1309,32 +1290,20 @@ some context as to what they are doing.
 
 `OnRep` functions, event handlers and event dispatchers are an exception to this rule.
 
-<a name="bp-funcs-naming-verb-rule-e1"></a>
-<a name="4.3.1.1e1"></a>
+***Examples***
 
-##### 4.3.1.1e1 Examples
-
-**Bad**
-
-* `Dead` - Is Dead? Will deaden?
-* `Rock`
-* `ProcessData` - Ambiguous, these words mean nothing.
-* `PlayerState` - Nouns are ambiguous.
-* `Color` - Verb with no context, or ambiguous noun.
-*
-
-**Good**
-
-* `Fire` - Good example if in a Character / Weapon class, as it has context. Bad if in a Barrel / Grass / any ambiguous class.
-* `Jump` - Good example if in a Character class, otherwise, needs context.
-* `Explode`
-* `ReceiveMessage`
-* `SortPlayerArray`
-* `GetArmOffset`
-* `GetCoordinates`
-* `UpdateTransforms`
-* `EnableBigHeadMode`
-* `IsEnemy` - ["Is" is a verb.](http://writingexplained.org/is-is-a-verb)
+| **Bad**                                              | **Good**                                                                                                                     |
+|------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------|
+| `Dead` - Is Dead? Will deaden?                       | `Fire` - Good example if in a Character / Weapon class, as it has context. Bad if in a Barrel / Grass / any ambiguous class. |
+| `Rock`                                               | `Jump` - Good example if in a Character class, otherwise, needs context.                                                     |
+| `ProcessData` - Ambiguous, these words mean nothing. | `Explode`                                                                                                                    |
+| `PlayerState` - Nouns are ambiguous.                 | `ReceiveMessage`                                                                                                             |
+| `Color` - Verb with no context, or ambiguous noun.   | `SortPlayerArray`                                                                                                            |
+|                                                      | `GetArmOffset`                                                                                                               |
+|                                                      | `GetCoordinates`                                                                                                             |
+|                                                      | `UpdateTransforms`                                                                                                           |
+|                                                      | `EnableBigHeadMode`                                                                                                          |
+|                                                      | `IsEnemy` - ["Is" is a verb.](http://writingexplained.org/is-is-a-verb)                                                      |
 
 <a name="bp-funcs-naming-onrep"></a>
 <a name="4.3.1.2"></a>
@@ -1354,25 +1323,19 @@ yes/no value, it should ask a question. This should also follow [the verb rule](
 This is extremely important as if a question is not asked, it may be assumed that the function performs an action and is returning whether
 that action succeeded.
 
-Good examples:
+***Examples***
 
-* `IsDead`
-* `IsOnFire`
-* `IsAlive`
-* `IsSpeaking`
-* `IsHavingAnExistentialCrisis`
-* `IsVisible`
-* `HasWeapon` - ["Has" is a verb.](http://grammar.yourdictionary.com/parts-of-speech/verbs/Helping-Verbs.html)
-* `WasCharging` - ["Was" is past-tense of "be".](http://grammar.yourdictionary.com/parts-of-speech/verbs/Helping-Verbs.html) Use "was" when
-  referring to 'previous frame' or 'previous state'.
-* `CanReload` - ["Can" is a verb.](http://grammar.yourdictionary.com/parts-of-speech/verbs/Helping-Verbs.html)
-
-Bad examples:
-
-* `Fire` - Is on fire? Will fire? Do fire?
-* `OnFire` - Can be confused with event dispatcher for firing.
-* `Dead` - Is dead? Will deaden?
-* `Visibility` - Is visible? Set visibility? A description of flying conditions?
+| **Bad**                                                                        | **Good**                                                                                                                                                                                     |
+|--------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `Fire` - Is on fire? Will fire? Do fire?                                       | `IsDead`                                                                                                                                                                                     |
+| `OnFire` - Can be confused with event dispatcher for firing.                   | `IsOnFire`                                                                                                                                                                                   |
+| `Dead` - Is dead? Will deaden?                                                 | `IsAlive`                                                                                                                                                                                    |
+| `Visibility` - Is visible? Set visibility? A description of flying conditions? | `IsSpeaking`                                                                                                                                                                                 |
+|                                                                                | `IsHavingAnExistentialCrisis`                                                                                                                                                                |
+|                                                                                | `IsVisible`                                                                                                                                                                                  |
+|                                                                                | `HasWeapon` - ["Has" is a verb.](http://grammar.yourdictionary.com/parts-of-speech/verbs/Helping-Verbs.html)                                                                                 |
+|                                                                                | `WasCharging` - ["Was" is past-tense of "be".](http://grammar.yourdictionary.com/parts-of-speech/verbs/Helping-Verbs.html) Use "was" when referring to 'previous frame' or 'previous state'. |
+|                                                                                | `CanReload` - ["Can" is a verb.](http://grammar.yourdictionary.com/parts-of-speech/verbs/Helping-Verbs.html)                                                                                 |
 
 <a name="bp-funcs-naming-event-handlers"></a>
 <a name="4.3.1.4"></a>
@@ -1387,28 +1350,17 @@ are exempt from following the verb rule.
 
 `Handle` is not allowed. It is 'Unreal' to use `On` instead of `Handle`, while other frameworks may prefer to use `Handle` instead of `On`.
 
-<a name="bp-funcs-naming-event-handlers-e1"></a>
-<a name="4.3.1.4e1></a>
+***Examples***
 
-##### 4.3.1.4e1 Examples
-
-**Bad**
-
-* `OnData`
-* `OnTarget`
-* `HandleMessage`
-* `HandleDeath`
-*
-
-**Good**
-
-* `OnDeath` - Common collocation in games
-* `OnPickup`
-* `OnReceiveMessage`
-* `OnMessageRecieved`
-* `OnTargetChanged`
-* `OnClick`
-* `OnLeave`
+| **Bad**         | **Good**                                |
+|-----------------|-----------------------------------------|
+| `OnData`        | `OnDeath` - Common collocation in games |
+| `OnTarget`      | `OnPickup`                              |
+| `HandleMessage` | `OnReceiveMessage`                      |
+| `HandleDeath`   | `OnMessageRecieved`                     |
+|                 | `OnTargetChanged`                       |
+|                 | `OnClick`                               |
+|                 | `OnLeave`                               |
 
 <a name="bp-funcs-naming-rpcs"></a>
 <a name="4.3.1.5"></a>
@@ -1419,23 +1371,17 @@ Any time an RPC is created, it should be prefixed with either `Server_`, `Client
 
 After the prefix, follow all other rules regarding function naming.
 
-<a name="bp-funcs-naming-rpcs-e1"></a>
-<a name="4.3.1.5e1></a>
+***Examples***
 
-##### 4.3.1.5e1 Examples
-
-**Bad**
-
-* `FireWeapon` - Does not indicate it's an RPC of some kind.
-* `ServerClientBroadcast` - Confusing.
-* `AllNotifyDeath` - Use `Multicast`, never `All`.
-* `ClientWeapon` - No verb, ambiguous.
-
-**Good**
-
-* `Server_FireWeapon`
-* `Client_NotifyDeath`
-* `Multicast_SpawnTracerEffect`
+| **Bad**                                                    | **Good**                      |
+|------------------------------------------------------------|-------------------------------|
+| `FireWeapon` - Does not indicate it's an RPC of some kind. | `Server_FireWeapon`           |
+| `ServerClientBroadcast` - Confusing.                       | `Client_NotifyDeath`          |
+| `AllNotifyDeath` - Use `Multicast`, never `All`.           | `Multicast_SpawnTracerEffect` |
+| `ClientWeapon` - No verb, ambiguous.                       | `OnMessageRecieved`           |
+|                                                            | `OnTargetChanged`             |
+|                                                            | `OnClick`                     |
+|                                                            | `OnLeave`                     |
 
 <a name="bp-funcs-return"></a>
 <a name="4.3.2"></a>
@@ -1755,8 +1701,6 @@ Every texture has a Texture Group property used for LODing, and this should be s
 should belong in the UI texture group.
 
 **[⬆ Back to Top](#table-of-contents)**
-
-
 
 ## Major Contributors
 
