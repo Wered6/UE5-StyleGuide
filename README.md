@@ -51,6 +51,12 @@
         - [2.3.2.4 Do *Not* Include Atomic Type Names](#naming-bp-vars-no-atomic)
         - [2.3.2.5 Do Include Non-Atomic Type Names](#naming-bp-vars-non-atomic)
         - [2.3.2.6 Arrays](#naming-bp-vars-arrays)
+    - [2.3.3 Functions, Events and Event Dispatchers](#naming-bp-funcs)
+        - [2.3.3.1 Verb Rule](#naming-bp-funcs-verb-rule)
+        - [2.3.3.2 RepNotify Always `OnRep_Variable`](#naming-bp-funcs-repnotify)
+        - [2.3.3.3 Functions Returning Bool Should Ask Questions](#naming-bp-funcs-return-bool)
+        - [2.3.3.4 Event Handlers and Dispatchers Should Be Prefixed with `On`](#naming-bp-funcs-event-prefix-on)
+        - [2.3.3.5 RPC Should Be Prefixed With Target](#naming-bp-funcs-event-prefix-target)
 - [2.4 CPP Naming](#naming-cpp)
 
 </details>
