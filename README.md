@@ -1,6 +1,7 @@
 # Wered UE5 Style Guide forked from [Allar's](https://github.com/Allar/ue5-style-guide)
 
 @TODO: Add C++ section, directory structure in C++, plugins, modules, add tldr with links
+@TODO: Change titles so only first word first letter is uppercase not every word
 
 ## Table of contents
 
@@ -55,8 +56,8 @@
         - [2.3.3.1 Verb Rule](#naming-bp-funcs-verb-rule)
         - [2.3.3.2 RepNotify Always `OnRep_Variable`](#naming-bp-funcs-repnotify)
         - [2.3.3.3 Functions Returning Bool Should Ask Questions](#naming-bp-funcs-return-bool)
-        - [2.3.3.4 Event Handlers and Dispatchers Should Be Prefixed with `On`](#naming-bp-funcs-event-prefix-on)
-        - [2.3.3.5 RPC Should Be Prefixed With Target](#naming-bp-funcs-event-prefix-target)
+        - [2.3.3.4 Event Handlers And Dispatchers Should Be Prefixed with `On`](#naming-bp-funcs-event-prefix-on)
+        - [2.3.3.5 RPC must Be Prefixed With Target](#naming-bp-funcs-event-prefix-target)
 - [2.4 CPP Naming](#naming-cpp)
 
 </details>
@@ -100,16 +101,10 @@
     - [4.2.5 Transient Variables](#bp-vars-transient)
     - [4.2.6 Config Variables](#bp-vars-config)
 - [4.3 Functions, Events, and Event Dispatchers](#bp-funcs)
-    - [4.3.1 Naming](#bp-funcs-naming)
-        - [4.3.1.1 Verb Rule](#bp-funcs-naming-verb-rule)
-        - [4.3.1.2 Property RepNotify Functions Always `OnRep_Variable`](#bp-funcs-naming-onrep)
-        - [4.3.1.3 Info Functions Returning Bool Should Ask Questions](#bp-funcs-naming-bool)
-        - [4.3.1.4 Event Handlers and Dispatchers Should Start With `On`](#bp-funcs-naming-event-handlers)
-        - [4.3.1.5 Remote Procedure Calls Should Be Prefixed With Target](#bp-funcs-naming-rpcs)
-    - [4.3.2 All Functions Must Have Return Nodes](#bp-funcs-return)
-    - [4.3.3 No Function Should Have More Than 50 Nodes](#bp-funcs-node-limit)
-    - [4.3.4 All Public Functions Should Have A Description](#bp-funcs-description)
-    - [4.3.5 All Functions Must Be Categorized By Project Name Initials](#bp-funcs-category)
+    - [4.3.1 All Functions Must Have Return Nodes](#bp-funcs-return)
+    - [4.3.2 No Function Should Have More Than 50 Nodes](#bp-funcs-node-limit)
+    - [4.3.3 All Public Functions Should Have A Description](#bp-funcs-description)
+    - [4.3.4 All Functions Must Be Categorized By Project Name Initials](#bp-funcs-category)
 - [4.4 Blueprint Graphs](#bp-graphs)
     - [4.4.1 No Spaghetti](#bp-graphs-spaghetti)
     - [4.4.2 Align Wires Not Nodes](#bp-graphs-align-wires)
@@ -372,16 +367,16 @@ Arch Viz project, you should use the base name `Flooring` with chained variants 
 
 | Asset Type          | Prefix | Suffix    | Notes                                   |
 |---------------------|--------|-----------|-----------------------------------------|
-| Level / Map         |        |           |                                         |
-| Level (Persistent)  |        | _P        |                                         |
-| Level (Audio)       |        | _Audio    |                                         |
-| Level (Lighting)    |        | _Lighting |                                         |
-| Level (Geometry)    |        | _Geo      |                                         |
-| Level (Gameplay)    |        | _Gameplay |                                         |
+| Level / Map         | L_     |           |                                         |
+| Level (Persistent)  | L_     | _P        |                                         |
+| Level (Audio)       | L_     | _Audio    |                                         |
+| Level (Lighting)    | L_     | _Lighting |                                         |
+| Level (Geometry)    | L_     | _Geo      |                                         |
+| Level (Gameplay)    | L_     | _Gameplay |                                         |
 | Blueprint           | BP_    |           |                                         |
 | Blueprint Component | BP_    | Component | I.e. BP_InventoryComponent              |
 | Material            | M_     |           |                                         |
-| Static Mesh         | S_     |           | Many use SM_. We use S_.                |
+| Static Mesh         | SM_    |           | Many use SM_.                           |
 | Skeletal Mesh       | SK_    |           |                                         |
 | Texture             | T_     | _?        | See [Textures](#naming-bp-bas-textures) |
 | Particle System     | PS_    |           |                                         |
@@ -733,6 +728,127 @@ Arrays follow the same naming rules as above but should be named as a plural nou
 | `HatArray`         | `Hats`         |
 | `EnemyPlayerArray` | `EnemyPlayers` |
 
+<a name="naming-bp-funcs"></a>
+<a name="2.3.3"></a>
+
+### 2.3.3 Functions, Events and Event Dispatchers
+
+This section describes how you should name functions, events and event dispatchers. Everything that applies to functions also applies to events,
+unless otherwise noted.
+
+The naming of functions, events and event dispatchers is critically important. Based on the name alone, certain assumptions can be made about
+functions. For example:
+
+* Is it a pure function?
+* Is it fetching state information?
+* Is it a handler?
+* Is it an RPC?
+* What is its purpose?
+
+These questions and more can all be answered when functions are named appropriately.
+
+<a name="naming-bp-funcs-verb-rule"></a>
+<a name="2.3.3.1"></a>
+
+### 2.3.3.1 Verb Rule
+
+**All functions should be verbs.**  
+All functions and events perform some form of action, whether it's getting info, calculating data or causing something to explode. Therefore, all
+functions should start with verbs. They should be worded in the present tense whenever possible. They should also have some context as to what
+they are doing.
+
+`OnRep` functions, event handlers and event dispatchers are an exception to this rule.
+
+### Examples
+
+| **Bad**                                              | **Good**                                                                                                                     |
+|------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------|
+| `Dead` - Is Dead? Will deaden?                       | `Fire` - Good example if in a Character / Weapon class, as it has context. Bad if in a Barrel / Grass / any ambiguous class. |
+| `Rock`                                               | `Jump` - Good example if in a Character class, otherwise, needs context.                                                     |
+| `ProcessData` - Ambiguous, these words mean nothing. | `Explode`                                                                                                                    |
+| `PlayerState` - Nouns are ambiguous.                 | `ReceiveMessage`                                                                                                             |
+| `Color` - Verb with no context, or ambiguous noun.   | `SortPlayerArray`                                                                                                            |
+|                                                      | `GetArmOffset`                                                                                                               |
+|                                                      | `GetCoordinates`                                                                                                             |
+|                                                      | `UpdateTransforms`                                                                                                           |
+|                                                      | `EnableBigHeadMode`                                                                                                          |
+|                                                      | `IsEnemy` - ["Is" is a verb.](http://writingexplained.org/is-is-a-verb)                                                      |
+
+<a name="naming-bp-funcs-repnotify"></a>
+<a name="2.3.3.2"></a>
+
+### 2.3.3.2 RepNotify Always `OnRep_Variable`
+
+All functions for replicated with notification variables should have the form `OnRep_Variable`. This is forced by the Blueprint editor.
+
+<a name="naming-bp-funcs-return-bool"></a>
+<a name="2.3.3.3"></a>
+
+### 2.3.3.3 Functions Returning Bool Should Ask Questions
+
+When writing a function that does not change the state of or modify any object and is purely for getting information, state, or computing a
+yes/no value, it should ask a question. This should also follow [the verb rule](#naming-bp-funcs-verb-rule).
+
+This is extremely important as if a question is not asked, it may be assumed that the function performs an action and is returning whether that
+action succeeded.
+
+### Examples
+
+| **Bad**                                                                        | **Good**                                                                          |
+|--------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
+| `Fire` - Is on fire? Will fire? Do fire?                                       | `IsDead`                                                                          |
+| `OnFire` - Can be confused with event dispatcher for firing.                   | `IsOnFire`                                                                        |
+| `Dead` - Is dead? Will deaden?                                                 | `IsAlive`                                                                         |
+| `Visibility` - Is visible? Set visibility? A description of flying conditions? | `IsSpeaking`                                                                      |
+|                                                                                | `IsHavingAnExistentialCrisis`                                                     |
+|                                                                                | `IsVisible`                                                                       |
+|                                                                                | `HasWeapon`                                                                       |
+|                                                                                | `WasCharging` - Use "was" when referring to 'previous frame' or 'previous state'. |
+|                                                                                | `CanReload`                                                                       |
+
+<a name="naming-bp-funcs-event-prefix-on"></a>
+<a name="2.3.3.4"></a>
+
+### 2.3.3.4 Event Handlers And Dispatchers Should Be Prefixed With `On`
+
+Any function that handles an event or dispatches an event should start with `On` and continue to
+follow [the verb rule](#naming-bp-funcs-verb-rule). The verb may move to the end, however, if past-tense reads better.
+
+[Collocations](http://dictionary.cambridge.org/us/grammar/british-grammar/about-words-clauses-and-sentences/collocation) of the word `On` are
+exempt from following the verb rule.
+
+`Handle` is not allowed. It is 'Unreal' to use `On` instead of `Handle`, while other frameworks may prefer to use `Handle` instead of `On`.
+
+### Examples
+
+| **Bad**         | **Good**                                |
+|-----------------|-----------------------------------------|
+| `OnData`        | `OnDeath` - Common collocation in games |
+| `OnTarget`      | `OnPickup`                              |
+| `HandleMessage` | `OnReceiveMessage`                      |
+| `HandleDeath`   | `OnMessageRecieved`                     |
+|                 | `OnTargetChanged`                       |
+|                 | `OnClicked`                             |
+|                 | `OnLeave`                               |
+
+<a name="naming-bp-funcs-rpc-prefix-target"></a>
+<a name="2.3.3.5"></a>
+
+### 2.3.3.5 RPC must be prefixed with target
+
+Any time an RPC is created, it must be prefixed with either `Server_`, `Client_`, or `Multicast_`. **No exceptions**.
+
+After the prefix, follow all other rules regarding function naming.
+
+### Examples
+
+| **Bad**                                                    | **Good**                      |
+|------------------------------------------------------------|-------------------------------|
+| `FireWeapon` - Does not indicate it's an RPC of some kind. | `Server_FireWeapon`           |
+| `ServerClientBroadcast` - Confusing.                       | `Client_NotifyDeath`          |
+| `AllNotifyDeath` - Use `Multicast`, never `All`.           | `Multicast_SpawnTracerEffect` |
+| `ClientWeapon` - No verb, ambiguous.                       |                               |
+
 <a name="naming-cpp"></a>
 <a name="2.4"></a>
 
@@ -1027,7 +1143,7 @@ Want to view only static mesh in `Environment/Rocks/`? Simply turn on the Static
 also be sorted in alphabetical order regardless of prefixes. Want to view both static meshes and skeletal meshes? Simply turn on both
 filters. This eliminates the need to potentially have to `Control-Click` select two folders in the Content Browser's tree view.
 
-> This also extends the full path name of an asset for very little benefit. The `S_` prefix for a static mesh is only two characters, whereas
+> This also extends the full path name of an asset for very little benefit. The `SM_` prefix for a static mesh is only three characters, whereas
 `Meshes/` is seven characters.
 
 Not doing this also prevents the inevitability of someone putting a static mesh or a texture in a `Materials` folder.
@@ -1242,131 +1358,10 @@ used in C++ for rarely changed variables. Think of them as `Advanced Advanced Di
 This section describes how you should author functions, events and event dispatchers. Everything that applies to functions also applies to
 events, unless otherwise noted.
 
-<a name="bp-funcs-naming"></a>
+<a name="bp-funcs-return"></a>
 <a name="4.3.1"></a>
 
-### 4.3.1 Naming
-
-The naming of functions, events and event dispatchers is critically important. Based on the name alone, certain assumptions can be made
-about functions. For example:
-
-* Is it a pure function?
-* Is it fetching state information?
-* Is it a handler?
-* Is it an RPC?
-* What is its purpose?
-
-These questions and more can all be answered when functions are named appropriately.
-
-<a name="bp-funcs-naming-verb-rule"></a>
-<a name="4.3.1.1"></a>
-
-### 4.3.1.1 Verb rule
-
-All functions should be verbs.  
-All functions and events perform some form of action, whether it's getting info, calculating data or causing something to explode.
-Therefore, all functions should all start with verbs. They should be worded in the present tense whenever possible. They should also have
-some context as to what they are doing.
-
-`OnRep` functions, event handlers and event dispatchers are an exception to this rule.
-
-### Examples
-
-| **Bad**                                              | **Good**                                                                                                                     |
-|------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------|
-| `Dead` - Is Dead? Will deaden?                       | `Fire` - Good example if in a Character / Weapon class, as it has context. Bad if in a Barrel / Grass / any ambiguous class. |
-| `Rock`                                               | `Jump` - Good example if in a Character class, otherwise, needs context.                                                     |
-| `ProcessData` - Ambiguous, these words mean nothing. | `Explode`                                                                                                                    |
-| `PlayerState` - Nouns are ambiguous.                 | `ReceiveMessage`                                                                                                             |
-| `Color` - Verb with no context, or ambiguous noun.   | `SortPlayerArray`                                                                                                            |
-|                                                      | `GetArmOffset`                                                                                                               |
-|                                                      | `GetCoordinates`                                                                                                             |
-|                                                      | `UpdateTransforms`                                                                                                           |
-|                                                      | `EnableBigHeadMode`                                                                                                          |
-|                                                      | `IsEnemy` - ["Is" is a verb.](http://writingexplained.org/is-is-a-verb)                                                      |
-
-<a name="bp-funcs-naming-onrep"></a>
-<a name="4.3.1.2"></a>
-
-### 4.3.1.2 Property RepNotify Functions Always `OnRep_Variable`
-
-All functions for replicated with notification variables should have the form `OnRep_Variable`. This is forced by the Blueprint editor.
-
-<a name="bp-funcs-naming-bool"></a>
-<a name="4.3.1.3"></a>
-
-### 4.3.1.3 Info Functions Returning Bool Should Ask Questions
-
-When writing a function that does not change the state of or modify any object and is purely for getting information, state, or computing a
-yes/no value, it should ask a question. This should also follow [the verb rule](#bp-funcs-verb-rule).
-
-This is extremely important as if a question is not asked, it may be assumed that the function performs an action and is returning whether
-that action succeeded.
-
-### Examples
-
-| **Bad**                                                                        | **Good**                                                                                                                                                                                     |
-|--------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `Fire` - Is on fire? Will fire? Do fire?                                       | `IsDead`                                                                                                                                                                                     |
-| `OnFire` - Can be confused with event dispatcher for firing.                   | `IsOnFire`                                                                                                                                                                                   |
-| `Dead` - Is dead? Will deaden?                                                 | `IsAlive`                                                                                                                                                                                    |
-| `Visibility` - Is visible? Set visibility? A description of flying conditions? | `IsSpeaking`                                                                                                                                                                                 |
-|                                                                                | `IsHavingAnExistentialCrisis`                                                                                                                                                                |
-|                                                                                | `IsVisible`                                                                                                                                                                                  |
-|                                                                                | `HasWeapon` - ["Has" is a verb.](http://grammar.yourdictionary.com/parts-of-speech/verbs/Helping-Verbs.html)                                                                                 |
-|                                                                                | `WasCharging` - ["Was" is past-tense of "be".](http://grammar.yourdictionary.com/parts-of-speech/verbs/Helping-Verbs.html) Use "was" when referring to 'previous frame' or 'previous state'. |
-|                                                                                | `CanReload` - ["Can" is a verb.](http://grammar.yourdictionary.com/parts-of-speech/verbs/Helping-Verbs.html)                                                                                 |
-
-<a name="bp-funcs-naming-event-handlers"></a>
-<a name="4.3.1.4"></a>
-
-### 4.3.1.4 Event Handlers and Dispatchers Should Start With `On`
-
-Any function that handles an event or dispatches an event should start with `On` and continue to
-follow [the verb rule](#bp-funcs-verb-rule). The verb may move to the end, however, if past-tense reads better.
-
-[Collocations](http://dictionary.cambridge.org/us/grammar/british-grammar/about-words-clauses-and-sentences/collocation) of the word `On`
-are exempt from following the verb rule.
-
-`Handle` is not allowed. It is 'Unreal' to use `On` instead of `Handle`, while other frameworks may prefer to use `Handle` instead of `On`.
-
-### Examples
-
-| **Bad**         | **Good**                                |
-|-----------------|-----------------------------------------|
-| `OnData`        | `OnDeath` - Common collocation in games |
-| `OnTarget`      | `OnPickup`                              |
-| `HandleMessage` | `OnReceiveMessage`                      |
-| `HandleDeath`   | `OnMessageRecieved`                     |
-|                 | `OnTargetChanged`                       |
-|                 | `OnClick`                               |
-|                 | `OnLeave`                               |
-
-<a name="bp-funcs-naming-rpcs"></a>
-<a name="4.3.1.5"></a>
-
-### 4.3.1.5 Remote Procedure Calls Should Be Prefixed With Target
-
-Any time an RPC is created, it should be prefixed with either `Server_`, `Client_`, or `Multicast_`. **No exceptions**.
-
-After the prefix, follow all other rules regarding function naming.
-
-### Examples
-
-| **Bad**                                                    | **Good**                      |
-|------------------------------------------------------------|-------------------------------|
-| `FireWeapon` - Does not indicate it's an RPC of some kind. | `Server_FireWeapon`           |
-| `ServerClientBroadcast` - Confusing.                       | `Client_NotifyDeath`          |
-| `AllNotifyDeath` - Use `Multicast`, never `All`.           | `Multicast_SpawnTracerEffect` |
-| `ClientWeapon` - No verb, ambiguous.                       | `OnMessageRecieved`           |
-|                                                            | `OnTargetChanged`             |
-|                                                            | `OnClick`                     |
-|                                                            | `OnLeave`                     |
-
-<a name="bp-funcs-return"></a>
-<a name="4.3.2"></a>
-
-### 4.3.2 All Functions Must Have Return Nodes
+### 4.3.1 All Functions Must Have Return Nodes
 
 All functions must have return nodes, no exceptions.
 
@@ -1381,9 +1376,9 @@ the loop iteration, this can lead to accidental errors in code flow. The Bluepri
 these flow control issues.
 
 <a name="bp-funcs-node-limit"></a>
-<a name="4.3.3"></a>
+<a name="4.3.2"></a>
 
-### 4.3.3 No Function Should Have More Than 50 Nodes
+### 4.3.2 No Function Should Have More Than 50 Nodes
 
 Simply, no function should have more than 50 nodes. Any function this big should be broken down into smaller functions for readability and
 ease of maintenance.
@@ -1399,16 +1394,16 @@ The following nodes are not counted as they are deemed to not increase function 
 * Self
 
 <a name="bp-funcs-description"></a>
-<a name="4.3.4"></a>
+<a name="4.3.3"></a>
 
-### 4.3.4 All Functions Should Have A Description
+### 4.3.3 All Functions Should Have A Description
 
 Simply, any function should have its description filled out.
 
 <a name="bp-funcs-category"></a>
-<a name="4.3.5"></a>
+<a name="4.3.4"></a>
 
-### 4.3.5 All Functions Must Be Categorized By Project Name Initials
+### 4.3.4 All Functions Must Be Categorized By Project Name Initials
 
 All functions must be categorized by project name initials, so it would be easier to distinguish between our and engine functions.
 For example `Generic Shooter`, `GS` or `GS|Config`.
