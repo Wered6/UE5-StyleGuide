@@ -39,7 +39,7 @@
         - [2.3.1.5 Materials](#naming-bp-bas-materials)
         - [2.3.1.6 Textures](#naming-bp-bas-textures)
             - [2.3.1.6.1 Texture Packing](#naming-bp-bas-textures-packing)
-        - [2.3.1.7 Miscellaneous](#bp-bas-misc)
+        - [2.3.1.7 Miscellaneous](#naming-bp-bas-misc)
         - [2.3.1.8 Paper 2D](#naming-bp-bas-paper2d)
         - [2.3.1.9 Physics](#naming-bp-bas-physics)
         - [2.3.1.10 Sounds](#naming-bp-bas-sounds)
