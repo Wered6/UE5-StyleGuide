@@ -39,7 +39,7 @@
         - [2.3.1.5 Materials](#naming-bp-bas-materials)
         - [2.3.1.6 Textures](#naming-bp-bas-textures)
             - [2.3.1.6.1 Texture Packing](#naming-bp-bas-textures-packing)
-        - [2.3.1.7 Miscellaneous](#-bp-bas-misc)
+        - [2.3.1.7 Miscellaneous](#bp-bas-misc)
         - [2.3.1.8 Paper 2D](#naming-bp-bas-paper2d)
         - [2.3.1.9 Physics](#naming-bp-bas-physics)
         - [2.3.1.10 Sounds](#naming-bp-bas-sounds)
@@ -57,7 +57,7 @@
         - [2.3.3.2 RepNotify Always `OnRep_Variable`](#naming-bp-funcs-repnotify)
         - [2.3.3.3 Functions Returning Bool Should Ask Questions](#naming-bp-funcs-return-bool)
         - [2.3.3.4 Event Handlers And Dispatchers Should Be Prefixed with `On`](#naming-bp-funcs-event-prefix-on)
-        - [2.3.3.5 RPC must Be Prefixed With Target](#naming-bp-funcs-event-prefix-target)
+        - [2.3.3.5 RPC must Be Prefixed With Target](#naming-bp-funcs-rpc-prefix-target)
 - [2.4 CPP Naming](#naming-cpp)
 
 </details>
