@@ -1,10 +1,10 @@
 # Wered UE5 Style Guide based on [Allar's Gamemakin UE4 Style Guide()](https://github.com/Allar/ue5-style-guide)
+
 # {
 
-// TODO: Change titles so only first word first letter is uppercase not every word  
 // TODO: Add tldr with links about most important things  
 // TODO: Add C++ section, directory structure in C++ and naming  
-// TODO: Add plugins and modules section for C++ and blueprints  
+// TODO: Add plugins and modules section for C++ and blueprints
 
 ## Table of contents
 
@@ -72,11 +72,11 @@
     - [3.1.1 Always use PascalCase](#structure-folder-names-case)
     - [3.1.2 Never use spaces](#structure-folder-names-no-spaces)
     - [3.1.3 Never use Unicode characters and other symbols](#structure-folder-names-no-unicode)
-- [3.2 Use a top level folder for project specific assets](#structure-top-level)
+- [3.2 Use a top-level folder for project-specific assets](#structure-top-level)
     - [3.2.1 No global assets](#structure-top-level-no-global-assets)
     - [3.2.2 Reduce migration conflicts](#structure-top-level-migration-conflicts)
     - [3.2.3 Samples, Templates and Fab content are risk-free](#structure-top-level-risk-free)
-    - [3.2.4 DLC, sub-projects and patches are easily maintained](#structure-top-level-dlc)
+    - [3.2.4 DLC, subprojects and patches are easily maintained](#structure-top-level-dlc)
 - [3.3 Use `Developer` folder for local testing](#structure-developer-folder)
 - [3.4 All Map<sup>*</sup> files belong in a folder called `Maps`](#structure-maps-folder)
 - [3.5 Use a `Core` folder for critical Blueprints and other assets](#structure-core-folder)
@@ -109,13 +109,13 @@
     - [4.3.3 All functions should have a description](#bp-funcs-description)
     - [4.3.4 All functions must be categorized by project name initials](#bp-funcs-category)
 - [4.4 Blueprint graph](#bp-graph)
-    - [4.4.1 No Spaghetti](#bp-graph-spaghetti)
-    - [4.4.2 Align Wires Not Nodes](#bp-graph-align-wires)
-    - [4.4.3 White Exec Lines Are Top Priority](#bp-graph-exec-first)
-    - [4.4.4 Getters Are Invoked In Every Use](#bp-graph-getters-invoking)
-    - [4.4.5 Graphs Should Be Reasonably Commented](#bp-graph-comments)
-    - [4.4.6 Graphs Should Handle Casting Errors Where Appropriate](#bp-graph-cast-error-handling)
-    - [4.4.7 Graphs Should Not Have Any Dangling / Loose / Dead Nodes](#bp-graph-dangling-nodes)
+    - [4.4.1 No spaghetti](#bp-graph-spaghetti)
+    - [4.4.2 Align wires not nodes](#bp-graph-align-wires)
+    - [4.4.3 White exec lines are the top priority](#bp-graph-exec-first)
+    - [4.4.4 Getters are invoked In every use](#bp-graph-getters-invoking)
+    - [4.4.5 Graphs should be reasonably commented](#bp-graph-comments)
+    - [4.4.6 Graphs should handle casting errors where appropriate](#bp-graph-cast-error-handling)
+    - [4.4.7 Graphs should not have any dangling / loose / dead nodes](#bp-graph-dangling-nodes)
 
 </details>
 
@@ -123,22 +123,22 @@
 <summary><a href="#sm">5. Static Meshes</a></summary>
 
 - [5.1 Static Mesh UVs](#sm-uvs)
-    - [5.1.1 All Meshes Must Have UVs](#sm-uvs-no-missing)
-    - [5.1.2 All Meshes Must Not Have Overlapping UVs for Lightmaps](#sm-uvs-no-overlapping)
-- [5.2 LODs Should Be Set Up Correctly](#sm-lods)
-- [5.3 Modular Socketless Assets Should Snap To The Grid Cleanly](#sm-modular-snapping)
-- [5.4 All Meshes Must Have Collision](#sm-collision)
-- [5.5 All Meshes Should Be Scaled Correctly](#sm-scaled)
+    - [5.1.1 All meshes must have UVs](#sm-uvs-no-missing)
+    - [5.1.2 All meshes must not have overlapping UVs for Lightmaps](#sm-uvs-no-overlapping)
+- [5.2 LODs should be set up correctly](#sm-lods)
+- [5.3 Modular socketless assets should snap to the grid cleanly](#sm-modular-snapping)
+- [5.4 All meshes must have collision](#sm-collision)
+- [5.5 All meshes should be scaled correctly](#sm-scaled)
 
 </details>
 
 <details>
 <summary><a href="#levels">6. Levels</a></summary>
 
-- [6.1 No Errors Or Warnings](#levels-no-errors-or-warnings)
-- [6.2 Lighting Should Be Built](#levels-lighting-should-be-built)
-- [6.3 No Player Visible Z Fighting](#levels-no-visible-z-fighting)
-- [6.4 Fab Specific Rules](#levels-fab-rules)
+- [6.1 No errors or warnings](#levels-no-errors-or-warnings)
+- [6.2 Lighting should be built](#levels-lighting-should-be-built)
+- [6.3 No player visible Z fighting](#levels-no-visible-z-fighting)
+- [6.4 Fab specific rules](#levels-fab-rules)
     - [6.4.1 Overview Level](#levels-fab-rules-overview)
     - [6.4.2 Demo Level](#levels-fab-rules-demo)
 
@@ -147,10 +147,10 @@
 <details>
 <summary><a href="#textures">7. Textures</a></summary>
 
-- [7.1 Dimensions Are Powers of 2](#textures-dimensions)
-- [7.2 Texture Density Should Be Uniform](#textures-density)
-- [7.3 Textures Should Be No Bigger than 8192](#textures-max-size)
-- [7.4 Textures Should Be Grouped Correctly](#textures-group)
+- [7.1 Dimensions are powers of 2](#textures-dimensions)
+- [7.2 Texture density should be uniform](#textures-density)
+- [7.3 Textures should be no bigger than 8192](#textures-max-size)
+- [7.4 Textures should be grouped correctly](#textures-group)
 
 </details>
 
@@ -976,7 +976,7 @@ track issues on other platforms, source control and weaker engineering tools.
 <a name="structure-top-level"></a>
 <a name="3.2"></a>
 
-## 3.2 Use a top level folder for project specific assets
+## 3.2 Use a top-level folder for project-specific assets
 
 All of a project's assets should exist in a folder named after the project. For example, if your project is named 'Generic Shooter', *all*
 of it's content should exist in `Content/GenericShooter`.
@@ -1059,7 +1059,7 @@ will never break.
 <a name="structure-top-level-dlc"></a>
 <a name="3.2.4"></a>
 
-### 3.2.4 DLC, sub-projects and patches are easily maintained
+### 3.2.4 DLC, subprojects and patches are easily maintained
 
 For projects that include DLC or multiple subprojects that may be migrated out or not included in certain builds, create separate top-level
 content folders for these assets. This organization makes it easier to cook DLC separately from the main project content and allows
@@ -1311,9 +1311,9 @@ In C++, variables have a concept of access level. `Public` means any code outsid
 the class and any child classes can access this variable internally. `Private` means only this class and no child classes can access this
 variable.
 
-Blueprints do not have a defined concept of `protected` access currently.
+Variables in blueprints do not have a defined concept of `Protected` access currently.
 
-Treat `Editable` variables as `public` variables. Treat non-editable variables as `protected` variables.
+Treat `Editable` variables as `Public` variables. Treat non-editable variables as `Protected` variables.
 
 <a name="bp-vars-access-private"></a>
 <a name="4.2.3.1"></a>
@@ -1321,7 +1321,7 @@ Treat `Editable` variables as `public` variables. Treat non-editable variables a
 ### 4.2.3.1 Private variables
 
 Unless it is known that a variable should only be accessed within the class it is defined and never a child class, do not mark variables as
-`private`. Until variables are able to be marked `protected`, reserve `private` for when you absolutely know you want to restrict child
+`Private`. Until variables are able to be marked `Protected`, reserve `Private` for when you absolutely know you want to restrict child
 class usage.
 
 <a name="bp-vars-advanced"></a>
@@ -1421,7 +1421,7 @@ This section covers things that apply to all Blueprint graphs.
 <a name="bp-graph-spaghetti"></a>
 <a name="4.4.1"></a>
 
-### 4.4.1 No Spaghetti
+### 4.4.1 No spaghetti
 
 Wires should have clear beginnings and ends. You should never have to mentally untangle wires to make sense of a graph. Many of the
 following sections are dedicated to reducing spaghetti.
@@ -1429,7 +1429,7 @@ following sections are dedicated to reducing spaghetti.
 <a name="bp-graph-align-wires"></a>
 <a name="4.4.2"></a>
 
-### 4.4.2 Align Wires Not Nodes
+### 4.4.2 Align wires not nodes
 
 Always align wires, not nodes. You can't always control the size and pin location on a node, but you can always control the location of a
 node and thus control the wires. Straight wires provide a clear linear flow. *Wiggly wires wear wits wickedly*. You can straighten wires by
@@ -1448,7 +1448,7 @@ wiggle by bringing the node in closer.
 <a name="bp-graph-exec-first"></a>
 <a name="4.4.3"></a>
 
-### 4.4.3 White Exec Lines Are Top Priority
+### 4.4.3 White exec lines are the top priority
 
 If you ever have to decide between straightening a linear white exec line or straightening data lines of some kind, always straighten the white
 exec line.
@@ -1456,7 +1456,7 @@ exec line.
 <a name="bp-graph-getters-invoking"></a>
 <a name="4.4.4"></a>
 
-### 4.4.4 Getters Are Invoked In Every Use
+### 4.4.4 Getters are invoked In every use
 
 When you call getters or pure functions, keep in mind they run every time they're used—even if connected to multiple wires. This means a
 pure function will recalculate everything inside it each time it's called.
@@ -1473,7 +1473,7 @@ you need that value.
 <a name="bp-graph-comments"></a>
 <a name="4.4.5"></a>
 
-### 4.4.5 Graphs Should Be Reasonably Commented
+### 4.4.5 Graphs should be reasonably commented
 
 Blocks of nodes should be wrapped in comments that describe their higher-level behavior. While every function should be well named so that
 each node is easily readable and understandable, groups of nodes contributing to a purpose should have their purpose described in
@@ -1483,7 +1483,7 @@ function's goal, then they do not need to be commented as the function name and 
 <a name="bp-graph-cast-error-handling"></a>
 <a name="4.4.6"></a>
 
-### 4.4.6 Graphs Should Handle Casting Errors Where Appropriate
+### 4.4.6 Graphs should handle casting errors where appropriate
 
 If a function or event assumes that a cast always succeeds, it should appropriately report a failure in logic if the cast fails. This lets
 others know why something 'supposed to work' doesn't. A function should also attempt a graceful recover after a failed cast if it's known that
@@ -1495,7 +1495,7 @@ expected that execution flow terminates on a failed cast quietly.
 <a name="bp-graph-dangling-nodes"></a>
 <a name="4.4.7"></a>
 
-### 4.4.7 Graphs Should Not Have Any Dangling / Loose / Dead Nodes
+### 4.4.7 Graphs should not have any dangling / loose / dead nodes
 
 All nodes in all Blueprint graphs must have a purpose. You should not leave dangling Blueprint nodes around that have no purpose or are not
 executed.
@@ -1517,21 +1517,21 @@ This section will focus on Static Mesh assets and their internals.
 <a name="sm-uvs-no-missing"></a>
 <a name="5.1.1"></a>
 
-### 5.1.1 All Meshes Must Have UVs
+### 5.1.1 All meshes must have UVs
 
 Pretty simple. All meshes, regardless of how they are to be used, should not be missing UVs.
 
 <a name="sm-uvs-no-overlapping"></a>
 <a name="5.1.2"></a>
 
-### 5.1.2 All Meshes Must Not Have Overlapping UVs for Lightmaps
+### 5.1.2 All meshes must not have overlapping UVs for Lightmaps
 
 Pretty simple. All meshes, regardless of how they are to be used, should have valid non-overlapping UVs.
 
 <a name="sm-lods"></a>
 <a name="5.2"></a>
 
-## 5.2 LODs Should Be Set Up Correctly
+## 5.2 LODs should be set up correctly
 
 This is a subjective check on a per-project basis, but as a general rule, any mesh that can be seen at varying distances should have proper
 LODs.
@@ -1539,7 +1539,7 @@ LODs.
 <a name="sm-modular-snapping"></a>
 <a name="5.3"></a>
 
-## 5.3 Modular Socketless Assets Should Snap To The Grid Cleanly
+## 5.3 Modular socketless assets should snap to the grid cleanly
 
 This is a subjective check on a per-asset basis; however, any modular socketless assets should snap together cleanly based on the project's
 grid settings.
@@ -1550,7 +1550,7 @@ assets for the marketplace, Epic's requirement is that they snap cleanly when th
 <a name="sm-collision"></a>
 <a name="5.4"></a>
 
-## 5.4 All Meshes Must Have Collision
+## 5.4 All meshes must have collision
 
 Regardless of whether an asset is going to be used for collision in a level, all meshes should have proper collision defined. This helps the
 engine with things such as bounds calculations, occlusion and lighting. Collision should also be well-formed to the asset.
@@ -1558,7 +1558,7 @@ engine with things such as bounds calculations, occlusion and lighting. Collisio
 <a name="sm-scaled"></a>
 <a name="5.5"></a>
 
-## 5.5 All Meshes Should Be Scaled Correctly
+## 5.5 All meshes should be scaled correctly
 
 This is a subjective check on a per-project basis; however, all assets should be scaled correctly to their project. Level designers or
 Blueprint authors should not have to tweak the scale of meshes to get them to confirm in the editor. Scaling meshes in the engine should be
@@ -1578,7 +1578,7 @@ This section will focus on Level assets and their internals.
 <a name="levels-no-errors-or-warnings"></a>
 <a name="6.1"></a>
 
-## 6.1 No Errors Or Warnings
+## 6.1 No errors or warnings
 
 All levels should load with zero errors or warnings. If a level loads with any errors or warnings, they should be fixed immediately to
 prevent cascading issues.
@@ -1588,7 +1588,7 @@ You can run a map check on an open level in the editor by using the console comm
 <a name="levels-lighting-should-be-built"></a>
 <a name="6.2"></a>
 
-## 6.2 Lighting Should Be Built
+## 6.2 Lighting should be built
 
 It is normal during development for levels to occasionally not have lighting built. When doing a test/internal/shipping build or any build
 that is to be distributed, however, lighting should always be built.
@@ -1596,14 +1596,14 @@ that is to be distributed, however, lighting should always be built.
 <a name="levels-no-visible-z-fighting"></a>
 <a name="6.3"></a>
 
-## 6.3 No Player Visible Z Fighting
+## 6.3 No player visible Z fighting
 
 Levels should not have any [z-fighting](https://en.wikipedia.org/wiki/Z-fighting) in all areas visible to the player.
 
 <a name="levels-fab-rules"></a>
 <a name="6.4"></a>
 
-## 6.4 Fab Specific Rules
+## 6.4 Fab specific rules
 
 If a project is to be sold on the Fab, it must follow these rules.
 
@@ -1645,7 +1645,7 @@ This section will focus on Texture assets and their internals.
 <a name="textures-dimensions"></a>
 <a name="7.1"></a>
 
-## 7.1 Dimensions Are Powers of 2
+## 7.1 Dimensions are powers of 2
 
 All textures (except UI textures) must be dimensioned in powers of 2. Textures can be non-square.
 
@@ -1654,7 +1654,7 @@ For example, `128x512`, `1024x1024`, `2048x1024`, `1024x2048`, `1x512`.
 <a name="textures-density"></a>
 <a name="7.2"></a>
 
-## 7.2 Texture Density Should Be Uniform
+## 7.2 Texture density should be uniform
 
 All textures should be of a size appropriate for their standard use case. Appropriate texture density varies from project to project, but
 all textures within that project should have a consistent density.
@@ -1665,7 +1665,7 @@ For example, if a project's texture density is 8 pixels per 1 unit, a texture th
 <a name="textures-max-size"></a>
 <a name="7.3"></a>
 
-## 7.3 Textures Should Be No Bigger than 8192
+## 7.3 Textures should be no bigger than 8192
 
 No texture should have a dimension that exceeds 8192 in size, unless you have a very explicit reason to do so. Often, using a texture this
 big is simply just a waste of resources.
@@ -1673,7 +1673,7 @@ big is simply just a waste of resources.
 <a name="textures-group"></a>
 <a name="7.4"></a>
 
-## 7.4 Textures Should Be Grouped Correctly
+## 7.4 Textures should be grouped correctly
 
 Every texture has a Texture Group property used for LODing, and this should be set correctly based on its use. For example, all UI textures
 should belong in the UI texture group.
@@ -1694,4 +1694,5 @@ Copyright © 2016 Gamemakin LLC
 See [LICENSE](/LICENSE)
 
 **[⬆ Back to Top](#table-of-contents)**
+
 # };
