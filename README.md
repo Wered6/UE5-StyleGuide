@@ -1,7 +1,9 @@
 # Wered UE5 Style Guide forked from [Allar's](https://github.com/Allar/ue5-style-guide)
 
-@TODO: Add C++ section, directory structure in C++, plugins, modules, add tldr with links
-@TODO: Change titles so only first word first letter is uppercase not every word
+// TODO: Change titles so only first word first letter is uppercase not every word
+// TODO: Add tldr with links about most important things
+// TODO: Add C++ section, directory structure in C++ and naming
+// TODO: Add plugins and modules section for C++ and blueprints
 
 ## Table of contents
 
