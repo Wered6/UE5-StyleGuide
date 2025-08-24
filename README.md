@@ -292,7 +292,7 @@ All the general rules apply to both Blueprints and C++.
 * Every description or comment **must** be in plain English.
 * Every documentation **must** be in plain English.
 
-It applies both to Blueprints and C++.
+Basically everything **MUST** be in plain English.
 
 <a name="naming-general-forbidden-characters"></a>
 <a name="2.1.2"></a>
