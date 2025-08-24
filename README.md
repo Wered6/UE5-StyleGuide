@@ -1,10 +1,10 @@
-# Wered UE5 Style Guide based on [Allar's Gamemakin UE4 Style Guide()](https://github.com/Allar/ue5-style-guide)
+# Wered UE5 Style Guide based on [Allar's Gamemakin UE4 Style Guide](https://github.com/Allar/ue5-style-guide)
 
-# {
+# WeredUE5StyleGuide() <br> {
 
 // TODO: Add tldr with links about most important things  
 // TODO: Add C++ section, directory structure in C++ and naming  
-// TODO: Add plugins and modules section for C++ and blueprints
+// TODO: Add a plugins and modules section for C++ and blueprints
 
 ## Table of contents
 
@@ -31,37 +31,40 @@
 <details>
 <summary><a href="#naming">2. Naming Convention</a></summary>
 
-- [2.1 Forbidden characters](#naming-forbidden-characters)
-- [2.2 Use PascalCase](#naming-pascal-case)
-- [2.3 Blueprints naming](#naming-bp)
-    - [2.3.1 Base Asset Name - 'Prefix_BaseAssetName_Variant_Suffix'](#naming-bp-bas)
-        - [2.3.1.1 Most common](#naming-bp-bas-common)
-        - [2.3.1.2 Animations](#naming-bp-bas-animations)
-        - [2.3.1.3 Artificial Intelligence](#naming-bp-bas-ai)
-        - [2.3.1.4 Blueprints](#naming-bp-bas-bps)
-        - [2.3.1.5 Materials](#naming-bp-bas-materials)
-        - [2.3.1.6 Textures](#naming-bp-bas-textures)
-            - [2.3.1.6.1 Texture packing](#naming-bp-bas-textures-packing)
-        - [2.3.1.7 Miscellaneous](#naming-bp-bas-misc)
-        - [2.3.1.8 Paper 2D](#naming-bp-bas-paper2d)
-        - [2.3.1.9 Physics](#naming-bp-bas-physics)
-        - [2.3.1.10 Sounds](#naming-bp-bas-sounds)
-        - [2.3.1.11 User Interface](#naming-bp-bas-ui)
-        - [2.3.1.12 Effects](#naming-bp-bas-effects)
-    - [2.3.2 Variables](#naming-bp-vars)
-        - [2.3.2.1 Nouns](#naming-bp-vars-nouns)
-        - [2.3.2.2 Booleans](#naming-bp-vars-bools)
-        - [2.3.2.3 Considered context](#naming-bp-vars-context)
-        - [2.3.2.4 Do *NOT* include atomic type names](#naming-bp-vars-no-atomic)
-        - [2.3.2.5 Do include non-atomic type names](#naming-bp-vars-non-atomic)
-        - [2.3.2.6 Arrays](#naming-bp-vars-arrays)
-    - [2.3.3 Functions, Events and Event Dispatchers](#naming-bp-funcs)
-        - [2.3.3.1 Verb Rule](#naming-bp-funcs-verb-rule)
-        - [2.3.3.2 RepNotify always `OnRep_Variable`](#naming-bp-funcs-repnotify)
-        - [2.3.3.3 Functions returning bool should ask questions](#naming-bp-funcs-return-bool)
-        - [2.3.3.4 Event handlers and dispatchers should be prefixed with `On`](#naming-bp-funcs-event-prefix-on)
-        - [2.3.3.5 RPC must be prefixed with target](#naming-bp-funcs-rpc-prefix-target)
-- [2.4 CPP naming](#naming-cpp)
+- [2.1 General](#naming-general)
+    - [2.1.1 Only English](#naming-general-only-english)
+    - [2.1.2 Forbidden characters](#naming-general-forbidden-characters)
+    - [2.1.3 Use PascalCase](#naming-general-pascal-case)
+- [2.4 Blueprints naming](#naming-bp)
+    - [2.4.1 Base Asset Name - 'Prefix_BaseAssetName_Variant_Suffix'](#naming-bp-bas)
+        - [2.4.1.1 Most common](#naming-bp-bas-common)
+        - [2.4.1.2 Animations](#naming-bp-bas-animations)
+        - [2.4.1.3 Artificial Intelligence](#naming-bp-bas-ai)
+        - [2.4.1.4 Blueprints](#naming-bp-bas-bps)
+        - [2.4.1.5 Materials](#naming-bp-bas-materials)
+        - [2.4.1.6 Textures](#naming-bp-bas-textures)
+            - [2.4.1.6.1 Texture packing](#naming-bp-bas-textures-packing)
+        - [2.4.1.7 Miscellaneous](#naming-bp-bas-misc)
+        - [2.4.1.8 Paper 2D](#naming-bp-bas-paper2d)
+        - [2.4.1.9 Physics](#naming-bp-bas-physics)
+        - [2.4.1.10 Sounds](#naming-bp-bas-sounds)
+        - [2.4.1.11 User Interface](#naming-bp-bas-ui)
+        - [2.4.1.12 Effects](#naming-bp-bas-effects)
+    - [2.4.2 Variables](#naming-bp-vars)
+        - [2.4.2.1 Nouns](#naming-bp-vars-nouns)
+        - [2.4.2.2 Booleans](#naming-bp-vars-bools)
+        - [2.4.2.3 Considered context](#naming-bp-vars-context)
+        - [2.4.2.4 Do *NOT* include atomic type names](#naming-bp-vars-no-atomic)
+        - [2.4.2.5 Do include non-atomic type names](#naming-bp-vars-non-atomic)
+        - [2.4.2.6 Arrays](#naming-bp-vars-arrays)
+    - [2.4.3 Functions, Events and Event Dispatchers](#naming-bp-funcs)
+        - [2.4.3.1 Verb Rule](#naming-bp-funcs-verb-rule)
+        - [2.4.3.2 RepNotify always `OnRep_Variable`](#naming-bp-funcs-repnotify)
+        - [2.4.3.3 Functions returning bool should ask questions](#naming-bp-funcs-return-bool)
+        - [2.4.3.4 Event handlers and dispatchers should be prefixed with `On`](#naming-bp-funcs-event-prefix-on)
+        - [2.4.3.5 RPC must be prefixed with target](#naming-bp-funcs-rpc-prefix-target)
+- [2.5 CPP naming](#naming-cpp)
+    - [2.5.1 Class Organization](#naming-cpp-class-organization)
 
 </details>
 
@@ -273,12 +276,28 @@ skeptical about their ability to work as a team.
 Naming conventions should be treated as law. A project that conforms to a naming convention is able to have its assets managed, searched,
 parsed and maintained with incredible ease.
 
-Most things are prefixed with prefixes being generally an acronym of the asset type followed by an underscore.
-
-<a name="naming-forbidden-characters"></a>
+<a name="naming-general"></a>
 <a name="2.1"></a>
 
-## 2.1 Forbidden characters
+## 2.1 General
+
+All the general rules apply to both Blueprints and C++.
+
+<a name="naming-general-only-english"></a>
+<a name="2.1.1"></a>
+
+## 2.1.1 Only English
+
+* Every name of class, struct, variable, asset, etc. **must** be in plain English.
+* Every description or comment **must** be in plain English.
+* Every documentation **must** be in plain English.
+
+It applies both to Blueprints and C++.
+
+<a name="naming-general-forbidden-characters"></a>
+<a name="2.1.2"></a>
+
+## 2.1.2 Forbidden characters
 
 In any `Identifier` of any kind, **never** use the following unless absolutely forced to:
 
@@ -297,28 +316,30 @@ Any `Identifier` should strive to only have the following characters when possib
 The reasoning for this is this will ensure the greatest compatibility of all data across all platforms across all tools, and help prevent
 downtime due to potentially bad character handling for identifiers in code you don't control.
 
-<a name="naming-pascal-case"></a>
-<a name="2.2"></a>
+<a name="naming-general-pascal-case"></a>
+<a name="2.1.3"></a>
 
-## 2.2 Use PascalCase
+## 2.1.3 Use PascalCase
 
 Use [PascalCase](#terms-cases) everywhere unless it explicitly says otherwise.
 
 <a name="naming-bp"></a>
-<a name="2.3"></a>
+<a name="2.4"></a>
 
-## 2.3 Blueprints naming
+## 2.4 Blueprints naming
 
 <a name="naming-bp-bas"></a>
-<a name="2.3.1"></a>
+<a name="2.4.1"></a>
 
-### 2.3.1 Base Asset Name - `Prefix_BaseAssetName_Variant_Suffix`
+### 2.4.1 Base Asset Name - `Prefix_BaseAssetName_Variant_Suffix`
 
 All assets should have a *Base Asset Name*. A Base Asset Name represents a logical grouping of related assets. Any asset that is part of
 this logical group should follow the standard of `Prefix_BaseAssetName_Variant_Suffix`.
 
 Keeping the pattern `Prefix_BaseAssetName_Variant_Suffix` and in mind and using common sense is generally enough to warrant good asset
 names. Here are some detailed rules regarding each element.
+
+Most things are prefixed with prefixes being generally an acronym of the asset type followed by an underscore.
 
 `Prefix` and `Suffix` are to be determined by the asset type through the following [Name Modifier](#naming-modifiers) tables.
 
@@ -364,9 +385,9 @@ Arch Viz project, you should use the base name `Flooring` with chained variants 
 <a name="naming-modifiers"></a>
 
 <a name="naming-bp-bas-common"></a>
-<a name="2.3.1.1"></a>
+<a name="2.4.1.1"></a>
 
-### 2.3.1.1 Most common
+### 2.4.1.1 Most common
 
 | Asset Type          | Prefix | Suffix    | Notes                                   |
 |---------------------|--------|-----------|-----------------------------------------|
@@ -387,9 +408,9 @@ Arch Viz project, you should use the base name `Flooring` with chained variants 
 | Animation Blueprint | ABP_   |           |                                         |
 
 <a name="naming-bp-bas-animations"></a>
-<a name="2.3.1.2"></a>
+<a name="2.4.1.2"></a>
 
-### 2.3.1.2 Animations
+### 2.4.1.2 Animations
 
 | Asset Type                | Prefix | Suffix | Notes |
 |---------------------------|--------|--------|-------|
@@ -410,9 +431,9 @@ Arch Viz project, you should use the base name `Flooring` with chained variants 
 | Skeleton                  | SKEL_  |        |       |
 
 <a name="naming-bp-bas-ai"></a>
-<a name="2.3.1.3"></a>
+<a name="2.4.1.3"></a>
 
-### 2.3.1.3 Artificial Intelligence
+### 2.4.1.3 Artificial Intelligence
 
 | Asset Type        | Prefix       | Suffix  | Notes |
 |-------------------|--------------|---------|-------|
@@ -426,9 +447,9 @@ Arch Viz project, you should use the base name `Flooring` with chained variants 
 | EnvQueryContext   | EQS_         | Context |       |
 
 <a name="naming-bp-bas-bps"></a>
-<a name="2.3.1.4"></a>
+<a name="2.4.1.4"></a>
 
-### 2.3.1.4 Blueprints
+### 2.4.1.4 Blueprints
 
 | Asset Type                 | Prefix | Suffix    | Notes                                   |
 |----------------------------|--------|-----------|-----------------------------------------|
@@ -442,9 +463,9 @@ Arch Viz project, you should use the base name `Flooring` with chained variants 
 | Widget Blueprint           | WBP_   |           |                                         |
 
 <a name="naming-bp-bas-materials"></a>
-<a name="2.3.1.5"></a>
+<a name="2.4.1.5"></a>
 
-### 2.3.1.5 Materials
+### 2.4.1.5 Materials
 
 | Asset Type                    | Prefix  | Suffix | Notes |
 |-------------------------------|---------|--------|-------|
@@ -458,9 +479,9 @@ Arch Viz project, you should use the base name `Flooring` with chained variants 
 | Decal                         | M_, MI_ | _Decal |       |
 
 <a name="naming-bp-bas-textures"></a>
-<a name="2.3.1.6"></a>
+<a name="2.4.1.6"></a>
 
-### 2.3.1.6 Textures
+### 2.4.1.6 Textures
 
 | Asset Type                          | Prefix | Suffix | Notes                                                   |
 |-------------------------------------|--------|--------|---------------------------------------------------------|
@@ -483,9 +504,9 @@ Arch Viz project, you should use the base name `Flooring` with chained variants 
 | Texture Light Profile               | TLP_   |        |                                                         |
 
 <a name="naming-bp-bas-textures-packing"></a>
-<a name="2.3.1.6.1"></a>
+<a name="2.4.1.6.1"></a>
 
-#### 2.3.1.6.1 Texture packing
+#### 2.4.1.6.1 Texture packing
 
 It is common practice to pack multiple layers of texture data into one texture. An example of this is packing Emissive, Roughness, Ambient
 Occlusion together as the Red, Green and Blue channels of a texture respectively. To determine the suffix, simply stack the given suffix
@@ -498,9 +519,9 @@ Packing 4 channels of data into a texture (RGBA) is not recommended except for a
 as a texture with an alpha channel incurs more overhead than one without.
 
 <a name="naming-bp-bas-misc"></a>
-<a name="2.3.1.7"></a>
+<a name="2.4.1.7"></a>
 
-### 2.3.1.7 Miscellaneous
+### 2.4.1.7 Miscellaneous
 
 | Asset Type                 | Prefix   | Suffix  | Notes                                                                                     |
 |----------------------------|----------|---------|-------------------------------------------------------------------------------------------|
@@ -528,9 +549,9 @@ as a texture with an alpha channel incurs more overhead than one without.
 | Vector Curve               | Curve_   | _Vector |                                                                                           |
 
 <a name="naming-bp-bas-paper2d"></a>
-<a name="2.3.1.8"></a>
+<a name="2.4.1.8"></a>
 
-### 2.3.1.8 Paper 2D
+### 2.4.1.8 Paper 2D
 
 | Asset Type         | Prefix | Suffix | Notes |
 |--------------------|--------|--------|-------|
@@ -541,9 +562,9 @@ as a texture with an alpha channel incurs more overhead than one without.
 | Tile Set           | TS_    |        |       |
 
 <a name="naming-bp-bas-physics"></a>
-<a name="2.3.1.9"></a>
+<a name="2.4.1.9"></a>
 
-### 2.3.1.9 Physics
+### 2.4.1.9 Physics
 
 | Asset Type        | Prefix | Suffix | Notes |
 |-------------------|--------|--------|-------|
@@ -552,9 +573,9 @@ as a texture with an alpha channel incurs more overhead than one without.
 | Destructible Mesh | DM_    |        |       |
 
 <a name="naming-bp-bas-sounds"></a>
-<a name="2.3.1.10"></a>
+<a name="2.4.1.10"></a>
 
-### 2.3.1.10 Sounds
+### 2.4.1.10 Sounds
 
 | Asset Type        | Prefix  | Suffix | Notes                                                           |
 |-------------------|---------|--------|-----------------------------------------------------------------|
@@ -570,9 +591,9 @@ as a texture with an alpha channel incurs more overhead than one without.
 | Sound Wave        | A_      |        | `A` form `A`udio                                                |
 
 <a name="naming-bp-bas-ui"></a>
-<a name="2.3.1.11"></a>
+<a name="2.4.1.11"></a>
 
-### 2.3.1.11 User Interface
+### 2.4.1.11 User Interface
 
 | Asset Type         | Prefix | Suffix | Notes |
 |--------------------|--------|--------|-------|
@@ -582,9 +603,9 @@ as a texture with an alpha channel incurs more overhead than one without.
 | Widget Blueprint   | WBP_   |        |       |
 
 <a name="naming-bp-bas-effects"></a>
-<a name="2.3.1.12"></a>
+<a name="2.4.1.12"></a>
 
-### 2.3.1.12 Effects
+### 2.4.1.12 Effects
 
 | Asset Type              | Prefix | Suffix | Notes |
 |-------------------------|--------|--------|-------|
@@ -592,21 +613,21 @@ as a texture with an alpha channel incurs more overhead than one without.
 | Material (Post Process) | PP_    |        |       |
 
 <a name="naming-bp-vars"></a>
-<a name="2.3.2"></a>
+<a name="2.4.2"></a>
 
-### 2.3.2 Variables
+### 2.4.2 Variables
 
 <a name="naming-bp-vars-nouns"></a>
-<a name="2.3.2.1"></a>
+<a name="2.4.2.1"></a>
 
-### 2.3.2.1 Nouns
+### 2.4.2.1 Nouns
 
 All non-boolean variable names must be clear, unambiguous and descriptive **nouns**.
 
 <a name="naming-bp-vars-bools"></a>
-<a name="2.3.2.2"></a>
+<a name="2.4.2.2"></a>
 
-### 2.3.2.2 Booleans
+### 2.4.2.2 Booleans
 
 All booleans should be named in [PascalCase](#terms-cases) but prefixed with a lowercase `b`. UE5 Blueprint editors know not to include the `b`
 in user-friendly displays of the variable.
@@ -640,9 +661,9 @@ an enumeration instead.
 * Do not use `bRunning` if you also need `bWalking` or `bSprinting`. This should be defined as an enumeration with clearly defined state names.
 
 <a name="naming-bp-vars-context"></a>
-<a name="2.3.2.3"></a>
+<a name="2.4.2.3"></a>
 
-### 2.3.2.3 Considered context
+### 2.4.2.3 Considered context
 
 Consider a Blueprint called `BP_PlayerCharacter`. All of these below variables are named redundantly. It is implied that the variable is
 representative of the `BP_PlayerCharacter` it belongs to because it is `BP_PlayerCharacter` that is defining these variables.
@@ -657,9 +678,9 @@ representative of the `BP_PlayerCharacter` it belongs to because it is `BP_Playe
 | `ChosenCharacterSkin` | `Skin`         |
 
 <a name="naming-bp-vars-no-atomic"></a>
-<a name="2.3.2.4"></a>
+<a name="2.4.2.4"></a>
 
-### 2.3.2.4 Do *NOT* include atomic type names
+### 2.4.2.4 Do *NOT* include atomic type names
 
 Atomic or primitive variables are variables that represent data in their simplest form, such as booleans, integers, floats and enumerations.
 
@@ -690,9 +711,9 @@ type is not easy to read.
 | `Posts` - may potentially read as an Array of a variable type named Post | `NumPosts` or `PostsCount` |
 
 <a name="naming-bp-vars-non-atomic"></a>
-<a name="2.3.2.5"></a>
+<a name="2.4.2.5"></a>
 
-### 2.3.2.5 Do include non-atomic type names
+### 2.4.2.5 Do include non-atomic type names
 
 Non-atomic or complex variables are variables that represent data as a collection of atomic variables. Structs, Classes, Interfaces and
 primitives with hidden behavior such as `Text` and `Name` all qualify under this rule.
@@ -717,9 +738,9 @@ the ability to target a `BP_PlayerCharacter`, it should store its target as `Tar
 clear that it is a reference to another complex variable type that it does not own.
 
 <a name="naming-bp-vars-arrays"></a>
-<a name="2.3.2.6"></a>
+<a name="2.4.2.6"></a>
 
-### 2.3.2.6 Arrays
+### 2.4.2.6 Arrays
 
 Arrays follow the same naming rules as above but should be named as a plural noun.
 
@@ -732,9 +753,9 @@ Arrays follow the same naming rules as above but should be named as a plural nou
 | `EnemyPlayerArray` | `EnemyPlayers` |
 
 <a name="naming-bp-funcs"></a>
-<a name="2.3.3"></a>
+<a name="2.4.3"></a>
 
-### 2.3.3 Functions, Events and Event Dispatchers
+### 2.4.3 Functions, Events and Event Dispatchers
 
 This section describes how you should name functions, events and event dispatchers. Everything that applies to functions also applies to events,
 unless otherwise noted.
@@ -751,9 +772,9 @@ functions. For example:
 These questions and more can all be answered when functions are named appropriately.
 
 <a name="naming-bp-funcs-verb-rule"></a>
-<a name="2.3.3.1"></a>
+<a name="2.4.3.1"></a>
 
-### 2.3.3.1 Verb Rule
+### 2.4.3.1 Verb Rule
 
 **All functions should be verbs.**  
 All functions and events perform some form of action, whether it's getting info, calculating data or causing something to explode. Therefore, all
@@ -778,16 +799,16 @@ they are doing.
 |                                                      | `IsEnemy` - ["Is" is a verb.](http://writingexplained.org/is-is-a-verb)                                                      |
 
 <a name="naming-bp-funcs-repnotify"></a>
-<a name="2.3.3.2"></a>
+<a name="2.4.3.2"></a>
 
-### 2.3.3.2 RepNotify always `OnRep_Variable`
+### 2.4.3.2 RepNotify always `OnRep_Variable`
 
 All functions for replicated with notification variables should have the form `OnRep_Variable`. This is forced by the Blueprint editor.
 
 <a name="naming-bp-funcs-return-bool"></a>
-<a name="2.3.3.3"></a>
+<a name="2.4.3.3"></a>
 
-### 2.3.3.3 Functions returning bool should ask questions
+### 2.4.3.3 Functions returning bool should ask questions
 
 When writing a function that does not change the state of or modify any object and is purely for getting information, state, or computing a
 yes/no value, it should ask a question. This should also follow [the verb rule](#naming-bp-funcs-verb-rule).
@@ -810,9 +831,9 @@ action succeeded.
 |                                                                                | `CanReload`                                                                       |
 
 <a name="naming-bp-funcs-event-prefix-on"></a>
-<a name="2.3.3.4"></a>
+<a name="2.4.3.4"></a>
 
-### 2.3.3.4 Event handlers and dispatchers should be prefixed with `On`
+### 2.4.3.4 Event handlers and dispatchers should be prefixed with `On`
 
 Any function that handles an event or dispatches an event should start with `On` and continue to
 follow [the verb rule](#naming-bp-funcs-verb-rule). The verb may move to the end, however, if past-tense reads better.
@@ -835,9 +856,9 @@ exempt from following the verb rule.
 |                 | `OnLeave`                               |
 
 <a name="naming-bp-funcs-rpc-prefix-target"></a>
-<a name="2.3.3.5"></a>
+<a name="2.4.3.5"></a>
 
-### 2.3.3.5 RPC must be prefixed with target
+### 2.4.3.5 RPC must be prefixed with target
 
 Any time an RPC is created, it must be prefixed with either `Server_`, `Client_`, or `Multicast_`. **No exceptions**.
 
@@ -853,9 +874,9 @@ After the prefix, follow all other rules regarding function naming.
 | `ClientWeapon` - No verb, ambiguous.                       |                               |
 
 <a name="naming-cpp"></a>
-<a name="2.4"></a>
+<a name="2.5"></a>
 
-### 2.4 CPP naming
+### 2.5 CPP naming
 
 **[⬆ Back to Top](#table-of-contents)**
 
