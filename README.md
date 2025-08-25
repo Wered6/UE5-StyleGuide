@@ -510,7 +510,7 @@ action succeeded.
 |                                                                                | `WasCharging` - Use "was" when referring to 'previous frame' or 'previous state'. |
 |                                                                                | `CanReload`                                                                       |
 
-<a name="naming-bp-funcs-repnotify"></a>
+<a name="naming-general-funcs-repnotify"></a>
 <a name="2.1.5.3"></a>
 
 ### 2.1.5.3 RepNotify must be prefixed with `OnRep_`
@@ -825,12 +825,12 @@ as a texture with an alpha channel incurs more overhead than one without.
 | Particle System         | PS_    |        |       |
 | Material (Post Process) | PP_    |        |       |
 
-<a name="naming-bp-funcs"></a>
+<a name="naming-bp-events"></a>
 <a name="2.2.3"></a>
 
 ### 2.2.3 Event Dispatchers
 
-<a name="naming-bp-funcs-event-prefix-on"></a>
+<a name="naming-bp-events-event-prefix-on"></a>
 <a name="2.2.3.4"></a>
 
 ### 2.2.3.4 Event handlers and dispatchers should be prefixed with `On`
