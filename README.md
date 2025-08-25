@@ -61,7 +61,7 @@
         - [2.2.1.10 Sounds](#naming-bp-bas-sounds)
         - [2.2.1.11 User Interface](#naming-bp-bas-ui)
         - [2.2.1.12 Effects](#naming-bp-bas-effects)
-    - [2.2.3 Events and Event Dispatchers](#naming-bp-events)
+    - [2.2.3 Event Dispatchers](#naming-bp-events)
         - [2.2.3.4 Event handlers and dispatchers should be prefixed with `On`](#naming-bp-events-prefix)
 - [2.3 CPP naming](#naming-cpp)
     - [2.3.1 Class Organization](#naming-cpp-class-organization)
@@ -286,7 +286,7 @@ All the general rules apply to both Blueprints and C++.
 <a name="naming-general-only-english"></a>
 <a name="2.1.1"></a>
 
-## 2.1.1 Only English
+### 2.1.1 Only English
 
 * Every name of class, struct, variable, asset, etc. **must** be in plain English.
 * Every description or comment **must** be in plain English.
@@ -297,7 +297,7 @@ Basically everything **MUST** be in plain English.
 <a name="naming-general-forbidden-characters"></a>
 <a name="2.1.2"></a>
 
-## 2.1.2 Forbidden characters
+### 2.1.2 Forbidden characters
 
 In any `Identifier` of any kind, **never** use the following unless absolutely forced to:
 
@@ -319,19 +319,232 @@ downtime due to potentially bad character handling for identifiers in code you d
 <a name="naming-general-pascal-case"></a>
 <a name="2.1.3"></a>
 
-## 2.1.3 Use PascalCase
+### 2.1.3 Use PascalCase
 
 Use [PascalCase](#terms-cases) everywhere unless it explicitly says otherwise.
 
-<a name="naming-bp"></a>
-<a name="2.4"></a>
+<a name="naming-general-vars"></a>
+<a name="2.1.4"></a>
 
-## 2.4 Blueprints naming
+### 2.1.4 Variables
+
+<a name="naming-general-vars-nouns"></a>
+<a name="2.1.4.1"></a>
+
+### 2.1.4.1 Nouns
+
+All non-booleans variable names must be clear, unambiguous and descriptive **nouns**.
+
+<a name="naming-general-vars-bools"></a>
+<a name="2.1.4.2"></a>
+
+### 2.1.4.2 Booleans
+
+All booleans should be named in [PascalCase](#terms-cases) but prefixed with a lowercase `b`.
+
+### Examples
+
+| **Bad** | **Good** |
+|---------|----------|
+| `Dead`  | `bDead`  |
+| `Evil`  | `bEvil`  |
+
+All booleans should be named as descriptive adjectives when possible if representing general information. Do not include words that phrase the
+variable as a question, such as `Is`. This is reserved for [functions](#naming-general-funcs-return-bool).
+
+### Examples
+
+| **Bad**      | **Good**   |
+|--------------|------------|
+| `bIsDead`    | `bDead`    |
+| `bIsHostile` | `bHostile` |
+
+All booleans should not be phrased in continuous tense. Try to not use verbs such as `bRunning`. Verbs tend to lead to complex states.
+
+Do not use booleans to represent complex and/or dependent states. This makes state adding and removing complex and no longer easily readable. Use
+an enumeration instead.
+
+### Examples
+
+* When defining a weapon, do not use `bReloading` and `bEquipping` if a weapon can't be both reloading and equipping. Define an enumeration named
+  `EWeaponState` and use a variable with this type named `WeaponState` instead. This makes it far easier to add new states to weapons.
+* Do not use `bRunning` if you also need `bWalking` or `bSprinting`. This should be defined as an enumeration with clearly defined state names.
+
+<a name="naming-general-vars-context"></a>
+<a name="2.1.4.3"></a>
+
+### 2.1.4.3 Considered context
+
+Consider a Blueprint called `BP_PlayerCharacter`. All of these below variables are named redundantly. It is implied that the variable is
+representative of the `BP_PlayerCharacter` it belongs to because it is `BP_PlayerCharacter` that is defining these variables. This, of course,
+applies also to C++.
+
+On the other hand, if a class does not own the value a complex variable represents, you should use a noun along with the variable type, i.e., if
+a `BP_Turret` has
+the ability to target a `BP_PlayerCharacter`, it should store its target as `TargetPlayer` as when in the context of `BP_Turret` it should be
+clear that it is a reference to another complex variable type that it does not own.
+
+| **Bad**               | **Good**       |
+|-----------------------|----------------|
+| `PlayerScore`         | `Score`        |
+| `PlayerKills`         | `Kills`        |
+| `MyTargetPlayer`      | `TargetPlayer` |
+| `MyCharacterName`     | `Name`         |
+| `CharacterSkills`     | `Skills`       |
+| `ChosenCharacterSkin` | `Skin`         |
+
+<a name="naming-general-vars-no-atomic"></a>
+<a name="2.1.4.4"></a>
+
+### 2.1.4.4 Do *NOT* include atomic type names
+
+Atomic or primitive variables are variables that represent data in their simplest form, such as booleans, integers, floats and enumerations.
+
+Strings and vectors are considered atomic in terms of style when working with Blueprints; however, they are technically not atomic.
+
+> While vectors consist of three floats, vectors are often able to be manipulated as a whole, same with rotators.
+>
+> Do not consider Text variables as atomic, they are secretly hiding localization functionality. The atomic type of string of characters is
+`String`, not `Text`.
+
+Atomic variables should not have their type name in their name.
+
+### Example
+
+| **Bad**             | **Good**      |
+|---------------------|---------------|
+| `ScoreFloat`        | `Score`       |
+| `FloatKills`        | `Kills`       |
+| `DescriptionString` | `Description` |
+
+The only exception to this rule is when a variable represents 'a number of' something to be counted, and when using a name without a variable
+type is not easy to read.
+
+### Example: A fence generator needs to generate X number of posts
+
+| **Bad**                                                                  | **Good**                   |
+|--------------------------------------------------------------------------|----------------------------|
+| `Posts` - may potentially read as an Array of a variable type named Post | `NumPosts` or `PostsCount` |
+
+<a name="naming-general-vars-arrays"></a>
+<a name="2.1.4.5"></a>
+
+### 2.1.4.5 Arrays
+
+Arrays follow the same naming rules as above but should be named as a plural noun.
+
+### Examples
+
+| **Bad**            | **Good**       |
+|--------------------|----------------|
+| `TargetList`       | `Targets`      |
+| `HatArray`         | `Hats`         |
+| `EnemyPlayerArray` | `EnemyPlayers` |
+
+<a name="naming-general-funcs"></a>
+<a name="2.1.5"></a>
+
+### 2.1.5 Functions
+
+This section describes how you should name functions and events. Everything that applies to functions also applies to events, unless otherwise
+noted.
+
+The naming of functions and events is critically important. Based on the name alone, certain assumptions can be made about functions. For
+example:
+
+* Is it a pure function?
+* Is it fetching state information?
+* Is it a handler?
+* Is it an RPC?
+* What is its purpose?
+
+These questions and more can all be answered when functions are named appropriately.
+
+<a name="naming-general-funcs-verb-rule"></a>
+<a name="2.1.5.1"></a>
+
+### 2.1.5.1 Verb Rule
+
+**All functions should be verbs.**  
+All functions and events perform some form of action, whether it's getting info, calculating data or causing something to explode. Therefore, all
+functions should **start with verbs**. They should be worded in the **present tense** whenever possible. They should also have some context as to
+what they are doing.
+
+### Examples
+
+| **Bad**                                              | **Good**                                                                                                                     |
+|------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------|
+| `Dead` - Is Dead? Will deaden?                       | `Fire` - Good example if in a Character / Weapon class, as it has context. Bad if in a Barrel / Grass / any ambiguous class. |
+| `Rock`                                               | `Jump` - Good example if in a Character class, otherwise, needs context.                                                     |
+| `ProcessData` - Ambiguous, these words mean nothing. | `Explode`                                                                                                                    |
+| `PlayerState` - Nouns are ambiguous.                 | `ReceiveMessage`                                                                                                             |
+| `Color` - Verb with no context, or ambiguous noun.   | `SortPlayerArray`                                                                                                            |
+|                                                      | `GetArmOffset`                                                                                                               |
+|                                                      | `GetCoordinates`                                                                                                             |
+|                                                      | `UpdateTransforms`                                                                                                           |
+|                                                      | `EnableBigHeadMode`                                                                                                          |
+|                                                      | `IsEnemy` - ["Is" is a verb.](http://writingexplained.org/is-is-a-verb)                                                      |
+
+<a name="naming-general-funcs-return-bool"></a>
+<a name="2.1.5.2"></a>
+
+### 2.1.5.2 Functions returning bool should ask questions
+
+When writing a function that does not change the state of or modify any object and is purely for getting information, state, or computing a
+yes/no value, it should ask a question. This should also follow [the verb rule](#naming-general-funcs-verb-rule).
+
+This is extremely important as if a question is not asked, it may be assumed that the function performs an action and is returning whether that
+action succeeded.
+
+### Examples
+
+| **Bad**                                                                        | **Good**                                                                          |
+|--------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
+| `Fire` - Is on fire? Will fire? Do fire?                                       | `IsDead`                                                                          |
+| `OnFire` - Can be confused with event dispatcher for firing.                   | `IsOnFire`                                                                        |
+| `Dead` - Is dead? Will deaden?                                                 | `IsAlive`                                                                         |
+| `Visibility` - Is visible? Set visibility? A description of flying conditions? | `IsSpeaking`                                                                      |
+|                                                                                | `IsHavingAnExistentialCrisis`                                                     |
+|                                                                                | `IsVisible`                                                                       |
+|                                                                                | `HasWeapon`                                                                       |
+|                                                                                | `WasCharging` - Use "was" when referring to 'previous frame' or 'previous state'. |
+|                                                                                | `CanReload`                                                                       |
+
+<a name="naming-bp-funcs-repnotify"></a>
+<a name="2.1.5.3"></a>
+
+### 2.1.5.3 RepNotify must be prefixed with `OnRep_`
+
+All functions for replicated with notification variables should have the form `OnRep_Variable`. This is forced by the Blueprint editor, but don't
+forget to also follow this rule in C++.
+
+<a name="naming-general-funcs-rpc-prefix"></a>
+<a name="2.1.5.4"></a>
+
+### 2.1.5.4 RPC must be prefixed with target
+
+Any time an RPC is created, it must be prefixed with either `Server_`, `Client_`, or `Multicast_`. **No exceptions**.
+
+After the prefix, follow all other rules regarding function naming.
+
+### Examples
+
+| **Bad**                                                    | **Good**                      |
+|------------------------------------------------------------|-------------------------------|
+| `FireWeapon` - Does not indicate it's an RPC of some kind. | `Server_FireWeapon`           |
+| `ServerClientBroadcast` - Confusing.                       | `Client_NotifyDeath`          |
+| `AllNotifyDeath` - Use `Multicast`, never `All`.           | `Multicast_SpawnTracerEffect` |
+| `ClientWeapon` - No verb, ambiguous.                       |                               |
+
+<a name="naming-bp"></a>
+<a name="2.2"></a>
+
+## 2.2 Blueprints naming
 
 <a name="naming-bp-bas"></a>
-<a name="2.4.1"></a>
+<a name="2.2.1"></a>
 
-### 2.4.1 Base Asset Name - `Prefix_BaseAssetName_Variant_Suffix`
+### 2.2.1 Base Asset Name - `Prefix_BaseAssetName_Variant_Suffix`
 
 All assets should have a *Base Asset Name*. A Base Asset Name represents a logical grouping of related assets. Any asset that is part of
 this logical group should follow the standard of `Prefix_BaseAssetName_Variant_Suffix`.
@@ -385,9 +598,9 @@ Arch Viz project, you should use the base name `Flooring` with chained variants 
 <a name="naming-modifiers"></a>
 
 <a name="naming-bp-bas-common"></a>
-<a name="2.4.1.1"></a>
+<a name="2.2.1.1"></a>
 
-### 2.4.1.1 Most common
+### 2.2.1.1 Most common
 
 | Asset Type          | Prefix | Suffix    | Notes                                   |
 |---------------------|--------|-----------|-----------------------------------------|
@@ -408,9 +621,9 @@ Arch Viz project, you should use the base name `Flooring` with chained variants 
 | Animation Blueprint | ABP_   |           |                                         |
 
 <a name="naming-bp-bas-animations"></a>
-<a name="2.4.1.2"></a>
+<a name="2.2.1.2"></a>
 
-### 2.4.1.2 Animations
+### 2.2.1.2 Animations
 
 | Asset Type                | Prefix | Suffix | Notes |
 |---------------------------|--------|--------|-------|
@@ -431,9 +644,9 @@ Arch Viz project, you should use the base name `Flooring` with chained variants 
 | Skeleton                  | SKEL_  |        |       |
 
 <a name="naming-bp-bas-ai"></a>
-<a name="2.4.1.3"></a>
+<a name="2.2.1.3"></a>
 
-### 2.4.1.3 Artificial Intelligence
+### 2.2.1.3 Artificial Intelligence
 
 | Asset Type        | Prefix       | Suffix  | Notes |
 |-------------------|--------------|---------|-------|
@@ -447,9 +660,9 @@ Arch Viz project, you should use the base name `Flooring` with chained variants 
 | EnvQueryContext   | EQS_         | Context |       |
 
 <a name="naming-bp-bas-bps"></a>
-<a name="2.4.1.4"></a>
+<a name="2.2.1.4"></a>
 
-### 2.4.1.4 Blueprints
+### 2.2.1.4 Blueprints
 
 | Asset Type                 | Prefix | Suffix    | Notes                                   |
 |----------------------------|--------|-----------|-----------------------------------------|
@@ -463,9 +676,9 @@ Arch Viz project, you should use the base name `Flooring` with chained variants 
 | Widget Blueprint           | WBP_   |           |                                         |
 
 <a name="naming-bp-bas-materials"></a>
-<a name="2.4.1.5"></a>
+<a name="2.2.1.5"></a>
 
-### 2.4.1.5 Materials
+### 2.2.1.5 Materials
 
 | Asset Type                    | Prefix  | Suffix | Notes |
 |-------------------------------|---------|--------|-------|
@@ -479,9 +692,9 @@ Arch Viz project, you should use the base name `Flooring` with chained variants 
 | Decal                         | M_, MI_ | _Decal |       |
 
 <a name="naming-bp-bas-textures"></a>
-<a name="2.4.1.6"></a>
+<a name="2.2.1.6"></a>
 
-### 2.4.1.6 Textures
+### 2.2.1.6 Textures
 
 | Asset Type                          | Prefix | Suffix | Notes                                                   |
 |-------------------------------------|--------|--------|---------------------------------------------------------|
@@ -504,9 +717,9 @@ Arch Viz project, you should use the base name `Flooring` with chained variants 
 | Texture Light Profile               | TLP_   |        |                                                         |
 
 <a name="naming-bp-bas-textures-packing"></a>
-<a name="2.4.1.6.1"></a>
+<a name="2.2.1.6.1"></a>
 
-#### 2.4.1.6.1 Texture packing
+#### 2.2.1.6.1 Texture packing
 
 It is common practice to pack multiple layers of texture data into one texture. An example of this is packing Emissive, Roughness, Ambient
 Occlusion together as the Red, Green and Blue channels of a texture respectively. To determine the suffix, simply stack the given suffix
@@ -519,9 +732,9 @@ Packing 4 channels of data into a texture (RGBA) is not recommended except for a
 as a texture with an alpha channel incurs more overhead than one without.
 
 <a name="naming-bp-bas-misc"></a>
-<a name="2.4.1.7"></a>
+<a name="2.2.1.7"></a>
 
-### 2.4.1.7 Miscellaneous
+### 2.2.1.7 Miscellaneous
 
 | Asset Type                 | Prefix   | Suffix  | Notes                                                                                     |
 |----------------------------|----------|---------|-------------------------------------------------------------------------------------------|
@@ -549,9 +762,9 @@ as a texture with an alpha channel incurs more overhead than one without.
 | Vector Curve               | Curve_   | _Vector |                                                                                           |
 
 <a name="naming-bp-bas-paper2d"></a>
-<a name="2.4.1.8"></a>
+<a name="2.2.1.8"></a>
 
-### 2.4.1.8 Paper 2D
+### 2.2.1.8 Paper 2D
 
 | Asset Type         | Prefix | Suffix | Notes |
 |--------------------|--------|--------|-------|
@@ -562,9 +775,9 @@ as a texture with an alpha channel incurs more overhead than one without.
 | Tile Set           | TS_    |        |       |
 
 <a name="naming-bp-bas-physics"></a>
-<a name="2.4.1.9"></a>
+<a name="2.2.1.9"></a>
 
-### 2.4.1.9 Physics
+### 2.2.1.9 Physics
 
 | Asset Type        | Prefix | Suffix | Notes |
 |-------------------|--------|--------|-------|
@@ -573,9 +786,9 @@ as a texture with an alpha channel incurs more overhead than one without.
 | Destructible Mesh | DM_    |        |       |
 
 <a name="naming-bp-bas-sounds"></a>
-<a name="2.4.1.10"></a>
+<a name="2.2.1.10"></a>
 
-### 2.4.1.10 Sounds
+### 2.2.1.10 Sounds
 
 | Asset Type        | Prefix  | Suffix | Notes                                                           |
 |-------------------|---------|--------|-----------------------------------------------------------------|
@@ -591,9 +804,9 @@ as a texture with an alpha channel incurs more overhead than one without.
 | Sound Wave        | A_      |        | `A` form `A`udio                                                |
 
 <a name="naming-bp-bas-ui"></a>
-<a name="2.4.1.11"></a>
+<a name="2.2.1.11"></a>
 
-### 2.4.1.11 User Interface
+### 2.2.1.11 User Interface
 
 | Asset Type         | Prefix | Suffix | Notes |
 |--------------------|--------|--------|-------|
@@ -603,240 +816,27 @@ as a texture with an alpha channel incurs more overhead than one without.
 | Widget Blueprint   | WBP_   |        |       |
 
 <a name="naming-bp-bas-effects"></a>
-<a name="2.4.1.12"></a>
+<a name="2.2.1.12"></a>
 
-### 2.4.1.12 Effects
+### 2.2.1.12 Effects
 
 | Asset Type              | Prefix | Suffix | Notes |
 |-------------------------|--------|--------|-------|
 | Particle System         | PS_    |        |       |
 | Material (Post Process) | PP_    |        |       |
 
-<a name="naming-bp-vars"></a>
-<a name="2.4.2"></a>
-
-### 2.4.2 Variables
-
-<a name="naming-bp-vars-nouns"></a>
-<a name="2.4.2.1"></a>
-
-### 2.4.2.1 Nouns
-
-All non-boolean variable names must be clear, unambiguous and descriptive **nouns**.
-
-<a name="naming-bp-vars-bools"></a>
-<a name="2.4.2.2"></a>
-
-### 2.4.2.2 Booleans
-
-All booleans should be named in [PascalCase](#terms-cases) but prefixed with a lowercase `b`. UE5 Blueprint editors know not to include the `b`
-in user-friendly displays of the variable.
-
-### Examples
-
-| **Bad** | **Good** |
-|---------|----------|
-| `Dead`  | `bDead`  |
-| `Evil`  | `bEvil`  |
-
-All booleans should be named as descriptive adjectives when possible if representing general information. Do not include words that phrase the
-variable as a question, such as `Is`. This is reserved for [functions](#naming-bp-funcs-bool).
-
-### Examples
-
-| **Bad**      | **Good**   |
-|--------------|------------|
-| `bIsDead`    | `bDead`    |
-| `bIsHostile` | `bHostile` |
-
-All booleans should not be phrased in continuous tense. Try to not use verbs such as `bRunning`. Verbs tend to lead to complex states.
-
-Do not use booleans to represent complex and/or dependent states. This makes state adding and removing complex and no longer easily readable. Use
-an enumeration instead.
-
-### Examples
-
-* When defining a weapon, do not use `bReloading` and `bEquipping` if a weapon can't be both reloading and equipping. Define an enumeration named
-  `EWeaponState` and use a variable with this type named `WeaponState` instead. This makes it far easier to add new states to weapons.
-* Do not use `bRunning` if you also need `bWalking` or `bSprinting`. This should be defined as an enumeration with clearly defined state names.
-
-<a name="naming-bp-vars-context"></a>
-<a name="2.4.2.3"></a>
-
-### 2.4.2.3 Considered context
-
-Consider a Blueprint called `BP_PlayerCharacter`. All of these below variables are named redundantly. It is implied that the variable is
-representative of the `BP_PlayerCharacter` it belongs to because it is `BP_PlayerCharacter` that is defining these variables.
-
-| **Bad**               | **Good**       |
-|-----------------------|----------------|
-| `PlayerScore`         | `Score`        |
-| `PlayerKills`         | `Kills`        |
-| `MyTargetPlayer`      | `TargetPlayer` |
-| `MyCharacterName`     | `Name`         |
-| `CharacterSkills`     | `Skills`       |
-| `ChosenCharacterSkin` | `Skin`         |
-
-<a name="naming-bp-vars-no-atomic"></a>
-<a name="2.4.2.4"></a>
-
-### 2.4.2.4 Do *NOT* include atomic type names
-
-Atomic or primitive variables are variables that represent data in their simplest form, such as booleans, integers, floats and enumerations.
-
-Strings and vectors are considered atomic in terms of style when working with Blueprints; however, they are technically not atomic.
-
-> While vectors consist of three floats, vectors are often able to be manipulated as a whole, same with rotators.
->
-> Do not consider Text variables as atomic, they are secretly hiding localization functionality. The atomic type of string of characters is
-`String`, not `Text`.
-
-Atomic variables should not have their type name in their name.
-
-### Example
-
-| **Bad**             | **Good**      |
-|---------------------|---------------|
-| `ScoreFloat`        | `Score`       |
-| `FloatKills`        | `Kills`       |
-| `DescriptionString` | `Description` |
-
-The only exception to this rule is when a variable represents 'a number of' something to be counted, and when using a name without a variable
-type is not easy to read.
-
-### Example: A fence generator needs to generate X number of posts
-
-| **Bad**                                                                  | **Good**                   |
-|--------------------------------------------------------------------------|----------------------------|
-| `Posts` - may potentially read as an Array of a variable type named Post | `NumPosts` or `PostsCount` |
-
-<a name="naming-bp-vars-non-atomic"></a>
-<a name="2.4.2.5"></a>
-
-### 2.4.2.5 Do include non-atomic type names
-
-Non-atomic or complex variables are variables that represent data as a collection of atomic variables. Structs, Classes, Interfaces and
-primitives with hidden behavior such as `Text` and `Name` all qualify under this rule.
-
-> While an Array of an atomic variable type is a list of variables, Arrays do not change the `atomicness` of a variable type.
-
-These variables should include their type name while still considering their context.
-
-If a class owns an instance of a complex variable, i.e., if a `BP_PlayerCharacter` owns a `BP_Hat`, it should be stored as the variable type as
-without any name modifications.
-
-### Examples
-
-| **Bad**         | **Good**  |
-|-----------------|-----------|
-| `MyHat`         | `Hat`     |
-| `MyFlag`        | `Flag`    |
-| `PlayerAbility` | `Ability` |
-
-If a class does not own the value a complex variable represents, you should use a noun along with the variable type, i.e., if a `BP_Turret` has
-the ability to target a `BP_PlayerCharacter`, it should store its target as `TargetPlayer` as when in the context of `BP_Turret` it should be
-clear that it is a reference to another complex variable type that it does not own.
-
-<a name="naming-bp-vars-arrays"></a>
-<a name="2.4.2.6"></a>
-
-### 2.4.2.6 Arrays
-
-Arrays follow the same naming rules as above but should be named as a plural noun.
-
-### Examples
-
-| **Bad**            | **Good**       |
-|--------------------|----------------|
-| `TargetList`       | `Targets`      |
-| `HatArray`         | `Hats`         |
-| `EnemyPlayerArray` | `EnemyPlayers` |
-
 <a name="naming-bp-funcs"></a>
-<a name="2.4.3"></a>
+<a name="2.2.3"></a>
 
-### 2.4.3 Functions, Events and Event Dispatchers
-
-This section describes how you should name functions, events and event dispatchers. Everything that applies to functions also applies to events,
-unless otherwise noted.
-
-The naming of functions, events and event dispatchers is critically important. Based on the name alone, certain assumptions can be made about
-functions. For example:
-
-* Is it a pure function?
-* Is it fetching state information?
-* Is it a handler?
-* Is it an RPC?
-* What is its purpose?
-
-These questions and more can all be answered when functions are named appropriately.
-
-<a name="naming-bp-funcs-verb-rule"></a>
-<a name="2.4.3.1"></a>
-
-### 2.4.3.1 Verb Rule
-
-**All functions should be verbs.**  
-All functions and events perform some form of action, whether it's getting info, calculating data or causing something to explode. Therefore, all
-functions should start with verbs. They should be worded in the present tense whenever possible. They should also have some context as to what
-they are doing.
-
-`OnRep` functions, event handlers and event dispatchers are an exception to this rule.
-
-### Examples
-
-| **Bad**                                              | **Good**                                                                                                                     |
-|------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------|
-| `Dead` - Is Dead? Will deaden?                       | `Fire` - Good example if in a Character / Weapon class, as it has context. Bad if in a Barrel / Grass / any ambiguous class. |
-| `Rock`                                               | `Jump` - Good example if in a Character class, otherwise, needs context.                                                     |
-| `ProcessData` - Ambiguous, these words mean nothing. | `Explode`                                                                                                                    |
-| `PlayerState` - Nouns are ambiguous.                 | `ReceiveMessage`                                                                                                             |
-| `Color` - Verb with no context, or ambiguous noun.   | `SortPlayerArray`                                                                                                            |
-|                                                      | `GetArmOffset`                                                                                                               |
-|                                                      | `GetCoordinates`                                                                                                             |
-|                                                      | `UpdateTransforms`                                                                                                           |
-|                                                      | `EnableBigHeadMode`                                                                                                          |
-|                                                      | `IsEnemy` - ["Is" is a verb.](http://writingexplained.org/is-is-a-verb)                                                      |
-
-<a name="naming-bp-funcs-repnotify"></a>
-<a name="2.4.3.2"></a>
-
-### 2.4.3.2 RepNotify always `OnRep_Variable`
-
-All functions for replicated with notification variables should have the form `OnRep_Variable`. This is forced by the Blueprint editor.
-
-<a name="naming-bp-funcs-return-bool"></a>
-<a name="2.4.3.3"></a>
-
-### 2.4.3.3 Functions returning bool should ask questions
-
-When writing a function that does not change the state of or modify any object and is purely for getting information, state, or computing a
-yes/no value, it should ask a question. This should also follow [the verb rule](#naming-bp-funcs-verb-rule).
-
-This is extremely important as if a question is not asked, it may be assumed that the function performs an action and is returning whether that
-action succeeded.
-
-### Examples
-
-| **Bad**                                                                        | **Good**                                                                          |
-|--------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
-| `Fire` - Is on fire? Will fire? Do fire?                                       | `IsDead`                                                                          |
-| `OnFire` - Can be confused with event dispatcher for firing.                   | `IsOnFire`                                                                        |
-| `Dead` - Is dead? Will deaden?                                                 | `IsAlive`                                                                         |
-| `Visibility` - Is visible? Set visibility? A description of flying conditions? | `IsSpeaking`                                                                      |
-|                                                                                | `IsHavingAnExistentialCrisis`                                                     |
-|                                                                                | `IsVisible`                                                                       |
-|                                                                                | `HasWeapon`                                                                       |
-|                                                                                | `WasCharging` - Use "was" when referring to 'previous frame' or 'previous state'. |
-|                                                                                | `CanReload`                                                                       |
+### 2.2.3 Event Dispatchers
 
 <a name="naming-bp-funcs-event-prefix-on"></a>
-<a name="2.4.3.4"></a>
+<a name="2.2.3.4"></a>
 
-### 2.4.3.4 Event handlers and dispatchers should be prefixed with `On`
+### 2.2.3.4 Event handlers and dispatchers should be prefixed with `On`
 
 Any function that handles an event or dispatches an event should start with `On` and continue to
-follow [the verb rule](#naming-bp-funcs-verb-rule). The verb may move to the end, however, if past-tense reads better.
+follow [the verb rule](#naming-general-funcs-verb-rule). The verb may move to the end, however, if past-tense reads better.
 
 [Collocations](http://dictionary.cambridge.org/us/grammar/british-grammar/about-words-clauses-and-sentences/collocation) of the word `On` are
 exempt from following the verb rule.
@@ -855,28 +855,15 @@ exempt from following the verb rule.
 |                 | `OnClicked`                             |
 |                 | `OnLeave`                               |
 
-<a name="naming-bp-funcs-rpc-prefix-target"></a>
-<a name="2.4.3.5"></a>
-
-### 2.4.3.5 RPC must be prefixed with target
-
-Any time an RPC is created, it must be prefixed with either `Server_`, `Client_`, or `Multicast_`. **No exceptions**.
-
-After the prefix, follow all other rules regarding function naming.
-
-### Examples
-
-| **Bad**                                                    | **Good**                      |
-|------------------------------------------------------------|-------------------------------|
-| `FireWeapon` - Does not indicate it's an RPC of some kind. | `Server_FireWeapon`           |
-| `ServerClientBroadcast` - Confusing.                       | `Client_NotifyDeath`          |
-| `AllNotifyDeath` - Use `Multicast`, never `All`.           | `Multicast_SpawnTracerEffect` |
-| `ClientWeapon` - No verb, ambiguous.                       |                               |
-
 <a name="naming-cpp"></a>
-<a name="2.5"></a>
+<a name="2.3"></a>
 
-### 2.5 CPP naming
+### 2.3 CPP naming
+
+<a name="naming-cpp-class-organization"></a>
+<a name="2.3.1"></a>
+
+### 2.3.1 Class organization
 
 **[⬆ Back to Top](#table-of-contents)**
 
