@@ -830,7 +830,7 @@ as a texture with an alpha channel incurs more overhead than one without.
 
 ### 2.2.3 Event Dispatchers
 
-<a name="naming-bp-events-event-prefix"></a>
+<a name="naming-bp-events-prefix"></a>
 <a name="2.2.3.4"></a>
 
 ### 2.2.3.4 Event handlers and dispatchers should be prefixed with `On`
