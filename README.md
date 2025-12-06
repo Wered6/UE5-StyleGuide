@@ -1,4 +1,4 @@
-# Wered UE5 Style Guide based on [Allar's Gamemakin UE4 Style Guide](https://github.com/Allar/ue5-style-guide)
+# Wered UE5 Style Guide based on [Allar's UE4 Style Guide](https://github.com/Allar/ue5-style-guide)
 
 # WeredUE5StyleGuide() <br> {
 
@@ -28,16 +28,19 @@
 
 </details>
 
+- [Complex/Dependent states should be expressed in enumerators, not booleans*](#complex-state)
+- [Use Strongly-Typed Enums](#enum-class)
+
 <details>
 <summary><a href="#naming">2. Naming Convention</a></summary>
 
 - [2.1 General](#naming-general)
-    - [2.1.1 Only English](#naming-general-only-english)
+    - [2.1.1 The most important programming language is English](#naming-general-english)
     - [2.1.2 Forbidden characters](#naming-general-forbidden-characters)
     - [2.1.3 Use PascalCase](#naming-general-pascal-case)
     - [2.1.4 Variables](#naming-general-vars)
         - [2.1.4.1 Nouns](#naming-general-vars-nouns)
-        - [2.1.4.2 Booleans](#naming-general-vars-bools)
+        - [2.1.4.2 Booleans](#naming-general-vars-bool)
         - [2.1.4.3 Considered context](#naming-general-vars-context)
         - [2.1.4.4 Do *NOT* include atomic type names](#naming-general-vars-no-atomic)
         - [2.1.4.5 Arrays](#naming-general-vars-arrays)
@@ -266,10 +269,75 @@ If you are helping someone whose work conforms to a different but consistent and
 When joining an Unreal Engine 5 team, one of your first questions should be "Do you have a style guide?". If the answer is no, you should be
 skeptical about their ability to work as a team.
 
+**[⬆ Back to Top](#table-of-contents)**
+
+<a name="complex-state"></a>
+<a name=""></a>
+
+# Complex/Dependent states should be expressed in enumerators, not booleans*
+
+Do not use booleans to represent complex/dependent states. This makes state adding and removing complex and no longer easily readable. Use
+an enumeration instead.
+
+### Examples
+
+* When defining a weapon, do not use `bReloading` and `bEquipping` if a weapon can't be both reloading and equipping. Define an enumeration named
+  `EWeaponState` and use a variable with this type named `WeaponState` instead. This makes it far easier to add new states to weapons.
+
+```cpp
+enum class  
+```
+
+* Do not use `bRunning` if you also need `bWalking` or `bSprinting`. This should be defined as an enumeration with clearly defined state names.
+
+<a name="enum-class></a>
+<a name=""></a>
+
+# Use Strongly-Typed Enums
+
+Enumerated classes are replacement for old-style enums.
+
+```cpp
+// Old enum
+enum EEnumNoClass
+{
+    Thing1,
+    Thing2
+};
+
+// New enum, recommended
+enum class EEnumClass
+{
+    Thing1,
+    Thing2
+};
+```
+
+If you want to expose enum written in C++ to Blueprints, it **MUST** be based on `uint8`.  
+However, there is an option to use old enums without specifying underlying type, but Unreal Header Tool will convert it anyway for `uint8` for
+blueprints.  
+It is recommended to use newer enum, `enum class`.
+
+```cpp
+// won't compile
+UPROPERTY(BlueprintType)
+enum class EEnumNoClass
+{
+    Thing1,
+    Thing2
+};
+
+// will compile
+UPROPERTY(BlueprintType)
+enum class EEnumClass : uint8
+{
+    Thing1,
+    Thing2
+};
+```
+
 <a name="naming"></a>
 <a name="2"></a>
-
-**[⬆ Back to Top](#table-of-contents)**
 
 # 2. Naming Conventions
 
@@ -283,23 +351,23 @@ parsed and maintained with incredible ease.
 
 All the general rules apply to both Blueprints and C++.
 
-<a name="naming-general-only-english"></a>
+<a name="naming-general-english"></a>
 <a name="2.1.1"></a>
 
-### 2.1.1 Only English
+### 2.1.1 The most important programming language is English
 
-* Every name of class, struct, variable, asset, etc. **must** be in plain English.
-* Every description or comment **must** be in plain English.
-* Every documentation **must** be in plain English.
+* Every name of class, struct, variable, asset, etc. **MUST** be in plain English.
+* Every description or comment **MUST** be in plain English.
+* Every documentation **MUST** be in plain English.
 
-Basically everything **MUST** be in plain English.
+Basically, everything **MUST** be in plain English.
 
 <a name="naming-general-forbidden-characters"></a>
 <a name="2.1.2"></a>
 
 ### 2.1.2 Forbidden characters
 
-In any `Identifier` of any kind, **never** use the following unless absolutely forced to:
+In any `Identifier` of any kind, **NEVER** use the following unless absolutely forced to:
 
 * White space of any kind
 * Backward slashes `\`
@@ -335,7 +403,7 @@ Use [PascalCase](#terms-cases) everywhere unless it explicitly says otherwise.
 
 All non-booleans variable names must be clear, unambiguous and descriptive **nouns**.
 
-<a name="naming-general-vars-bools"></a>
+<a name="naming-general-vars-bool"></a>
 <a name="2.1.4.2"></a>
 
 ### 2.1.4.2 Booleans
@@ -359,16 +427,8 @@ variable as a question, such as `Is`. This is reserved for [functions](#naming-g
 | `bIsDead`    | `bDead`    |
 | `bIsHostile` | `bHostile` |
 
-All booleans should not be phrased in continuous tense. Try to not use verbs such as `bRunning`. Verbs tend to lead to complex states.
-
-Do not use booleans to represent complex and/or dependent states. This makes state adding and removing complex and no longer easily readable. Use
-an enumeration instead.
-
-### Examples
-
-* When defining a weapon, do not use `bReloading` and `bEquipping` if a weapon can't be both reloading and equipping. Define an enumeration named
-  `EWeaponState` and use a variable with this type named `WeaponState` instead. This makes it far easier to add new states to weapons.
-* Do not use `bRunning` if you also need `bWalking` or `bSprinting`. This should be defined as an enumeration with clearly defined state names.
+All booleans should not be phrased in continuous tense. Try to not use verbs such as `bRunning`. Verbs tend to lead
+to [complex states](#complex-state).
 
 <a name="naming-general-vars-context"></a>
 <a name="2.1.4.3"></a>
@@ -604,12 +664,7 @@ Arch Viz project, you should use the base name `Flooring` with chained variants 
 
 | Asset Type          | Prefix | Suffix    | Notes                                   |
 |---------------------|--------|-----------|-----------------------------------------|
-| Level / Map         | L_     |           |                                         |
-| Level (Persistent)  | L_     | _P        |                                         |
-| Level (Audio)       | L_     | _Audio    |                                         |
-| Level (Lighting)    | L_     | _Lighting |                                         |
-| Level (Geometry)    | L_     | _Geo      |                                         |
-| Level (Gameplay)    | L_     | _Gameplay |                                         |
+| Level / Map         | Lvl_   |           |                                         |
 | Blueprint           | BP_    |           |                                         |
 | Blueprint Component | BP_    | Component | I.e. BP_InventoryComponent              |
 | Material            | M_     |           |                                         |
